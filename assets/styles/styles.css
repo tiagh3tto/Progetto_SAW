@@ -1,0 +1,14 @@
+body {
+    background: linear-gradient(to right, #2b5876, #4e4376);
+    font-family: 'Arial', sans-serif;
+}
+.vh-100 {
+    min-height: 100vh;
+}
+.navbar-brand {
+    flex-grow: 1;
+}
+.navbar-brand img {
+    width: 150px;
+    height: 50px;
+}
