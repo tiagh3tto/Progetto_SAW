@@ -44,6 +44,6 @@
 		}
 		
 		mysqli_stmt_close($stmt);
-		header("Location: /SAW/es17/private/login.php"); 
+		header("Location: /SAW/Progetto_SAW/private/login.php"); 
 	}	
 ?>
