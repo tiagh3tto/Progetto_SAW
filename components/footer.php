@@ -1,4 +1,4 @@
-        <footer class="footer mt-auto py-3 bg-dark text-white">
+        <footer class="footer mt-auto py-3 bg-dark text-white fixed-bottom">
             <div class="container text-center">
                 <span>&copy; 2022 Re-View</span>
             </div>

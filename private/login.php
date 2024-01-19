@@ -1,8 +1,8 @@
 <?php
     if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-		include ($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/body_start.php");
+		include ($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/head.php");
 		include ($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/navbar/navbar.php");
-		include ($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/reg-form.php");
+		include ($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/main/log-form.php");
 		include ($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/footer.php");
 	}
     else{
@@ -19,14 +19,10 @@
         $pwd = $_POST['pass'];
 
         try{
-            //to prevent from mysqli injection 
-            $email = mysqli_real_escape_string($con, $email);  
-            $pwd = mysqli_real_escape_string($con, $pwd);
-
             include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
         
             $query = "SELECT * FROM utenti WHERE Email = ?;";
-            $stmt = mysqli_prepare($con, $query); 
+            $stmt = mysqli_prepare($con, $query);
             mysqli_stmt_bind_param($stmt, 's', $email);
             mysqli_stmt_execute($stmt);
             $res=mysqli_stmt_get_result($stmt);  
@@ -39,7 +35,7 @@
                     $_SESSION['firstname'] = $row[0];
                     $_SESSION['lastname'] = $row[1];
                     $_SESSION['admin'] = $row[4];
-                    header("Location: resHome.php");
+                    header('Location: /SAW/Progetto_SAW/public/index.php');                                        //da creare
                 }
                 echo "errore1";                                                             //OJO: gestione errori
             }  
@@ -51,7 +47,7 @@
         }
         catch(mysqli_sql_exception $e){
             echo "something went wrong in the login";                                       //OJO: gestione errori
-            error_log($e->getMessage(), 3, "error_log.log");
+            error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
         }
     }
 ?>   

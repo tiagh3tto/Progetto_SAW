@@ -1,9 +1,9 @@
 <?php
     session_start();													//OJO: va messo in registration???
     if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-		include ($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/body_start.php");
+		include ($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/head.php");
 		include ($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/navbar/navbar.php");
-		include ($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/reg-form.php");
+		include ($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/main/reg-form.php");
 		include ($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/footer.php");
 	}
 	else{
