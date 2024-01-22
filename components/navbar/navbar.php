@@ -15,8 +15,8 @@
                     <i class="fas fa-user"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Registrati</a>
-                    <a class="dropdown-item" href="#">Accedi</a>
+                    <a class="dropdown-item" href="/SAW/Progetto_SAW/private/registration.php">Registrati</a>
+                    <a class="dropdown-item" href="/SAW/Progetto_SAW/private/login.php">Accedi</a>
                 </div>
             </li>
         </ul>
