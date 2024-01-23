@@ -1,78 +1,70 @@
 <div style='display: flex; justify-content: center; align-items: center; height: 100vh;'>
-    <form action="registration.php" method="POST" class='row g-3 needs-validation' novalidate style="width: 50%">
-    <div class="col-md-4">
-    <label for="validationCustom01" class="form-label">First name</label>
-    <input type="text" name="firstname" class="form-control" id="validationCustom01" required pattern="[A-Za-z]+" title="Please enter a valid name" >
-    <div class="valid-feedback">
-      Ottimo!
+    <div class="form-container">
+        <h1 class="text-center">Registrati</h1>
+        <p class="text-center">Inserisci i tuoi dati per registrarti</p>
+        <form action="registration.php" method="POST" class='row g-3 needs-validation' novalidate>
+        <div class="col-md-5">
+          <label for="validationCustom01" class="form-label">Nome</label>
+          <input type="text" name="firstname" class="form-control" id="validationCustom01" value="Mario" required pattern="[A-Za-z]+" >
+            <div class="valid-feedback">
+              Ottimo!
+            </div>
+            <div class="invalid-feedback">
+              Per favore inserisci un nome valido.
+            </div>
+        </div>
+        <div class="col-md-5">
+          <label for="validationCustom02" class="form-label">Cognome</label>
+          <input type="text" name="lastname" class="form-control" id="validationCustom02" value="Rossi" required pattern="[A-Za-z]+">
+            <div class="valid-feedback">
+              Ottimo!
+            </div>
+            <div class="invalid-feedback">
+                Per favore inserisci un cognome valido.
+            </div>
+        </div>
+        <div class="col-md-7">
+          <label for="validationCustomEmail" class="form-label">Email</label>
+          <div class="input-group has-validation">
+            <input type="email" name="email" class="form-control" id="validationCustomEmail" aria-describedby="inputGroupPrepend" required>
+            <div class="invalid-feedback">
+              Per favore inserisci una mail valida.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="inputPassword6" class="col-form-label">Password</label>
+          <div class="col-auto">
+            <input type="password" name="pass" id="validationCustonPwd" class="form-control" aria-describedby="passwordHelpInline" minlength="8" required>
+            <div class="invalid-feedback">
+                Per favore inserisci una password valida.
+            </div>
+          </div>
+          <div class="col-auto">
+            <span id="passwordHelpInline" class="form-text">
+              Dev'essere lunga almeno 8 caratteri.
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6">
+            <label for="inputPasswordConfirm" class="col-form-label">Conferma Password</label>
+          <div class="col-auto">
+            <input type="password" name="confirm" id="inputPasswordConfirm" class="form-control" aria-describedby="passwordHelpInlineConfirm" minlength="8" required>
+            <div class="invalid-feedback">
+                Per favore inserisci una password valida.
+          </div>
+          </div>
+          <div class="col-auto">
+            <span id="passwordHelpInlineConfirm" class="form-text">
+              Dev'essere lunga almeno 8 caratteri e corrispondere alla password.
+            </span>
+          </div>  
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Invia</button>
+        </div>
+      </form>
     </div>
-    <div class="invalid-feedback">
-      Per favore inserisci un nome valido.
-    </div>
-  </div>
-  <div class="col-md-4">
-    <label for="validationCustom02" class="form-label">Last name</label>
-    <input type="text" name="lastname" class="form-control" id="validationCustom02" value="Otto" required pattern="[A-Za-z]+">
-    <div class="valid-feedback">
-      Ottimo!
-    </div>
-    <div class="invalid-feedback">
-        Per favore inserisci un cognome valido.
-    </div>
-  </div>
-  <div class="col-md-4">
-    <label for="validationCustomEmail" class="form-label">Email</label>
-    <div class="input-group has-validation">
-      <input type="email" name="email" class="form-control" id="validationCustomEmail" aria-describedby="inputGroupPrepend" required>
-      <div class="invalid-feedback">
-        Per favore inserisci una mail valida.
-      </div>
-      <div class="invalid-feedback">
-        Please enter a valid email.
-    </div>
-    </div>
-  </div>
-  <div class="row g-3 align-items-center">
-  <div class="col-auto">
-    <label for="inputPassword6" class="col-form-label">Password</label>
-  </div>
-  <div class="col-auto">
-    <input type="password" name="pass" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" minlength="8">
-  </div>
-  <div class="col-auto">
-    <span id="passwordHelpInline" class="form-text">
-      Dev'essere lunga almeno 8 caratteri.
-    </span>
-  </div>
-</div>
-<div class="row g-3 align-items-center">
-  <div class="col-auto">
-    <label for="inputPasswordConfirm" class="col-form-label">Confirm Password</label>
-  </div>
-  <div class="col-auto">
-    <input type="password" name="confirm" id="inputPasswordConfirm" class="form-control" aria-describedby="passwordHelpInlineConfirm" minlength="8">
-  </div>
-  <div class="col-auto">
-    <span id="passwordHelpInlineConfirm" class="form-text">
-      Dev'essere lunga almeno 8 caratteri e corrispondere alla password.
-    </span>
-  </div>
-</div>
-  <!--<div class="col-12">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-      <label class="form-check-label" for="invalidCheck">
-        Agree to terms and conditions
-      </label>
-      <div class="invalid-feedback">
-        You must agree before submitting.
-      </div>
-    </div>
-  </div>-->
- <div class="col-12">
-    <button class="btn btn-primary" type="submit">Submit form</button>
-  </div>
-    </form>
 </div>
 
 <!--

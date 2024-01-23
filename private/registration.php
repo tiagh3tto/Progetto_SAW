@@ -20,7 +20,7 @@
 
 		include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
 
-		$stmt = mysqli_prepare($con, "INSERT INTO users(Nome,Cognome,Email,Pwd) VALUES (?,?,?,?)");
+		$stmt = mysqli_prepare($con, "INSERT INTO utenti(Nome,Cognome,Email,Password) VALUES (?,?,?,?)");
 		if(!$stmt){
 			error_log("Failed to prepare statement: " . mysqli_error($con)."\n",3, $_SERVER['DOCUMENT_ROOT']."/SAW/private/logs/errors.log");		//OJO: gestione errori
 			echo "Impossibile preparare la query";
