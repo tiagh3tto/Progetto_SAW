@@ -38,15 +38,15 @@
         data:tabledata, //assign data to table
         layout:"fitColumns", //fit columns to width of table (optional)
         columns:[ //Define Table Columns
-            {title:"Name", field:"name"},
-            {title:"Email", field:"email"},
+            {title:"Name", field:"name", sortable:true},
+            {title:"Email", field:"email", sortable:true},
         ],
         });
 
         // Add event listener to the button
         document.getElementById('modify-button').addEventListener('click', function() {
         // Redirect to the page to modify personal info
-        window.location.href = 'modify_info.html';
+        window.location.href = 'update_profile.php';
         });
     </script>    
     </body>

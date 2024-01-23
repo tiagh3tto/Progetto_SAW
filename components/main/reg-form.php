@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="col-md-6">
-          <label for="inputPassword6" class="col-form-label">Password</label>
+          <label for="validationCustonPwd" class="col-form-label">Password</label>
           <div class="col-auto">
             <input type="password" name="pass" id="validationCustonPwd" class="form-control" aria-describedby="passwordHelpInline" minlength="8" required>
             <div class="invalid-feedback">

@@ -16,13 +16,16 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <?php
+                        session_start();
                         if(isset($_SESSION['login']) && !empty($_SESSION['login'])){
                             echo "<a class='dropdown-item' href='/SAW/Progetto_SAW/private/show_profile.php'>Area riservata</a>";
                             echo "<a class='dropdown-item' href='/SAW/Progetto_SAW/private/logout.php'>Logout</a>";
                         }
+                        else{
+                            echo "<a class='dropdown-item' href='/SAW/Progetto_SAW/private/registration.php'>Registrati</a>";
+                            echo "<a class='dropdown-item' href='/SAW/Progetto_SAW/private/login.php'>Accedi</a>";
+                        }
                     ?>    
-                    <a class="dropdown-item" href="/SAW/Progetto_SAW/private/registration.php">Registrati</a>
-                    <a class="dropdown-item" href="/SAW/Progetto_SAW/private/login.php">Accedi</a>
                 </div>
             </li>
         </ul>
