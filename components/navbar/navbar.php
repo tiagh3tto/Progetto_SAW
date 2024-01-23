@@ -3,10 +3,10 @@
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="/SAW/Progetto_SAW/public/index.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Catalogo</a>
+                <a class="nav-link" href="/SAW/Progetto_SAW/public/catalog.php">Catalogo</a>
             </li>
         </ul>
         <ul class="navbar-nav">
