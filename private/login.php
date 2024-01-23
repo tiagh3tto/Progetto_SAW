@@ -30,7 +30,7 @@
             $count = mysqli_num_rows($res);
         
             if($count == 1){
-                if(password_verify($pwd, $row[3])){
+                if(password_verify($pwd, $row[4])){
                     $_SESSION['login'] = true;
                     $_SESSION['firstname'] = $row[0];
                     $_SESSION['lastname'] = $row[1];
