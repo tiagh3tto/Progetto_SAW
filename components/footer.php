@@ -27,5 +27,27 @@
         })
         })();
     </script>
+    <script>
+        // Define data
+        var tabledata = [
+        {id:1, name:"John Doe", email:"johndoe@example.com"}, //example data, replace with actual data
+        ];
+
+        // Create Tabulator on DOM element with id "profile-table"
+        var table = new Tabulator("#profile-table", {
+        data:tabledata, //assign data to table
+        layout:"fitColumns", //fit columns to width of table (optional)
+        columns:[ //Define Table Columns
+            {title:"Name", field:"name"},
+            {title:"Email", field:"email"},
+        ],
+        });
+
+        // Add event listener to the button
+        document.getElementById('modify-button').addEventListener('click', function() {
+        // Redirect to the page to modify personal info
+        window.location.href = 'modify_info.html';
+        });
+    </script>    
     </body>
 </html>

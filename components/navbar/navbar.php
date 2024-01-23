@@ -3,7 +3,7 @@
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="/SAW/Progetto_SAW/public/index.php">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Catalogo</a>
@@ -15,6 +15,12 @@
                     <i class="fas fa-user"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <?php
+                        if(isset($_SESSION['login']) && !empty($_SESSION['login'])){
+                            echo "<a class='dropdown-item' href='/SAW/Progetto_SAW/private/show_profile.php'>Area riservata</a>";
+                            echo "<a class='dropdown-item' href='/SAW/Progetto_SAW/private/logout.php'>Logout</a>";
+                        }
+                    ?>    
                     <a class="dropdown-item" href="/SAW/Progetto_SAW/private/registration.php">Registrati</a>
                     <a class="dropdown-item" href="/SAW/Progetto_SAW/private/login.php">Accedi</a>
                 </div>
