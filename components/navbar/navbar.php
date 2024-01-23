@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#"><img src="../assets/img/logo2.png" alt="Logo"></a>
     <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto centered-nav">
             <li class="nav-item">
                 <a class="nav-link" href="/SAW/Progetto_SAW/public/index.php">Home</a>
             </li>
