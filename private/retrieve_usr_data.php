@@ -1,0 +1,31 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['login']) || empty($_SESSION['login']))
+        header('Location: /SAW/Progetto_SAW/private/login.php');
+    if( isset($_SESSION['email']) && !empty($_SESSION['email']) )
+        $email = $_SESSION['email'];
+    else
+        header('Location: /SAW/Progetto_SAW/private/login.php'); //modificare con un alert di errore??
+    try{
+        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
+    $query = "SELECT * FROM Utenti WHERE Email = ?;";
+    $stmt = mysqli_prepare($con, $query);
+    mysqli_stmt_bind_param($stmt, 's', $email);
+    mysqli_stmt_execute($stmt);
+    $res=mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_array($res, MYSQLI_NUM);
+    $count = mysqli_num_rows($res);
+    }
+    catch(mysqli_sql_exception $e){
+        echo "Impossibile caricare le tue informazioni";                              //OJO: gestione errori
+        error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
+    }
+    //build data array
+    if($count == 1){
+        $data = [
+        [ "Nome"=>$row[1], "Cognome"=>$row[2], "Email"=>$row[3], "Data_Nascita"=>$row[6], "Genere"=>$row[7], "Paese"=>$row[8]]
+        ];
+    }
+        //return JSON formatted data
+    echo(json_encode($data));
+?>

@@ -17,7 +17,7 @@
 			echo "<p> Attenzione! Le password non corrispondono!</p>";			//OJO: gestione errori
 			exit;
 		}
-
+		//AGGIUNGERE TRY CATCH
 		include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
 
 		$stmt = mysqli_prepare($con, "INSERT INTO utenti(Nome,Cognome,Email,Password) VALUES (?,?,?,?)");

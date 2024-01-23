@@ -32,17 +32,27 @@
         var tabledata = [
         {id:1, name:"John Doe", email:"johndoe@example.com"}, //example data, replace with actual data
         ];
-
         // Create Tabulator on DOM element with id "profile-table"
         var table = new Tabulator("#profile-table", {
-        data:tabledata, //assign data to table
+        ajaxURL:"/SAW/Progetto_SAW/private/retrieve_usr_data.php", //ajax URL
+        //data:tabledata, //assign data to table
         layout:"fitColumns", //fit columns to width of table (optional)
         columns:[ //Define Table Columns
-            {title:"Name", field:"name", sortable:true},
-            {title:"Email", field:"email", sortable:true},
+        {title:"Nome", field:"Nome", editor:"input"/*sortable:true,headerFilter:"input"*/},
+            {title:"Cognome", field:"Cognome",editor:"input"},
+            {title:"Email", field:"Email",editor:"input"},
+            {title:"Data di Nascita", field:"Data_Nascita",editor:"input"},
+            {title:"Genere", field:"Genere",editor:"input"},
+            {title:"Paese", field:"Paese",editor:"input"},
         ],
         });
-
+        table.setData()
+        .then(function(){
+            //run code after table has been successfully updated
+        })
+        .catch(function(error){
+            //handle error loading data
+        });
         // Add event listener to the button
         document.getElementById('modify-button').addEventListener('click', function() {
         // Redirect to the page to modify personal info
