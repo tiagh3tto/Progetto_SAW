@@ -38,22 +38,20 @@
             
             //data:tabledata, //assign data to table
             layout:"fitDataTable", //fit columns to width of data (optional)
+            validationMode:"blocking",
             columns:[ //Define Table Columns
-                {title:"Nome", field:"Nome", editor:"input"/*sortable:true,headerFilter:"input"*/},
-                {title:"Cognome", field:"Cognome",editor:"input"},
+                {title:"Nome", field:"Nome", editor:"input", validator:["required","regex:^[A-Za-z]+$"]/*sortable:true,headerFilter:"input"*/},
+                {title:"Cognome", field:"Cognome",editor:"input",validator:["required","regex:^[A-Za-z]+$"]},
                 {title:"Email", field:"Email"},
                 {title:"Data di Nascita", field:"Data_Nascita", editor:"date", editorParams:
                     {
-                        min:"1930/01/01", // the minimum allowed value for the date picker
-                        max:"2014/12/31", // the maximum allowed value for the date picker
+                        min:"1950-01-01", // the minimum allowed value for the date picker
+                        max:"2009-12-31", // the maximum allowed value for the date picker
                         verticalNavigation:"table", //navigate cursor around table without changing the value
-                        elementAttributes:{
-                            title:"slide bar to choose option" // custom tooltip
-                          }
                     }
                 },
                 {title:"Genere", field:"Genere", editor:"list", editorParams:{values:{"Maschio":"Maschio", "Femmina":"Femmina", "Altro":"Altro"}}},
-                {title:"Paese", field:"Paese",editor:"input"},
+                {title:"Paese", field:"Paese",editor:"input",validator:"regex:^[A-Za-z]+$"},
             ],
         });
         usr_table.setData()
