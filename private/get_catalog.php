@@ -4,7 +4,6 @@ try{
 
     $query = "SELECT Nome, Genere, Regista, Paese, Anno, Descrizione, Img FROM film;";
     $res = mysqli_query($con, $query);
-    $row = mysqli_fetch_array($res);
     $count = mysqli_num_rows($res);
 }
 catch(mysqli_sql_exception $e){

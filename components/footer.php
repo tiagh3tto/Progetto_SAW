@@ -69,18 +69,18 @@
             //data:tabledata, //assign data to table
             layout:"fitDataTable", //fit columns to width of data (optional)
             columns:[ //Define Table Columns
-                {title:"", field:"img", formatter:"image", formatterParams:{
+                {title:"", field:"img", formatter:"image", headerSort:false, formatterParams:{
                     height:"120px",
                     width:"80px",
                     urlPrefix:"/SAW/Progetto_SAW/assets/img/film/",
                     urlSuffix:".jpg"
                 }},
-                {title:"Nome", field:"nome", sortable:true},
-                {title:"Genere", field:"genere", sortable:true},
-                {title:"Regista", field:"regista", sortable:true},
-                {title:"Paese", field:"paese", sortable:true},
-                {title:"Anno", field:"anno", sortable:true},
-                {title:"Descrizione", field:"descrizione", sortable:true},
+                {title:"Nome", field:"nome"},
+                {title:"Genere", field:"genere"},
+                {title:"Regista", field:"regista"},
+                {title:"Paese", field:"paese"},
+                {title:"Anno", field:"anno"},
+                {title:"Descrizione", field:"descrizione"},
             ]
         });
         table.setData()
