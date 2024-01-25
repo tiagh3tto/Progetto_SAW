@@ -1,5 +1,7 @@
 <?php
-    session_start();													//OJO: va messo in registration???
+    if(!isset($_SESSION)){ 
+        session_start(); 
+    } 													//OJO: va messo in registration???
     if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 		include ($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/head.php");
 		include ($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/navbar/navbar.php");

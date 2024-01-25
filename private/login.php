@@ -6,7 +6,9 @@
 		include ($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/footer.php");
 	}
     else{
-        session_start();
+        if(!isset($_SESSION)) { 
+            session_start(); 
+        } 
 
         $arr_fields = array('email', 'pass');
 		foreach ($arr_fields as $field) {
