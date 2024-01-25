@@ -90,11 +90,6 @@
         .catch(function(error){
             //handle error loading data
         });
-        // Add event listener to the button
-        document.getElementById('modify-button').addEventListener('click', function() {
-            // Redirect to the page to modify personal info
-            window.location.href = 'update_profile.php';
-        });
     </script>
     </body>
 </html>
