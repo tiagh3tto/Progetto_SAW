@@ -33,7 +33,7 @@
 		
 		$fname = htmlspecialchars(trim($_POST["firstname"]));
 		$lname = htmlspecialchars(trim($_POST["lastname"]));
-		$mail = htmlspecialchars(trim($_POST["email"]));
+		$mail = filter_var(htmlspecialchars(trim($_POST["email"])), FILTER_VALIDATE_EMAIL);
 		$pass = password_hash($_POST["pass"], PASSWORD_DEFAULT);
 
 		mysqli_stmt_execute($stmt);

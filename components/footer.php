@@ -35,15 +35,24 @@
         // Create Tabulator on DOM element with id "profile-table"
         var usr_table = new Tabulator("#profile-table", {
             ajaxURL:"/SAW/Progetto_SAW/private/retrieve_usr_data.php", //ajax URL
-
+            
             //data:tabledata, //assign data to table
             layout:"fitDataTable", //fit columns to width of data (optional)
             columns:[ //Define Table Columns
                 {title:"Nome", field:"Nome", editor:"input"/*sortable:true,headerFilter:"input"*/},
                 {title:"Cognome", field:"Cognome",editor:"input"},
-                {title:"Email", field:"Email",editor:"input"},
-                {title:"Data di Nascita", field:"Data_Nascita",editor:"input"},
-                {title:"Genere", field:"Genere",editor:"input"},
+                {title:"Email", field:"Email"},
+                {title:"Data di Nascita", field:"Data_Nascita", editor:"date", editorParams:
+                    {
+                        min:"1930/01/01", // the minimum allowed value for the date picker
+                        max:"2014/12/31", // the maximum allowed value for the date picker
+                        verticalNavigation:"table", //navigate cursor around table without changing the value
+                        elementAttributes:{
+                            title:"slide bar to choose option" // custom tooltip
+                          }
+                    }
+                },
+                {title:"Genere", field:"Genere", editor:"list", editorParams:{values:{"Maschio":"Maschio", "Femmina":"Femmina", "Altro":"Altro"}}},
                 {title:"Paese", field:"Paese",editor:"input"},
             ],
         });
@@ -57,10 +66,27 @@
         // Add event listener to the button
         document.getElementById('modify-usr-data-button').addEventListener('click', function() {
             // Redirect to the page to modify personal info
-            tabledata = JSON.stringify(usr_table.getData());
-            alert (tabledata);
-            window.location.href = '/SAW/Progetto_SAW/private/update_profile.php?json=tabledata';
+            row = usr_table.getData()[0];
+            //alert(usr_data.nome);
+            fetch('/SAW/Progetto_SAW/private/update_profile.php',{
+                method : 'post',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(row)
+            })
+            .then(function (response){
+                if (!response.ok) {
+                    throw new Error('HTTP error ' + response.status);
+                }
+                return response.json();
+            })
+            .then(function (data){          
+                console.log(data);
+            })
+            .catch(function (error){
+                console.log("Error:", error);
+            });
         });
+          
     </script>
     <script>
         var table = new Tabulator("#catalog-table", {
@@ -96,5 +122,27 @@
             window.location.href = 'update_profile.php';
         });
     </script>
+    <script>
+        /*var all_users_table = new Tabulator("#admin-table", {
+            ajaxURL:"/SAW/Progetto_SAW/private/get_admin.php", //ajax URL
+
+            //data:tabledata, //assign data to table
+            layout:"fitDataTable", //fit columns to width of data (optional)
+            columns:[ //Define Table Columns
+                {title:"Nome", field:"Nome"},
+                {title:"Cognome", field:"Cognome"},
+                {title:"Email", field:"Email"},
+                {title:"Elimina", field:"Elimina", formatter:"html"},
+                {title:"Ban", field:"Ban", formatter:"html"},
+            ]
+        });
+        table.setData()
+        .then(function(){
+            //run code after table has been successfully updated
+        })
+        .catch(function(error){
+            //handle error loading data
+        });*/
+    </script>    
     </body>
 </html>
