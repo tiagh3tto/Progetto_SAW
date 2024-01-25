@@ -5,12 +5,17 @@
     else{
         include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/head.php");
         include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/navbar/navbar.php");
-?>
-    <main>
-        <h1>Profile</h1>
-        <div id="profile-table"></div>
-        <button id="modify-button">Modifica Profilo</button>
-    </main>
+?>     
+        <div class="show-profile-container">
+            <div class="table-container">
+                <h1>Il mio Profilo</h1>
+                <div class="profile-content">
+                    <img src="/SAW/Progetto_SAW/assets/img/user_icon.png" alt="User Icon" class="user-icon">
+                    <div id="profile-table"></div>
+                </div>
+                <button id="modify-button">Modifica Profilo</button>
+            </div>
+        </div>    
 <?php
         include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/footer.php");
          }   

@@ -6,22 +6,19 @@ body {
 .vh-100 {
     min-height: 100vh;
 }
-.navbar-brand {
-    flex-grow: 1;
-}
+
 .navbar-brand img {
     width: 150px;
     height: 50px;
 }
 
-/*.form-container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  }*/
+.centered-nav {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+}
 
-  .form-container {
+  .form-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -45,3 +42,39 @@ body {
   .form-container div{
     padding: 1%;
   }
+
+  .show-profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+  .table-container {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-content {
+    display: flex;
+    justify-content: space-between; /* Change from flex-end to space-between */
+    width: 100%; /* Ensure the div takes up the full width of the container */
+}
+
+.user-icon {
+    margin-right: 5%;
+    width:15%;
+}
+
+#modify-button {
+    display: block;
+    margin: 20px auto 0;
+}
+  

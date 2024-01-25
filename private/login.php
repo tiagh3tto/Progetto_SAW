@@ -32,9 +32,10 @@
             if($count == 1){
                 if(password_verify($pwd, $row[4])){
                     $_SESSION['login'] = true;
-                    $_SESSION['firstname'] = $row[0];
-                    $_SESSION['lastname'] = $row[1];
-                    $_SESSION['admin'] = $row[4];
+                    $_SESSION['firstname'] = $row[1];
+                    $_SESSION['lastname'] = $row[2];
+                    $_SESSION['email'] = $row[3];
+                    $_SESSION['admin'] = $row[5];
                     header('Location: /SAW/Progetto_SAW/public/index.php');                                        //da creare
                 }
                 echo "errore1";                                                             //OJO: gestione errori
