@@ -48,6 +48,20 @@
         // Redirect to the page to modify personal info
         window.location.href = 'update_profile.php';
         });
-    </script>    
+    </script>
+    <script>
+        function GetFilms() {
+            fetch(`script.php?email=${email}`)
+                .then(response => response.json())
+                .then(data => {
+                    const statusDiv = document.getElementById('emailStatus');
+                    if (data.exists) {
+                        statusDiv.textContent = 'Email already exists!';
+                    } else {
+                        statusDiv.textContent = '';
+                    }
+                });
+        }
+    </script>
     </body>
 </html>
