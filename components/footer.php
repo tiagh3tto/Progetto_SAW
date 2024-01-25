@@ -57,7 +57,9 @@
         // Add event listener to the button
         document.getElementById('modify-button').addEventListener('click', function() {
             // Redirect to the page to modify personal info
-            window.location.href = 'update_profile.php';
+            tabledata = JSON.stringify(table.getData());
+            alert (tabledata);
+            window.location.href = 'update_profile.php?json=tabledata';
         });
     </script>
     <script>

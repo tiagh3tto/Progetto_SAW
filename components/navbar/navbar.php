@@ -21,6 +21,11 @@
                             echo "<a class='dropdown-item' href='/SAW/Progetto_SAW/private/show_profile.php'>Area riservata</a>";
                             echo "<a class='dropdown-item' href='/SAW/Progetto_SAW/private/logout.php'>Logout</a>";
                         }
+                        else if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1){
+                            echo "<a class='dropdown-item' href='/SAW/Progetto_SAW/private/show_profile.php'>Area riservata</a>";
+                            echo "<a class='dropdown-item' href='/SAW/Progetto_SAW/private/admin.php'>Area amministrativa</a>";
+                            echo "<a class='dropdown-item' href='/SAW/Progetto_SAW/private/logout.php'>Logout</a>";
+                        }
                         else{
                             echo "<a class='dropdown-item' href='/SAW/Progetto_SAW/private/registration.php'>Registrati</a>";
                             echo "<a class='dropdown-item' href='/SAW/Progetto_SAW/private/login.php'>Accedi</a>";
