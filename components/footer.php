@@ -33,7 +33,7 @@
         {id:1, name:"John Doe", email:"johndoe@example.com"}, //example data, replace with actual data
         ];*/
         // Create Tabulator on DOM element with id "profile-table"
-        var table = new Tabulator("#profile-table", {
+        var usr_table = new Tabulator("#profile-table", {
             ajaxURL:"/SAW/Progetto_SAW/private/retrieve_usr_data.php", //ajax URL
 
             //data:tabledata, //assign data to table
@@ -47,7 +47,7 @@
                 {title:"Paese", field:"Paese",editor:"input"},
             ],
         });
-        table.setData()
+        usr_table.setData()
         .then(function(){
             //run code after table has been successfully updated
         })
@@ -55,11 +55,11 @@
             //handle error loading data
         });
         // Add event listener to the button
-        document.getElementById('modify-button').addEventListener('click', function() {
+        document.getElementById('modify-usr-data-button').addEventListener('click', function() {
             // Redirect to the page to modify personal info
-            tabledata = JSON.stringify(table.getData());
+            tabledata = JSON.stringify(usr_table.getData());
             alert (tabledata);
-            window.location.href = 'update_profile.php?json=tabledata';
+            window.location.href = '/SAW/Progetto_SAW/private/update_profile.php?json=tabledata';
         });
     </script>
     <script>
@@ -90,11 +90,7 @@
         .catch(function(error){
             //handle error loading data
         });
-        // Add event listener to the button
-        document.getElementById('modify-button').addEventListener('click', function() {
-            // Redirect to the page to modify personal info
-            window.location.href = 'update_profile.php';
-        });
+       
     </script>
     </body>
 </html>

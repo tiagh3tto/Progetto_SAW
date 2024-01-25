@@ -13,7 +13,7 @@
                     <img src="/SAW/Progetto_SAW/assets/img/user_icon.png" alt="User Icon" class="user-icon">
                     <div id="profile-table"></div>
                 </div>
-                <button id="modify-button">Modifica Profilo</button>
+                <button id="modify-usr-data-button">Modifica Profilo</button>
             </div>
         </div>    
 <?php
