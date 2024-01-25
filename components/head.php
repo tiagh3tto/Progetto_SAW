@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
         <link href="https://unpkg.com/tabulator-tables@5.5.3/dist/css/tabulator_bootstrap5.min.css" rel="stylesheet">
         <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.3/dist/js/tabulator.min.js"></script>
-        <link href="/dist/css/tabulator_bootstrap5.min.css" rel="stylesheet">
+        <!--<link href="/dist/css/tabulator_bootstrap5.min.css" rel="stylesheet">-->
         <title>Re-View</title>
     </head>
     <body>

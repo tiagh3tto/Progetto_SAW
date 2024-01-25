@@ -1,6 +1,6 @@
         <footer class="footer mt-auto py-3 bg-dark text-white">
             <div class="container text-center">
-                <span>&copy; 2022 Re-View</span>
+                <span>&copy; 2024 Re-View</span>
             </div>
         </footer>
 
