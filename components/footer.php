@@ -1,4 +1,4 @@
-        <footer class="footer mt-auto py-3 bg-dark text-white fixed-bottom">
+        <footer class="footer mt-auto py-3 bg-dark text-white">
             <div class="container text-center">
                 <span>&copy; 2022 Re-View</span>
             </div>
@@ -63,18 +63,38 @@
         });
     </script>
     <script>
-        function GetFilms() {
-            fetch(`script.php?email=${email}`)
-                .then(response => response.json())
-                .then(data => {
-                    const statusDiv = document.getElementById('emailStatus');
-                    if (data.exists) {
-                        statusDiv.textContent = 'Email already exists!';
-                    } else {
-                        statusDiv.textContent = '';
-                    }
-                });
-        }
+        var table = new Tabulator("#catalog-table", {
+            ajaxURL:"/SAW/Progetto_SAW/private/get_catalog.php", //ajax URL
+
+            //data:tabledata, //assign data to table
+            layout:"fitDataTable", //fit columns to width of data (optional)
+            columns:[ //Define Table Columns
+                {title:"", field:"img", formatter:"image", formatterParams:{
+                    height:"120px",
+                    width:"80px",
+                    urlPrefix:"/SAW/Progetto_SAW/assets/img/film/",
+                    urlSuffix:".jpg"
+                }},
+                {title:"Nome", field:"nome", sortable:true},
+                {title:"Genere", field:"genere", sortable:true},
+                {title:"Regista", field:"regista", sortable:true},
+                {title:"Paese", field:"paese", sortable:true},
+                {title:"Anno", field:"anno", sortable:true},
+                {title:"Descrizione", field:"descrizione", sortable:true},
+            ]
+        });
+        table.setData()
+        .then(function(){
+            //run code after table has been successfully updated
+        })
+        .catch(function(error){
+            //handle error loading data
+        });
+        // Add event listener to the button
+        document.getElementById('modify-button').addEventListener('click', function() {
+            // Redirect to the page to modify personal info
+            window.location.href = 'update_profile.php';
+        });
     </script>
     </body>
 </html>
