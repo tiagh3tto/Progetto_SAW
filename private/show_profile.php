@@ -20,5 +20,5 @@
         </div>    
 <?php
         include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/footer.php");
-         }   
+    }   
 ?>

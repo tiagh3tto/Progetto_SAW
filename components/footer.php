@@ -7,6 +7,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script>
+        //form_validation.js
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (() => {
         'use strict'
@@ -28,10 +29,8 @@
         })();
     </script>
     <script>
-        // Define data
-        /*var tabledata = [
-        {id:1, name:"John Doe", email:"johndoe@example.com"}, //example data, replace with actual data
-        ];*/
+        //profile_table.js
+
         // Create Tabulator on DOM element with id "profile-table"
         var usr_table = new Tabulator("#profile-table", {
             ajaxURL:"/SAW/Progetto_SAW/private/retrieve_usr_data.php", //ajax URL
@@ -39,6 +38,8 @@
             //data:tabledata, //assign data to table
             layout:"fitDataTable", //fit columns to width of data (optional)
             validationMode:"blocking",
+            responsiveLayout:"collapse", //collapse columns that dont fit on the table
+
             columns:[ //Define Table Columns
                 {title:"Nome", field:"Nome", editor:"input", validator:["required","regex:^[A-Za-z]+$"]/*sortable:true,headerFilter:"input"*/},
                 {title:"Cognome", field:"Cognome",editor:"input",validator:["required","regex:^[A-Za-z]+$"]},
@@ -87,6 +88,7 @@
           
     </script>
     <script>
+        //catalog_table.js
         var table = new Tabulator("#catalog-table", {
             ajaxURL:"/SAW/Progetto_SAW/private/get_catalog.php", //ajax URL
 
@@ -114,11 +116,6 @@
         .catch(function(error){
             //handle error loading data
         });
-        // Add event listener to the button
-        document.getElementById('modify-button').addEventListener('click', function() {
-            // Redirect to the page to modify personal info
-            window.location.href = 'update_profile.php';
-        });
     </script>
     <script>
         /*var all_users_table = new Tabulator("#admin-table", {
@@ -142,5 +139,46 @@
             //handle error loading data
         });*/
     </script>    
+    <script>
+        //admin_area_tables.js
+        const triggerTabList = document.querySelectorAll('#myTab button')
+        triggerTabList.forEach(triggerEl => {
+            const tabTrigger = new bootstrap.Tab(triggerEl)
+
+            triggerEl.addEventListener('click', event => {
+                event.preventDefault()
+                tabTrigger.show()
+            })
+        })
+
+        var all_users_table = new Tabulator("#all-users-table", {
+            ajaxURL:"/SAW/Progetto_SAW/private/retrieve_all_usr_data.php", //ajax URL
+
+            //data:tabledata, //assign data to table
+            layout:"fitDataTable", //fit columns to width of data (optional)
+            responsiveLayout:"collapse", //collapse columns that dont fit on the table
+            columns:[ //Define Table Columns
+                {formatter:"rowSelection", titleFormatter:"rowSelection", hozAlign:"right", headerSort:false, cellClick:function(e, cell){
+                    cell.getRow().toggleSelect();
+                }},
+                {title:"Nome", field:"Nome"},
+                {title:"Cognome", field:"Cognome"},
+                {title:"Email", field:"Email"},
+                {title:"Data di Nascita", field:"Data_Nascita"},
+                {title:"Genere", field:"Genere"},
+                {title:"Paese", field:"Paese"},
+                {title:"Ban", field:"Ban", formatter:"html"},
+            ]
+        });
+        //Add row on "Add Row" button click
+        document.getElementById("add-row").addEventListener("click", function(){
+            all_users_table.addRow({});
+        });
+
+        //Delete row on "Delete Row" button click
+        document.getElementById("del-row").addEventListener("click", function(){
+            all_users_table.deleteRow();
+        });
+    </script>
     </body>
 </html>

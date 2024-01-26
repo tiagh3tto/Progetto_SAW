@@ -13,10 +13,30 @@
             <div class="table-container">
                 <h1>Area Amministrativa</h1>
                 <div class="admin-content">
-                    <div id="all-users-table"></div>
-                    <div id="all-movies-table"></div>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Tabella Utenti</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Tabella Film</button>
+                        </li>                       
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="all-users-tab-pane" role="tabpanel" aria-labelledby="all-users-tab" tabindex="0">
+                            <div class="all-users-tab-buttons ">
+                                <button id="add-row">Aggiungi Utente</button>
+                            <button id="del-row">Elimina Utente Selezionato</button>
+                            </div>    
+                        
+
+                            <div id="all-users-table"></div>                   
+                        </div>
+                        <div class="tab-pane fade" id="moovies-tab-pane" role="tabpanel" aria-labelledby="moovies-tab" tabindex="0">
+                            <div id="all-movies-table"></div>
+                        </div>
+                    </div>
                 </div>
-                <button id="modify-button">Modifica</button>
+                <!--<button id="modify-button">Modifica</button>-->
             </div>
         </div>    
 <?php
