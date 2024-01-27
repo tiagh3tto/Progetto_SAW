@@ -2,7 +2,7 @@
 try{
     include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
 
-    $query = "SELECT Nome, Genere, Regista, Paese, Anno, Descrizione, Img FROM film;";
+    $query = "SELECT * FROM film;";
     $res = mysqli_query($con, $query);
     $count = mysqli_num_rows($res);
 }
@@ -12,18 +12,22 @@ catch(mysqli_sql_exception $e){
 }
 //build data array
 if($count > 0){
-    while(($row = mysqli_fetch_array($res)) != NULL){
+    while(($row = mysqli_fetch_assoc($res)) != NULL){
         $data[] = [
-            "nome"=>$row[0],
-            "genere"=>$row[1],
-            "regista"=>$row[2],
-            "paese"=>$row[3],
-            "anno"=>$row[4],
-            "descrizione"=>$row[5],
-            "img"=>$row[6]
+            "nome"=>$row["Nome"],
+            "genere"=>$row["Genere"],
+            "regista"=>$row["Regista"],
+            "paese"=>$row["Paese"],
+            "anno"=>$row["Anno"],
+            //"trama"=>$row["Trama"],
+            "img"=>$row["Img"],
+            "durata"=>$row["Durata"],
+            "casa_produzione"=>$row["Casa_Produzione"]
         ];
     }
-}
     //return JSON formatted data
-echo(json_encode($data));
+    echo(json_encode($data));
+}
+else
+    echo "Impossibile caricare il catalogo";
 ?>
