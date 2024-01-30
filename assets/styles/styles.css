@@ -1,8 +1,24 @@
 body {
     background: linear-gradient(to right, #2b5876, #4e4376);
     font-family: 'Arial', sans-serif;
-
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
+
+.main-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.footer {
+  margin-top: auto;
+}
+
 .vh-100 {
     min-height: 100vh;
 }
@@ -23,7 +39,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50%;
     margin: 5px;
     padding: 20px;
     background-color: white;
@@ -43,7 +58,7 @@ body {
     padding: 1%;
   }
 
-  .show-profile-container, .admin-area-container{
+  .show-profile-container{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,6 +76,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 0;
+    padding: 0;
 }
 
 .profile-content {
@@ -77,4 +94,8 @@ body {
 #modify-button {
     display: block;
     margin: 20px auto 0;
+}
+#all-movies-table, #all-users-table, #catalog-table {
+    width: 100%;
+  width: 100%;
 }
