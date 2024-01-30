@@ -121,6 +121,11 @@ $(document).ready(function(){
                 {title:"Casa di Produzione", field:"casa_produzione"},
             ]
         });
+        table.on("rowClick", function(e, row){ //trigger an alert message when the row is clicked
+                var data = row.getData(); // get data of the clicked row
+                var url = "/SAW/Progetto_SAW/public/moovie_page.php?NomeFilm=" + data.nome; // construct the URL
+                window.location.href = url; // redirect to the URL
+                });
         //catalog_table.setData()
         /*.then(function(){
             //run code after table has been successfully updated
@@ -148,7 +153,7 @@ $(document).ready(function(){
             columnDefaults:{
                 minWidth: 100,  
             },
-            layout:"fitColumnsData", //fit columns to width of data (optional)
+            layout:"fitColumns", //fit columns to width of data (optional)
             responsiveLayout:"collapse", //hide columns that dont fit on the table
             maxHeight:"100%", //do not let table get bigger than the height of its parent element
 
@@ -187,8 +192,8 @@ $(document).ready(function(){
             columnDefaults:{
                 minWidth: 100,  
             },
-            layout:"fitColumnsData", //fit columns to width of data (optional)
-            responsiveLayout:"hide", //hide columns that dont fit on the table
+            layout:"fitColumns", //fit columns to width of data (optional)
+            responsiveLayout:"collapse", //hide columns that dont fit on the table
             maxHeight:"100%", //do not let table get bigger than the height of its parent element
             ajaxURL:"/SAW/Progetto_SAW/private/retrieve_all_usr_data.php", //ajax URL
             //data:tabledata, //assign data to table
