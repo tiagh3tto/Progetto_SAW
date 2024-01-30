@@ -2,7 +2,7 @@
   <div>
     <h1 class="display-4">Benvenuto su Re-View!</h1>
     <p class="lead">Il miglior sito di critica cinematografica</p>
-    <form class="form-inline justify-content-center">
+    <form class="d-flex flex-row justify-content-center">
       <input class="form-control mr-sm-2" type="search" placeholder="Cerca" aria-label="Cerca">
       <div class="dropdown mx-sm-3">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -94,12 +94,12 @@ $(document).ready(function(){
 });
 </script>
     <script>
-        //catalog_table.js    
+        //catalog_table.js
         var table = new Tabulator("#catalog-table", {
-            columnDefaults:{
-                maxWidth: 100,  
-            },
-            layout:"fitColumnsData", //fit columns to width of data (optional)
+            /*columnDefaults:{
+                maxWidth: 250,  
+            },*/
+            layout:"fitColumns", //fit columns to width of data (optional)
             responsiveLayout:"collapse", //hide columns that dont fit on the table
             maxHeight:"100%", //do not let table get bigger than the height of its parent element
             ajaxURL:"/SAW/Progetto_SAW/private/get_catalog.php", //ajax URL
