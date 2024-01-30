@@ -28,16 +28,16 @@
             mysqli_stmt_bind_param($stmt, 's', $email);
             mysqli_stmt_execute($stmt);
             $res=mysqli_stmt_get_result($stmt);  
-            $row = mysqli_fetch_array($res, MYSQLI_NUM);  
+            $row = mysqli_fetch_assoc($res);  
             $count = mysqli_num_rows($res);
         
             if($count == 1){
-                if(password_verify($pwd, $row[4])){
+                if(password_verify($pwd, $row["Password"])){
                     $_SESSION['login'] = true;
-                    $_SESSION['firstname'] = $row[1];
-                    $_SESSION['lastname'] = $row[2];
-                    $_SESSION['email'] = $row[3];
-                    $_SESSION['admin'] = $row[5];
+                    $_SESSION['firstname'] = $row["Nome"];
+                    $_SESSION['lastname'] = $row["Cognome"];
+                    $_SESSION['email'] = $row["Email"];
+                    $_SESSION['admin'] = $row["Admin"];
                     header('Location: /SAW/Progetto_SAW/public/index.php');                                        //da creare
                 }
                 echo "errore1";                                                             //OJO: gestione errori
