@@ -2,16 +2,16 @@
   <div>
     <h1 class="display-4">Benvenuto su Re-View!</h1>
     <p class="lead">Il miglior sito di critica cinematografica</p>
-    <form class="d-flex flex-row justify-content-center">
-      <input class="form-control mr-sm-2" type="search" placeholder="Cerca" aria-label="Cerca">
+    <form class="d-flex flex-row justify-content-center" action="catalog.php" method="POST">
+      <input class="form-control mr-sm-2" type="search" name="searchBar" placeholder="Cerca" aria-label="Cerca">
       <div class="dropdown mx-sm-3">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-filter"></i> <!-- This is a filter icon from Font Awesome -->
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <label class="dropdown-item">
-            <input type="radio" class="mr-1" id="titolo" name="filter" value="Titolo" checked>
-            Titolo
+            <input type="radio" class="mr-1" id="nome" name="filter" value="Nome" checked>
+            Nome
           </label>
           <label class="dropdown-item">
             <input type="radio" class="mr-1" id="genere" name="filter" value="Genere">
@@ -29,10 +29,14 @@
             <input type="radio" class="mr-1" id="anno" name="filter" value="Anno">
             Anno
           </label>
+          <label class="dropdown-item">
+            <input type="radio" class="mr-1" id="casa_produzione" name="filter" value="Casa_Produzione">
+            Casa di Produzione
+          </label>
           <!-- Add more options as needed -->
         </div>
       </div>
-      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+      <button class="btn btn-outline-light my-2 my-sm-0" type="submit" id="searchBtn">Search</button>
     </form>
   </div>
 </main>

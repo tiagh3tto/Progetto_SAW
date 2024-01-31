@@ -1,33 +1,82 @@
 <?php
-try{
-    include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
+if((isset($_GET["searchBar"]) && isset($_GET["filter"])) && (!empty($_GET["searchBar"]) && !empty($_GET["filter"]))){
+    try{
+        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
+        $allowed_cols = ['Nome', 'Genere', 'Regista', 'Paese', ' Anno', 'Casa_Produzione']; // replace with your actual column names
+        $filter = $_GET["filter"];
+        if (!in_array($filter, $allowed_cols)) {
+            exit('Invalid filter');                         //OJO da gestire errore
+        }
+        $stmt = mysqli_prepare($con, "SELECT * FROM film where $filter LIKE ?;");
+        if(!$stmt){
+			error_log("Failed to prepare statement: " . mysqli_error($con)."\n",3, $_SERVER['DOCUMENT_ROOT']."/SAW/private/logs/errors.log");		//OJO: gestione errori
+			echo "Impossibile preparare la query";
+			exit;
+		}
+        mysqli_stmt_bind_param($stmt, "s", $mySearch);
+        $mySearch = htmlspecialchars("%".trim($_GET["searchBar"])."%");
+        mysqli_stmt_execute($stmt);
+        $res = mysqli_stmt_get_result($stmt);
+        $count = mysqli_num_rows($res);
 
-    $query = "SELECT * FROM film;";
-    $res = mysqli_query($con, $query);
-    $count = mysqli_num_rows($res);
-}
-catch(mysqli_sql_exception $e){
-    echo "Errore Interno";                              //OJO: gestione errori
-    error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
-}
-//build data array
-if($count > 0){
-    while(($row = mysqli_fetch_assoc($res)) != NULL){
-        $data[] = [
-            "nome"=>$row["Nome"],
-            "genere"=>$row["Genere"],
-            "regista"=>$row["Regista"],
-            "paese"=>$row["Paese"],
-            "anno"=>$row["Anno"],
-            //"trama"=>$row["Trama"],
-            "img"=>$row["Img"],
-            "durata"=>$row["Durata"],
-            "casa_produzione"=>$row["Casa_Produzione"]
-        ];
+        if($count > 0){
+            while(($row = mysqli_fetch_assoc($res)) != NULL){
+                $data[] = [
+                    "nome"=>$row["Nome"],
+                    "genere"=>$row["Genere"],
+                    "regista"=>$row["Regista"],
+                    "paese"=>$row["Paese"],
+                    "anno"=>$row["Anno"],
+                    //"trama"=>$row["Trama"],
+                    "img"=>$row["Img"],
+                    "durata"=>$row["Durata"],
+                    "casa_produzione"=>$row["Casa_Produzione"]
+                ];
+            }
+            mysqli_stmt_close($stmt);
+            //return JSON formatted data
+            echo(json_encode($data));
+        }
+        else{
+            //TODO far stampare a tabulator che non ci sono match
+            mysqli_stmt_close($stmt);
+        }
     }
-    //return JSON formatted data
-    echo(json_encode($data));
+    catch(mysqli_sql_exception $e){
+        echo "Errore Interno";                              //OJO: gestione errori
+        error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
+    }
 }
-else
-    echo "Impossibile caricare il catalogo";
+else{
+    try{
+        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
+        $query = "SELECT * FROM film;";
+        $res = mysqli_query($con, $query);
+        $count = mysqli_num_rows($res);
+        //build data array
+        if($count > 0){
+            while(($row = mysqli_fetch_assoc($res)) != NULL){
+                $data[] = [
+                    "nome"=>$row["Nome"],
+                    "genere"=>$row["Genere"],
+                    "regista"=>$row["Regista"],
+                    "paese"=>$row["Paese"],
+                    "anno"=>$row["Anno"],
+                    //"trama"=>$row["Trama"],
+                    "img"=>$row["Img"],
+                    "durata"=>$row["Durata"],
+                    "casa_produzione"=>$row["Casa_Produzione"]
+                ];
+            }
+            //return JSON formatted data
+            echo(json_encode($data));
+        }
+        else
+            echo "Impossibile caricare il catalogo";
+    }
+    catch(mysqli_sql_exception $e){
+        echo "Errore Interno";                              //OJO: gestione errori
+        error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
+    }
+}
 ?>

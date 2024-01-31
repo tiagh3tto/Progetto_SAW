@@ -93,8 +93,13 @@ $(document).ready(function(){
     $(".dropdown-menu input[type='radio']:checked").click();
 });
 </script>
+
     <script>
         //catalog_table.js
+        var searchBar = new URLSearchParams(window.location.search).get('searchBar');
+        var filter = new URLSearchParams(window.location.search).get('filter');
+        if(searchBar == null) searchBar = "";
+        if(filter == null) filter = "";
         var table = new Tabulator("#catalog-table", {
             /*columnDefaults:{
                 maxWidth: 250,  
@@ -102,7 +107,7 @@ $(document).ready(function(){
             layout:"fitColumns", //fit columns to width of data (optional)
             responsiveLayout:"collapse", //hide columns that dont fit on the table
             maxHeight:"100%", //do not let table get bigger than the height of its parent element
-            ajaxURL:"/SAW/Progetto_SAW/private/get_catalog.php", //ajax URL
+            ajaxURL:"/SAW/Progetto_SAW/private/get_catalog.php?searchBar=" + searchBar + "&filter=" + filter, //ajax URL
             //data:tabledata, //assign data to table
             columns:[ //Define Table Columns
                 {title:"Locandina", field:"img", formatter:"image", headerSort:false, formatterParams:{
