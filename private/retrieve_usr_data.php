@@ -23,7 +23,7 @@
         //build data array
         if($count == 1){
             $data = [
-            [ "Nome"=>$row["Nome"], "Cognome"=>$row["Cognome"], "Email"=>$row["Email"], "Data_Nascita"=>$row["Data_Nascita"], "Genere"=>$row["Genere"], "Paese"=>$row["Paese"]]
+            [ "Nome"=>$row["Nome"], "Cognome"=>$row["Cognome"], "Email"=>$row["Email"], "Data_Nascita"=>$row["Data_Nascita"], "Genere"=>$row["Genere"], "Nazionalità"=>$row["Nazionalità"]]
             ];
             //return JSON formatted data
             echo(json_encode($data));
