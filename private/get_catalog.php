@@ -2,19 +2,28 @@
 if((isset($_GET["searchBar"]) && isset($_GET["filter"])) && (!empty($_GET["searchBar"]) && !empty($_GET["filter"]))){
     try{
         include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
-        $allowed_cols = ['Nome', 'Genere', 'Regista', 'Paese', ' Anno', 'Casa_Produzione']; // replace with your actual column names
+        $allowed_cols = ['Nome', 'Genere', 'Regista', 'Paese', 'Anno', 'Casa_Produzione'];
         $filter = $_GET["filter"];
         if (!in_array($filter, $allowed_cols)) {
             exit('Invalid filter');                         //OJO da gestire errore
         }
-        $stmt = mysqli_prepare($con, "SELECT * FROM film where $filter LIKE ?;");
+
+        if($filter == "Anno") {
+            $_GET["searchBar"] = intval($_GET["searchBar"]); // convert searchBar to integer
+            $stmt = mysqli_prepare($con, "SELECT * FROM film WHERE $filter = ?;");
+            mysqli_stmt_bind_param($stmt, "i", $_GET["searchBar"]); // bind as integer
+        } else {
+            $stmt = mysqli_prepare($con, "SELECT * FROM film WHERE $filter LIKE ?;");
+            $mySearch = htmlspecialchars("%".trim($_GET["searchBar"])."%");
+            mysqli_stmt_bind_param($stmt, "s", $mySearch); // bind as string
+        }
+
         if(!$stmt){
-			error_log("Failed to prepare statement: " . mysqli_error($con)."\n",3, $_SERVER['DOCUMENT_ROOT']."/SAW/private/logs/errors.log");		//OJO: gestione errori
+			error_log("Failed to prepare statement: " . mysqli_error($con)."\n",3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");		//OJO: gestione errori
 			echo "Impossibile preparare la query";
 			exit;
 		}
-        mysqli_stmt_bind_param($stmt, "s", $mySearch);
-        $mySearch = htmlspecialchars("%".trim($_GET["searchBar"])."%");
+
         mysqli_stmt_execute($stmt);
         $res = mysqli_stmt_get_result($stmt);
         $count = mysqli_num_rows($res);
