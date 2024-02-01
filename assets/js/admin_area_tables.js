@@ -1,4 +1,4 @@
-        //admin_area_tables.js
+//admin_area_tables.js
 
         /*const triggerTabList = document.querySelectorAll('#myTab button')
         triggerTabList.forEach(triggerEl => {
@@ -49,9 +49,9 @@
         });*/
 
         var all_users_table = new Tabulator("#all-users-table", {
-            columnDefaults:{
+            /*columnDefaults:{
                 minWidth: 100,  
-            },
+            },*/
             layout:"fitColumns", //fit columns to width of data (optional)
             responsiveLayout:"collapse", //hide columns that dont fit on the table
             maxHeight:"100%", //do not let table get bigger than the height of its parent element
@@ -67,7 +67,7 @@
                 {title:"Admin", field:"Admin", hozAlign:"center", formatter:"tickCross"},
                 {title:"Data di Nascita", field:"Data_Nascita"},
                 {title:"Genere", field:"Genere"},
-                {title:"Paese", field:"Paese"},
+                {title:"Nazionalità", field:"Nazionalità"},
                 {title:"Ban", field:"Ban", formatter:"html"},
             ]
         });
@@ -79,7 +79,4 @@
         //Delete row on "Delete Row" button click
         document.getElementById("del-row").addEventListener("click", function(){
             all_users_table.deleteRow();
-        });
-        window.addEventListener('resize', function(){
-            all_users_table.redraw();
         });
