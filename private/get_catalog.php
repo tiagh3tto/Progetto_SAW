@@ -3,7 +3,7 @@
 if((isset($_GET["searchBar"]) && isset($_GET["filter"])) && (!empty($_GET["searchBar"]) && !empty($_GET["filter"]))){
     try{
         include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
-        $allowed_cols = ['Nome', 'Genere', 'Regista', 'Paese', 'Anno', 'Casa_Produzione'];
+        $allowed_cols = ['Nome', 'Genere', 'Regista', 'Paese', 'Anno', 'Casa_Produzione']; // replace with your actual column names
         $filter = $_GET["filter"];
         if (!in_array($filter, $allowed_cols)) {
             exit('Invalid filter');                         //OJO da gestire errore
@@ -48,7 +48,7 @@ if((isset($_GET["searchBar"]) && isset($_GET["filter"])) && (!empty($_GET["searc
             echo(json_encode($data));
         }
         else{
-            //TODO far stampare a tabulator che non ci sono match
+            echo(json_encode(array()));
             mysqli_stmt_close($stmt);
         }
     }
