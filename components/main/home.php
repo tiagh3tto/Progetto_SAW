@@ -36,7 +36,7 @@
           <!-- Add more options as needed -->
         </div>
       </div>
-      <button class="btn btn-outline-light my-2 my-sm-0" type="submit" id="searchBtn">Search</button>
+      <button class="btn btn-outline-light my-2 my-sm-0" type="submit" id="searchBtn">Cerca</button>
     </form>
   </div>
 </main>
