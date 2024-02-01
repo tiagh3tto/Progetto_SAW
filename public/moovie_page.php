@@ -4,20 +4,58 @@ include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/navbar/navbar.ph
 include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
 try{    
     $query = "SELECT * FROM film WHERE Nome = ?";
-    $movie_id = $_GET['NomeFilm'];
+    $movie_name = $_GET['NomeFilm'];
     $stmt = mysqli_prepare($con, $query);
-    mysqli_stmt_bind_param($stmt, "i", $movie_id);
+    mysqli_stmt_bind_param($stmt, "s", $movie_name);
     mysqli_execute($stmt);
     $res = mysqli_stmt_get_result($stmt);
-    define("FILM", mysqli_fetch_assoc($res));
+    $row = mysqli_fetch_assoc($res);
+    define("FILM", $row);
     mysqli_free_result($res);
+    
+    $query2 = "SELECT AVG(Regia) as Regia,  AVG(Sceneggiatura) as Sceneggiatura, AVG(Fotografia) as Fotografia, AVG(Recitazione) as Recitazione, AVG(Colonna_Sonora) as Colonna_Sonora FROM recensioni WHERE ID_Film = ?";
+    $stmt2 = mysqli_prepare($con, $query2);
+    mysqli_stmt_bind_param($stmt2, "i", $row["ID"]);
+    mysqli_execute($stmt2);
+    $res2 = mysqli_stmt_get_result($stmt2);
+    $row2 = mysqli_fetch_assoc($res2);
+    $count = mysqli_num_rows($res2);
+    if($count == 1){
+        /*$regia = 0;
+        $sceneggiatura = 0;
+        $colonna_sonora = 0;
+        $recitazione = 0;
+        $fotografia = 0;
+        $iterator = 0;
+        while($row = mysqli_fetch_assoc($res)){
+                $regia += $row["Regia"];
+                $sceneggiatura += $row["Sceneggiatura"];
+                $colonna_sonora += $row["Colonna_Sonora"];
+                $recitazione += $row["Recitazione"];
+                $fotografia += $row["Fotografia"];
+                $iterator++;
+        }
+        if($iterator == 0){
+            $iterator = 1;
+        }*/
+        $data = [
+            "Regia" => intval($row2["Regia"]),//$regia/$iterator,
+            "Sceneggiatura" => intval($row2["Sceneggiatura"]),//$sceneggiatura/$iterator,
+            "Colonna_Sonora" => intval($row2["Colonna_Sonora"]),//$colonna_sonora/$iterator,
+            "Recitazione" => intval($row2["Recitazione"]),//$recitazione/$iterator,
+            "Fotografia" => intval($row2["Fotografia"]),//$fotografia/$iterator,
+        ];
+    }
+    else 
+      $data = [
+        "Regia" => "Ancora Nessuna Recensione",
+        "Sceneggiatura" => "Ancora Nessuna Recensione",
+        "Colonna_Sonora" => "Ancora Nessuna Recensione",
+        "Recitazione" => "Ancora Nessuna Recensione",
+        "Fotografia" => "Ancora Nessuna Recensione",
+    ];
+    define("REVIEW", ($data));
 
-    /*$query = "SELECT * FROM recensioni WHERE ID_FILM = ?";
-    $stmt = mysqli_prepare($con, $query);
-    mysqli_stmt_bind_param($stmt, "i", $movie_id);
-    mysqli_execute($stmt);
-    $res = mysqli_stmt_get_result($stmt);
-    define("REVIW", mysqli_fetch_assoc($res));*/
 }
 catch(mysqli_sql_exception $e){
     echo "Errore Interno";                              //OJO: gestione errori
@@ -36,20 +74,20 @@ catch(mysqli_sql_exception $e){
                     <p class="card-text" id="Descrizione_Film"><?php echo FILM["Trama"]?></p>
                     <h2>Dettagli</h2>
                     <ul>
-                        <li id="movieDirector">Regista: <?php echo FILM["Regista"]?> </li>
-                        <li id="movieGenre">Genere: <?php echo FILM["Genere"]?> </li>
-                        <li id="movieDuration">Durata: <?php echo FILM["Durata"]?> min</li>
-                        <li id="movieCountry">Paese: <?php echo FILM["Paese"]?> </li>
-                        <li id="movieReleaseDate">Anno di Uscita: <?php echo FILM["Anno"]?> </li>
-                        <li id="movieProduction">Casa di Produzione: <?php echo FILM["Casa_Produzione"]?> </li>
+                        <li id="Regista">Regista: <?php echo FILM["Regista"]?> </li>
+                        <li id="Genere">Genere: <?php echo FILM["Genere"]?> </li>
+                        <li id="Durata">Durata: <?php echo FILM["Durata"]?> min</li>
+                        <li id="Paese">Paese: <?php echo FILM["Paese"]?> </li>
+                        <li id="Anno_Uscita">Anno di Uscita: <?php echo FILM["Anno"]?> </li>
+                        <li id="Casa_Produzione">Casa di Produzione: <?php echo FILM["Casa_Produzione"]?> </li>
                     </ul>
                     <h2>Valutazione</h2>
                     <ul>
-                        <li id="movieDirector">Regia: <?php echo REVIW["Regia"]?> </li>
-                        <li id="movieGenre">Sceneggiatura: <?php echo REVIW["Sceneggiatura"]?> </li>
-                        <li id="movieDuration">Colonna Sonora: <?php echo REVIW["Colonna_Sonora"]?> min</li>
-                        <li id="movieCountry">Recitazione: <?php echo REVIW["Recitazione"]?> </li>
-                        <li id="movieReleaseDate">Fotografia: <?php echo REVIW["Fotografia"]?> </li>
+                        <li id="Regia">Regia: <?php echo REVIEW["Regia"]?> </li>
+                        <li id="Sceneggiatura">Sceneggiatura: <?php echo REVIEW["Sceneggiatura"]?> </li>
+                        <li id="movieDuration">Colonna Sonora: <?php echo REVIEW["Colonna_Sonora"]?></li>
+                        <li id="movieCountry">Recitazione: <?php echo REVIEW["Recitazione"]?> </li>
+                        <li id="movieReleaseDate">Fotografia: <?php echo REVIEW["Fotografia"]?> </li>
                 </div>
             </div>
         </div>

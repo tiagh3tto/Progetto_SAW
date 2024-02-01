@@ -35,9 +35,9 @@
         // Create Tabulator on DOM element with id "profile-table"
         var usr_table = new Tabulator("#profile-table", {
             ajaxURL:"/SAW/Progetto_SAW/private/retrieve_usr_data.php", //ajax URL
-            layout:"fitDataTable", //fit columns to width of data (optional)
+            layout: "fitColumns", //fit columns to width of data (optional)
             validationMode:"blocking",
-            responsiveLayout:"hide", //collapse columns that dont fit on the table
+            responsiveLayout:"collapse", //collapse columns that dont fit on the table
             columns:[ //Define Table Columns
                 {title:"Nome", field:"Nome", editor:"input", validator:["required","regex:^[A-Za-z]+$"]/*sortable:true,headerFilter:"input"*/},
                 {title:"Cognome", field:"Cognome",editor:"input",validator:["required","regex:^[A-Za-z]+$"]},
@@ -50,7 +50,7 @@
                     }
                 },
                 {title:"Genere", field:"Genere", editor:"list", editorParams:{values:{"Maschio":"Maschio", "Femmina":"Femmina", "Altro":"Altro"}}},
-                {title:"Paese", field:"Paese",editor:"input",validator:"regex:^[A-Za-z]+$"},
+                {title:"Nazionalità", field:"Nazionalità",editor:"input",validator:"regex:^[A-Za-z]+$"},
             ],
         });
         //usr_table.setData()
@@ -189,9 +189,9 @@ $(document).ready(function(){
         });*/
 
         var all_users_table = new Tabulator("#all-users-table", {
-            columnDefaults:{
+            /*columnDefaults:{
                 minWidth: 100,  
-            },
+            },*/
             layout:"fitColumns", //fit columns to width of data (optional)
             responsiveLayout:"collapse", //hide columns that dont fit on the table
             maxHeight:"100%", //do not let table get bigger than the height of its parent element
@@ -207,7 +207,7 @@ $(document).ready(function(){
                 {title:"Admin", field:"Admin", hozAlign:"center", formatter:"tickCross"},
                 {title:"Data di Nascita", field:"Data_Nascita"},
                 {title:"Genere", field:"Genere"},
-                {title:"Paese", field:"Paese"},
+                {title:"Nazionalità", field:"Nazionalità"},
                 {title:"Ban", field:"Ban", formatter:"html"},
             ]
         });
@@ -220,9 +220,7 @@ $(document).ready(function(){
         document.getElementById("del-row").addEventListener("click", function(){
             all_users_table.deleteRow();
         });
-        window.addEventListener('resize', function(){
-            all_users_table.redraw();
-        });
+        
     </script>
     </body>
 </html>

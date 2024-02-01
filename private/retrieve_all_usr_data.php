@@ -8,11 +8,11 @@
     if( isset($_SESSION['admin']) && $_SESSION['admin'] ){
         try{
             include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
-            $query = "SELECT * FROM Utenti";
+            $query = "SELECT * FROM utenti";
             $res = mysqli_query($con, $query);
             $data = array();
-            while($row = mysqli_fetch_array($res, MYSQLI_NUM)){
-                $data[] = array("Nome"=>$row[1], "Cognome"=>$row[2], "Email"=>$row[3], "Admin"=>$row[4] , "Data_Nascita"=>$row[6], "Genere"=>$row[7], "Paese"=>$row[8]);
+            while($row = mysqli_fetch_assoc($res)){
+                $data[] = array("Nome"=>$row["Nome"], "Cognome"=>$row["Cognome"], "Email"=>$row["Email"], "Admin"=>$row["Password"] , "Data_Nascita"=>$row["Data_Nascita"], "Genere"=>$row["Genere"], "Nazionalità"=>$row["Nazionalità"]);
             }
             //return JSON formatted data
             echo(json_encode($data));
