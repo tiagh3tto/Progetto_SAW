@@ -8,34 +8,30 @@
     else{
         include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/head.php");
         include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/navbar/navbar.php");
-?>     
-        <!--<div class="admin-area-container">-->
-            <div class="table-container">
-                <h1>Area Amministrativa</h1>
-                <div class="admin-content">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#all-users-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Tabella Utenti</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#moovies-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Tabella Film</button>
-                        </li>                       
-                    </ul>
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="all-users-tab-pane" role="tabpanel" aria-labelledby="all-users-tab" tabindex="0">
-                            <div class="all-users-tab-buttons ">
-                                <button id="add-row">Aggiungi Riga</button>
-                                <button id="del-row">Elimina Utente Selezionato</button>
-                            </div>    
-                            <div id="all-users-table"></div>                   
-                        </div>
-                        <div class="tab-pane fade" id="moovies-tab-pane" role="tabpanel" aria-labelledby="moovies-tab" tabindex="0">
-                            <div id="all-movies-table"></div>
-                        </div>
-                    </div>
-                </div>
-                <!--<button id="modify-button">Modifica</button>-->
-            </div>
+?>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="table1-tab" data-toggle="tab" href="#table1" role="tab" aria-controls="table1" aria-selected="true">Lista Utenti</a>
+            <button type="button" class="btn btn-primary add-user">Add User</button>
+<button type="button" class="btn btn-danger delete-user">Delete User</button>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="table2-tab" data-toggle="tab" href="#table2" role="tab" aria-controls="table2" aria-selected="false">Lista Film</a>
+            <button type="button" class="btn btn-primary add-film">Add Film</button>
+<button type="button" class="btn btn-danger delete-film">Delete Film</button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="table1" role="tabpanel" aria-labelledby="table1-tab">
+            <!-- Container for Tabulator table 1 -->
+            <div id="all-users-table"></div>
+        </div>
+        <div class="tab-pane fade" id="table2" role="tabpanel" aria-labelledby="table2-tab">
+            <!-- Container for Tabulator table 2 -->
+            <div id="all-movies-table"></div>
+        </div>
+    </div>
         <!--</div>-->    
 <?php
         include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/footer.php");
