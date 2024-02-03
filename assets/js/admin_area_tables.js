@@ -40,6 +40,14 @@
                 //{title:"Elimina", field:"Elimina", formatter:"html"},
             ]
         });
+        document.getElementById("del-films-btn").addEventListener("click", function(){
+            // Get all selected rows
+            var selectedRows = all_movies_table.getSelectedRows();
+            // Delete each selected row
+            for (var i = 0; i < selectedRows.length; i++) {
+                all_movies_table.deleteRow(selectedRows[i]);
+            }
+        });
         /*all_movies_table.setData()
         .then(function(){
             //run code after table has been successfully updated
@@ -69,13 +77,37 @@
                 {title:"Nazionalità", field:"Nazionalità"},             
             ]
         });
-        //Add row on "Add Row" button click
-        document.getElementById("add-row").addEventListener("click", function(){
-            all_users_table.addRow({})
+        document.getElementById("del-users-btn").addEventListener("click", function(){
+            // Get all selected rows
+            var selectedRows = all_users_table.getSelectedRows();
+        
+            // Delete each selected row
+            for (var i = 0; i < selectedRows.length; i++) {
+                all_users_table.deleteRow(selectedRows[i]);
+            }
         });
-
-
-        //Delete row on "Delete Row" button click
-        document.getElementById("del-row").addEventListener("click", function(){
-            all_users_table.deleteRow();
+        document.getElementById("ban-users-btn").addEventListener("click", function() {
+            // Gather selected users
+            var selectedRows = all_users_table.getSelectedRows();
+            var selectedUsers = selectedRows.map(function(row) {
+                return row.getData();
+            });
+        
+            // Send data to server
+            fetch('/SAW/Progetto_SAW/private/ban_users.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 'data': selectedUsers }),
+            })
+            .then(response => response.json())
+            .then(updatedData => {
+                // Clear the table and add the updated data
+                all_users_table.clearData();
+                all_users_table.addData(updatedData);
+            })
+            .catch((error) => {
+                console.error('Errorban:', error); // Implement error handling
+            });
         });

@@ -3,8 +3,7 @@
         session_start(); 
     }
     if( !isset($_SESSION['admin']) || !$_SESSION['admin'] ) //ancora più stringente che controllare 'login'
-            header('Location: /SAW/Progetto_SAW/private/login.php');
-
+        header('Location: /SAW/Progetto_SAW/private/login.php');
     else{
         include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/head.php");
         include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/navbar/navbar.php");
@@ -24,12 +23,16 @@
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="all-users-tab-pane" role="tabpanel" aria-labelledby="all-users-tab" tabindex="0">
                             <div class="all-users-tab-buttons ">
-                                <button id="add-row">Aggiungi Riga</button>
-                                <button id="del-row">Elimina Utente Selezionato</button>
+                                <button id="ban-users-btn">Ban/Unban Utenti Selezionati</button>
+                                <button id="del-users-btn">Elimina Utenti Selezionati</button>
                             </div>    
                             <div id="all-users-table"></div>                   
                         </div>
                         <div class="tab-pane fade" id="moovies-tab-pane" role="tabpanel" aria-labelledby="moovies-tab" tabindex="0">
+                            <div class="all-users-tab-buttons ">
+                                <button onclick="location.href='/SAW/Progetto_SAW/private/add_film.php';">Aggiungi Film</button>
+                                <button id="del-films-btn">Elimina Film Selezionati</button>
+                            </div>
                             <div id="all-movies-table"></div>
                         </div>
                     </div>
