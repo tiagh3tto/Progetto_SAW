@@ -19,7 +19,7 @@
 			echo "<p> Attenzione! Le password non corrispondono!</p>";			//OJO: gestione errori
 			exit;
 		}
-		//AGGIUNGERE TRY CATCH
+		try{
 		include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
 
 		$stmt = mysqli_prepare($con, "INSERT INTO utenti(Nome,Cognome,Email,Password) VALUES (?,?,?,?)");
@@ -47,5 +47,18 @@
 		
 		mysqli_stmt_close($stmt);
 		header("Location: /SAW/Progetto_SAW/private/login.php"); 
+		}
+		catch(mysqli_sql_exception $e){
+			//chiave duplicata
+			if($e->getCode() == 1062){
+				echo "Hai già un account"; 
+			}
+			//violata colonna not null
+			else if($e->getCode() == 1048){
+				echo "Attenzione! Non hai compilato alcuni campi"; 
+			}
+			else echo "Errore Interno";                              //OJO: gestione errori
+			error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
+		}	
 	}	
 ?>

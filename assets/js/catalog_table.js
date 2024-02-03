@@ -21,12 +21,9 @@
                 {title:"Regista", field:"regista"},
                 {title:"Paese", field:"paese"},
                 {title:"Anno", field:"anno"},
-                {title:"Trama", field:"trama", maxWidth: 100, },
                 {title:"Durata", field:"durata"},
                 {title:"Casa di Produzione", field:"casa_produzione"},
-                {title:"Gradimento", field:"gradimento", formatter:"star", formatterParams:{
-                    stars:5,
-                }}
+                
             ]
         });
         /*table.on("tableBuilt", function(){

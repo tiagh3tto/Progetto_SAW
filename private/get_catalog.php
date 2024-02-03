@@ -63,37 +63,23 @@ else{
         $query = "SELECT * FROM film;";
         $res = mysqli_query($con, $query);
         $count = mysqli_num_rows($res);
-        
-       /* include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/db_credentials.php");
-        $con2 = mysqli_connect(DB_HOST, DB_USER , DB_PASS, DB_NAME);
-        if (mysqli_connect_errno()) {
-            error_log("Failed to connect to MySQL: " . mysqli_connect_error(),3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");		//OJO: gestione errori
-            echo "Impossibile collegarsi al Database";
-            exit;
-        }*/
         //build data array
         if($count > 0){
             while(($row = mysqli_fetch_assoc($res)) != NULL){
-                
-                //else
-                    //$review = NULL;    
-                //mysqli_free_result($reviews_res);
-                //mysqli_stmt_close($reviews_stmt);
                 $data[] = [
+                    "id" => $row["ID"],
                     "nome"=>$row["Nome"],
                     "genere"=>$row["Genere"],
                     "regista"=>$row["Regista"],
                     "paese"=>$row["Paese"],
                     "anno"=>$row["Anno"],
-                    //"trama"=>$row["Trama"],
                     "img"=>$row["Img"],
                     "durata"=>$row["Durata"],
                     "casa_produzione"=>$row["Casa_Produzione"],
-                    "gradimento"=> ""
                 ];
             }
-            // mysqli_free_result($res);
-            //mysqli_stmt_close($stmt);
+            mysqli_free_result($res);
+            mysqli_close($con);
             //return JSON formatted data
             echo(json_encode($data));
            

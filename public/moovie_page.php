@@ -18,35 +18,20 @@ try{
     mysqli_stmt_bind_param($stmt2, "i", $row["ID"]);
     mysqli_execute($stmt2);
     $res2 = mysqli_stmt_get_result($stmt2);
-    $row2 = mysqli_fetch_assoc($res2);
     $count = mysqli_num_rows($res2);
+    $row2 = mysqli_fetch_assoc($res2);
     if($count == 1){
-        /*$regia = 0;
-        $sceneggiatura = 0;
-        $colonna_sonora = 0;
-        $recitazione = 0;
-        $fotografia = 0;
-        $iterator = 0;
-        while($row = mysqli_fetch_assoc($res)){
-                $regia += $row["Regia"];
-                $sceneggiatura += $row["Sceneggiatura"];
-                $colonna_sonora += $row["Colonna_Sonora"];
-                $recitazione += $row["Recitazione"];
-                $fotografia += $row["Fotografia"];
-                $iterator++;
-        }
-        if($iterator == 0){
-            $iterator = 1;
-        }*/
+        $gradimento = ($row2["Regia"] + $row2["Sceneggiatura"] + $row2["Fotografia"] + $row2["Recitazione"] + $row2["Colonna_Sonora"] ) / 5;
         $data = [
-            "Regia" => intval($row2["Regia"]),//$regia/$iterator,
-            "Sceneggiatura" => intval($row2["Sceneggiatura"]),//$sceneggiatura/$iterator,
-            "Colonna_Sonora" => intval($row2["Colonna_Sonora"]),//$colonna_sonora/$iterator,
-            "Recitazione" => intval($row2["Recitazione"]),//$recitazione/$iterator,
-            "Fotografia" => intval($row2["Fotografia"]),//$fotografia/$iterator,
+            "Gradimento" => intval($gradimento),
+            "Regia" => intval($row2["Regia"]),
+            "Sceneggiatura" => intval($row2["Sceneggiatura"]),
+            "Colonna_Sonora" => intval($row2["Colonna_Sonora"]),
+            "Recitazione" => intval($row2["Recitazione"]),
+            "Fotografia" => intval($row2["Fotografia"]),
         ];
     }
-    else 
+    else if ($count == 0)
       $data = [
         "Regia" => "Ancora Nessuna Recensione",
         "Sceneggiatura" => "Ancora Nessuna Recensione",
@@ -70,7 +55,7 @@ catch(mysqli_sql_exception $e){
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title" id="Titolo Film"><?php echo FILM["Nome"]?></h5>
+                    <h2 class="card-title" id="Titolo Film"><?php echo FILM["Nome"]?></h5>
                     <p class="card-text" id="Descrizione_Film"><?php echo FILM["Trama"]?></p>
                     <h2>Dettagli</h2>
                     <ul>
@@ -83,11 +68,20 @@ catch(mysqli_sql_exception $e){
                     </ul>
                     <h2>Valutazione</h2>
                     <ul>
+                        <li id="Gradimento Generale" style="font-size: 20px; font-weight:bold;">Gradimento Generale: <?php echo REVIEW["Gradimento"]?></li> 
                         <li id="Regia">Regia: <?php echo REVIEW["Regia"]?> </li>
                         <li id="Sceneggiatura">Sceneggiatura: <?php echo REVIEW["Sceneggiatura"]?> </li>
-                        <li id="movieDuration">Colonna Sonora: <?php echo REVIEW["Colonna_Sonora"]?></li>
-                        <li id="movieCountry">Recitazione: <?php echo REVIEW["Recitazione"]?> </li>
-                        <li id="movieReleaseDate">Fotografia: <?php echo REVIEW["Fotografia"]?> </li>
+                        <li id="Colonna_Sonora">Colonna Sonora: <?php echo REVIEW["Colonna_Sonora"]?></li>
+                        <li id="Recitazione">Recitazione: <?php echo REVIEW["Recitazione"]?> </li>
+                        <li id="Fotografia">Fotografia: <?php echo REVIEW["Fotografia"]?> </li>
+                    </ul>   
+                    <?php
+                    if(isset($_SESSION["login"]) && $_SESSION["login"] ){
+                        $_SESSION["ID_Film"] = FILM["ID"];
+                        $_SESSION["NomeFilm"] = FILM["Nome"];
+                        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/send_review.php");        
+                    }
+                    ?> 
                 </div>
             </div>
         </div>

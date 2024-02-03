@@ -31,7 +31,8 @@ body {
 .centered-nav {
   display: flex;
   justify-content: center;
-  width: 90%;
+  width: 70%;
+
 }
 
   .form-container{

@@ -34,6 +34,7 @@
             if($count == 1){
                 if(password_verify($pwd, $row["Password"])){
                     $_SESSION['login'] = true;
+                    $_SESSION['ID'] = $row["ID"];
                     $_SESSION['firstname'] = $row["Nome"];
                     $_SESSION['lastname'] = $row["Cognome"];
                     $_SESSION['email'] = $row["Email"];
