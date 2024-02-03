@@ -7,16 +7,15 @@
         header('Content-Type: application/json');
 
         $body = file_get_contents('php://input');
-        $data[] = json_decode($body);
-        $selectedReviews = $data['data'];
-                
+        $data = json_decode($body);  
+
         try{
             include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
-            $query = "UPDATE recensioni SET Regia = ?, Sceneggiatura = ?, Colonna_Sonora = ?, Recitazione = ?, Fotografia = ? WHERE ID_Utente = ? AND ID_FILM = ?;";
+            $query = "UPDATE recensioni SET Regia = ?, Sceneggiatura = ?, Colonna_Sonora = ?, Recitazione = ?, Fotografia = ? WHERE ID_Utente = ? AND ID_FIlm = ?;";
             $stmt = mysqli_prepare($con, $query);
             $ID_Utente = $_SESSION['ID'];
-            foreach($selectedReviews as $review){
-                $regia = intval($review['Regia']);
+            foreach($data as $review){
+                $regia = intval($review["Regia"]);
                 $sceneggiatura = intval($review['Sceneggiatura']);
                 $colonna_sonora = intval($review['Colonna_Sonora']);
                 $recitazione = intval($review['Recitazione']);
