@@ -34,7 +34,6 @@
                         </div>
                     </div>
                 </div>
-                <!--<button id="modify-button">Modifica</button>-->
             </div>
         <!--</div>-->    
 <?php

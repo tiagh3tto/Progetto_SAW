@@ -13,7 +13,7 @@
         <script src="/SAW/Progetto_SAW/assets/js/admin_area_tables.js"></script>
         <script src="/SAW/Progetto_SAW/assets/js/catalog_table.js"></script>
         <script src="/SAW/Progetto_SAW/assets/js/form_validation.js"></script>
-        <script src="/SAW/Progetto_SAW/assets/js/profile_table.js"></script>
+        <script src="/SAW/Progetto_SAW/assets/js/reserved_area_tables.js"></script>
         <script src="/SAW/Progetto_SAW/assets/js/setDropDownButton.js"></script>
     </body>
 </html>

@@ -49,38 +49,31 @@
         });*/
 
         var all_users_table = new Tabulator("#all-users-table", {
-            columnDefaults:{
-                minWidth: 100,  
-            },
+            defaultOption:{
+                minWidth: 100,
+            },    
             layout:"fitColumns", //fit columns to width of data (optional)
             //responsiveLayout:"collapse", //hide columns that dont fit on the table
             maxHeight:"100%", //do not let table get bigger than the height of its parent element
             ajaxURL:"/SAW/Progetto_SAW/private/retrieve_all_usr_data.php", //ajax URL
             //data:tabledata, //assign data to table
             columns:[ //Define Table Columns
-                {formatter:"rowSelection", titleFormatter:"rowSelection", hozAlign:"right", headerSort:false, cellClick:function(e, cell){
+                {formatter:"rowSelection", titleFormatter:"rowSelection" ,hozAlign:"left", headerSort:false, cellClick:function(e, cell){
                     cell.getRow().toggleSelect();
                 }},
                 {title:"Nome", field:"Nome"},
                 {title:"Cognome", field:"Cognome"},
                 {title:"Email", field:"Email"},
                 {title:"Data di Nascita", field:"Data_Nascita"},
-                {title:"Genere", field:"Genere"},
-                {title:"Nazionalità", field:"Nazionalità"},
-                
+                {title:"Genere", field:"Genere", width:100},   
+                {title:"Nazionalità", field:"Nazionalità"},             
             ]
         });
         //Add row on "Add Row" button click
         document.getElementById("add-row").addEventListener("click", function(){
-            all_users_table.addRow({}, false).then(function(row){
-                row.getCells().forEach(function(cell){
-                    cell.getElement().addEventListener('cellClick', makeCellEditable);
-                });
-            });
+            all_users_table.addRow({})
         });
-        function makeCellEditable(e, cell) {
-            cell.edit();
-        }
+
 
         //Delete row on "Delete Row" button click
         document.getElementById("del-row").addEventListener("click", function(){
