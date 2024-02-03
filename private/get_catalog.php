@@ -1,4 +1,5 @@
 <?php
+//se viene chiamato get_catalog dalla searchbar
 if((isset($_GET["searchBar"]) && isset($_GET["filter"])) && (!empty($_GET["searchBar"]) && !empty($_GET["filter"]))){
     try{
         include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
@@ -66,19 +67,22 @@ else{
         if($count > 0){
             while(($row = mysqli_fetch_assoc($res)) != NULL){
                 $data[] = [
+                    "id" => $row["ID"],
                     "nome"=>$row["Nome"],
                     "genere"=>$row["Genere"],
                     "regista"=>$row["Regista"],
                     "paese"=>$row["Paese"],
                     "anno"=>$row["Anno"],
-                    //"trama"=>$row["Trama"],
                     "img"=>$row["Img"],
                     "durata"=>$row["Durata"],
-                    "casa_produzione"=>$row["Casa_Produzione"]
+                    "casa_produzione"=>$row["Casa_Produzione"],
                 ];
             }
+            mysqli_free_result($res);
+            mysqli_close($con);
             //return JSON formatted data
             echo(json_encode($data));
+           
         }
         else
             echo "Impossibile caricare il catalogo";

@@ -14,7 +14,7 @@
                 <a class="nav-link" href="/SAW/Progetto_SAW/public/catalog.php">Catalogo</a>
             </li>
         </ul>
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mr-auto centered-nav">
             <?php
                 // Ottieni il nome del file corrente
                 $currentFile = basename($_SERVER['PHP_SELF']);
@@ -62,12 +62,12 @@
                 }
             ?>
         </ul>
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mr-auto centered-nav">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user"></i>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                     <?php
                         if(isset($_SESSION['login']) && !empty($_SESSION['login'])){
                             if(isset($_SESSION['admin']) && $_SESSION['admin']){

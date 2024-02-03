@@ -3,7 +3,7 @@
         // Create Tabulator on DOM element with id "profile-table"
         var usr_table = new Tabulator("#profile-table", {
             columnDefaults:{
-                minWidth: 2000,  
+                minWidth: 100,  
             },
             ajaxURL:"/SAW/Progetto_SAW/private/retrieve_usr_data.php", //ajax URL
             layout: "fitColumns", //fit columns to width of data (optional)

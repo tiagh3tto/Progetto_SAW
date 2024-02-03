@@ -10,12 +10,32 @@
 ?>     
         <div class="show-profile-container">
             <div class="table-container">
-                <h1>Il mio Profilo</h1>
-                <div class="profile-content">
-                    <img src="/SAW/Progetto_SAW/assets/img/user_icon.png" alt="User Icon" class="user-icon">
-                    <div id="profile-table"></div>
+                <h1>Area Riservata</h1>
+                <div class="user-content">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="user-tab" data-bs-toggle="tab" data-bs-target="#user-tab-pane" type="button" role="tab" aria-controls="user-tab-pane" aria-selected="true">Il mio Profilo</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane" aria-selected="false">Le mie Recensioni</button>
+                        </li>                       
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="user-tab-pane" role="tabpanel" aria-labelledby="user-tab" tabindex="0">
+                        <button id="modify-usr-data-button">Modifica Profilo</button>                 
+                             <div class="profile-content">
+                                <img src="/SAW/Progetto_SAW/assets/img/user_icon.png" alt="User Icon" class="user-icon">
+                                <div id="profile-table"></div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
+                        <button id="modify-usr-reviews-button">Modifica Recensione</button>                 
+                        <div class="profile-content">
+                                <div id="reviews-table"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <button id="modify-usr-data-button">Modifica Profilo</button>
             </div>
         </div>    
 <?php
