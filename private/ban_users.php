@@ -10,12 +10,12 @@ $data = json_decode(file_get_contents('php://input'), true);
 $selectedUsers = $data['data'];
 
 // Prepare an SQL statement for updating the ban field
-$stmt = $con->prepare("UPDATE utenti SET Ban = NOT Ban WHERE Email = ?");
+$stmt = mysqli_prepare($con, "UPDATE utenti SET Ban = NOT Ban WHERE Email = ?");
 
 // Loop through the selected users and execute the SQL statement for each one
 foreach ($selectedUsers as $user) {
-    $stmt->bind_param("s", $user['Email']);
-    $stmt->execute();
+    mysqli_stmt_bind_param($stmt, "s", $user['Email']);
+        mysqli_execute($stmt);
 }
 
 // Now get the updated data for the selected users

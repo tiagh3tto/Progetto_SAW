@@ -13,7 +13,7 @@
             $data = array();
             while($row = mysqli_fetch_assoc($res)){
                 if($row["Admin"] == 0)
-                    $data[] = array("Nome"=>$row["Nome"], "Cognome"=>$row["Cognome"], "Email"=>$row["Email"], "Admin"=>$row["Password"] , "Data_Nascita"=>$row["Data_Nascita"], "Genere"=>$row["Genere"], "Nazionalità"=>$row["Nazionalità"]);
+                    $data[] = array("Nome"=>$row["Nome"], "Cognome"=>$row["Cognome"], "Email"=>$row["Email"], "Data_Nascita"=>$row["Data_Nascita"], "Genere"=>$row["Genere"], "Nazionalità"=>$row["Nazionalità"]);
             }
             //return JSON formatted data
             echo(json_encode($data));
