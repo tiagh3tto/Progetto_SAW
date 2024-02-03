@@ -26,16 +26,7 @@
                 
             ]
         });
-        /*table.on("tableBuilt", function(){
-            var rows = table.getRows();
-            table.replaceData("/SAW/Progetto_SAW/private/get_review.php") //load data from php via ajax request
-            .then(function(){
-                rows.forEach(function(row){
-                    row.update({"gradimento": "/SAW/Progetto_SAW/private/get_review.php?id_i"});
-                });
-            })
-        }); //trigger when the table is built*/
-
+        
         table.on("rowClick", function(e, row){ //trigger an alert message when the row is clicked
             var data = row.getData(); // get data of the clicked row
             var url = "/SAW/Progetto_SAW/public/moovie_page.php?NomeFilm=" + data.nome; // construct the URL

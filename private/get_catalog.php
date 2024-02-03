@@ -32,6 +32,7 @@ if((isset($_GET["searchBar"]) && isset($_GET["filter"])) && (!empty($_GET["searc
         if($count > 0){
             while(($row = mysqli_fetch_assoc($res)) != NULL){
                 $data[] = [
+                    "id" => $row["ID"],
                     "nome"=>$row["Nome"],
                     "genere"=>$row["Genere"],
                     "regista"=>$row["Regista"],

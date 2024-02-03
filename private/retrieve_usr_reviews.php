@@ -8,7 +8,7 @@
         $ID = $_SESSION['ID'];
         try{
             include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
-            $query = "SELECT * FROM recensioni WHERE ID_Utente = ?;";
+            $query = "SELECT * FROM recensioni INNER JOIN film ON recensioni.ID_Film = film.ID WHERE ID_Utente = ? ;";
             $stmt = mysqli_prepare($con, $query);
             mysqli_stmt_bind_param($stmt, 'i', $ID);
             mysqli_stmt_execute($stmt);
@@ -24,7 +24,8 @@
         if($count != 0){
             while($row = mysqli_fetch_array($res, MYSQLI_ASSOC)){
                 $data[] = [
-                 "ID"=>$row["ID_Film"],
+                "Titolo"=>$row["Nome"],
+                "ID"=>$row["ID_Film"],
                 "Regia"=>$row["Regia"],
                 "Sceneggiatura"=>$row["Sceneggiatura"],
                 "Colonna_Sonora"=>$row["Colonna_Sonora"],

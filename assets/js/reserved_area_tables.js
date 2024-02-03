@@ -52,7 +52,6 @@
             });
         });
 
-        
         // Create Tabulator on DOM element with id "reviews-table"
         var reviews_table = new Tabulator("#reviews-table", {
            defaultOption:{
@@ -66,7 +65,7 @@
                 {formatter:"rowSelection", titleFormatter:"rowSelection", hozAlign:"right", headerSort:false, cellClick:function(e, cell){
                     cell.getRow().toggleSelect();
                 }},
-                {title:"Titolo", field:"ID"},
+                {title:"Titolo", field:"Titolo"},
                 {title:"Regia", field:"Regia", editor:"number", validator:["min:0", "max:5"], editorParams:{
                     min:0,
                     max:5,
@@ -91,11 +90,15 @@
         });
         // Add event listener to the button
         document.getElementById('modify-usr-reviews-button').addEventListener('click', function() {
-            row = reviews_table.getSelectedRows();
+            var selectedRows = reviews_table.getSelectedRows();
+            var selectedReviews = selectedRows.map(function(row) {
+                return row.getData();
+            });
+            
             fetch('/SAW/Progetto_SAW/private/update_reviews.php',{
                 method : 'post',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(row)
+                body: JSON.stringify({'data':selectedReviews})
             })
             .then(function (response){
                 if (!response.ok) {
