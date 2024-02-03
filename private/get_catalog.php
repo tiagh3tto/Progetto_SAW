@@ -82,7 +82,6 @@ else{
             mysqli_close($con);
             //return JSON formatted data
             echo(json_encode($data));
-           
         }
         else
             echo "Impossibile caricare il catalogo";

@@ -32,7 +32,7 @@ try{
         ];
     }
     else if ($count == 0)
-      $data = [
+        $data = [
         "Regia" => "Ancora Nessuna Recensione",
         "Sceneggiatura" => "Ancora Nessuna Recensione",
         "Colonna_Sonora" => "Ancora Nessuna Recensione",
@@ -76,10 +76,15 @@ catch(mysqli_sql_exception $e){
                         <li id="Fotografia">Fotografia: <?php echo REVIEW["Fotografia"]?> </li>
                     </ul>   
                     <?php
-                    if(isset($_SESSION["login"]) && $_SESSION["login"] ){
-                        $_SESSION["ID_Film"] = FILM["ID"];
-                        $_SESSION["NomeFilm"] = FILM["Nome"];
-                        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/send_review.php");        
+                    if(isset($_SESSION["login"]) && $_SESSION["login"]){
+                        if(isset($_SESSION["banned"]) && !$_SESSION["banned"]){
+                            $_SESSION["ID_Film"] = FILM["ID"];
+                            $_SESSION["NomeFilm"] = FILM["Nome"];
+                            include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/send_review.php"); 
+                        }
+                        else{
+                            echo '<div class="alert alert-danger text-center" role="alert">Non puoi recensire il film perchè sei stato bannato</div>';
+                        }
                     }
                     ?> 
                 </div>
