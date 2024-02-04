@@ -15,11 +15,11 @@
                 if($row["Admin"] == 0)
                     $data[] = array("Nome"=>$row["Nome"], 
                                     "Cognome"=>$row["Cognome"],
-                                     "Email"=>$row["Email"],
-                                     "Data_Nascita"=>$row["Data_Nascita"], 
-                                     "Genere"=>$row["Genere"], 
-                                     "Nazionalità"=>$row["Nazionalità"], 
-                                     "Ban"=>$row["Ban"]);
+                                    "Email"=>$row["Email"],
+                                    "Data_Nascita"=>$row["Data_Nascita"], 
+                                    "Genere"=>$row["Genere"], 
+                                    "Nazionalità"=>$row["Nazionalità"], 
+                                    "Ban"=>$row["Ban"]);
             }
             //return JSON formatted data
             echo(json_encode($data));
