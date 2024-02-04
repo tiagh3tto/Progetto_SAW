@@ -37,7 +37,7 @@
             $file_size =$_FILES['img']['size'];
             $file_tmp =$_FILES['img']['tmp_name'];
             $file_type=$_FILES['img']['type'];
-            $file_ext=strtolower(end(explode('.',$_FILES['img']['name'])));     //get extension in lowercase
+            $file_ext = strtolower(pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION));     //get extension in lowercase
             
             $extensions= array("jpeg","jpg","png");
             
