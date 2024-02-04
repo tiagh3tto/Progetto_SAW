@@ -98,7 +98,7 @@
             fetch('/SAW/Progetto_SAW/private/update_reviews.php',{
                 method : 'post',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({'data':selectedReviews})
+                body: JSON.stringify({selectedReviews})
             })
             .then(function (response){
                 if (!response.ok) {
@@ -108,7 +108,7 @@
             })
             .then(function (data){          
                 console.log(data);
-                window.location.reload();
+                reviews_table.setData(data);
             })
             .catch(function (error){
                 console.log("Error:", error);
