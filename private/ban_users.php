@@ -1,8 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-// Include your database connection file here
 try{
     include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
 
