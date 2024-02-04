@@ -10,7 +10,7 @@
             session_start(); 
         } 
 
-        $arr_fields = array('email', 'pass', 'submit');
+        $arr_fields = array('email', 'pass');
 		foreach ($arr_fields as $field) {
 			if (!isset( $_POST[$field]) || empty($_POST[$field])) {
 				exit("<p>Attenzione! Non hai compilato alcuni campi</p>");       //OJO: gestione errori

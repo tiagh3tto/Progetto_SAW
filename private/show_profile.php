@@ -22,7 +22,7 @@
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="user-tab-pane" role="tabpanel" aria-labelledby="user-tab" tabindex="0">
-                        <button id="modify-usr-data-button" onClick="/SAW/Progetto_SAW/private/update_profile.php">Modifica Profilo</button>                 
+                        <button id="modify-usr-data-button" onclick="location.href='/SAW/Progetto_SAW/private/update_profile.php';">Modifica Profilo</button>                 
                             <p><strong>Per modificare i tuoi dati personali clicca sul pulsante "Modifica Profilo"</strong></p>
                             <div class="profile-content">
                                 <img src="/SAW/Progetto_SAW/assets/img/user_icon.png" alt="User Icon" class="user-icon">

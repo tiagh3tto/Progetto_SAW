@@ -6,49 +6,57 @@
     if ($_SERVER["REQUEST_METHOD"] === "POST"){
         include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
         // Form data
-        $fields = array('firstname', 'lastname', 'email', 'dob', 'gender', 'nationality', 'submit');
+        $fields = array('firstname', 'lastname', 'email');
+        foreach ($fields as $field) {
+			if (!isset( $_POST[$field]) || empty($_POST[$field])) {
+				exit("<p>Attenzione! Non hai compilato alcuni campi</p>");       //OJO: gestione errori
+			}
+		}
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
         $newEmail = $_POST['email'];
-        $dob = $_POST['dob'];
+        $birthdate = $_POST['birthdate'];
         $gender = $_POST['gender'];
         $nationality = $_POST['nationality'];
 
         $oldEmail = $_SESSION['email'];
 
         try{
-            mysqli_begin_transaction($con);
             // SQL statement
-            $sql = "UPDATE utenti SET Nome=?, Cognome=?, Email=?, Data_Nascita=?, Genere=?, Nazionalità=? WHERE Email=$oldEmail;";
+            $sql = "UPDATE utenti SET Nome=?, Cognome=?, Email=?, Data_Nascita=?, Genere=?, Nazionalità=? WHERE Email=?;";
             $stmt = mysqli_prepare($con, $sql);
-            mysqli_stmt_bind_param($stmt, "ssssss", $firstname, $lastname,  $email, $dob, $gender, $nationality);
+            mysqli_stmt_bind_param($stmt, "sssssss", $firstname, $lastname,  $newEmail, $birthdate, $gender, $nationality, $oldEmail);
             mysqli_stmt_execute($stmt);
             if (mysqli_stmt_affected_rows($stmt) == 1) {
-                mysqli_commit($con);
-                echo "Profile updated successfully.";
+                $_SESSION['firstname'] = $_POST['firstname'];
+                $_SESSION['lastname'] = $_POST['lastname'];
+                $_SESSION['email'] = $_POST['email'];
+                $_SESSION['birthdate'] = $_POST['birthdate'];
+                $_SESSION['gender'] = $_POST['gender'];
+                $_SESSION['nationality'] = $_POST['nationality'];
+                header('Location: /SAW/Progetto_SAW/private/show_profile.php');
+                exit;
             } else if (mysqli_stmt_affected_rows($stmt) > 1) {
-                mysqli_rollback($con);
                 echo "No changes were made.";
             } else {
                 echo "An error occurred while updating your profile.";
             }
         }
         catch(mysqli_sql_exception $e){
-            echo "Errore Interno";                              //OJO: gestione errori
+            echo "Errore Interno: " . $e->getMessage();                              //OJO: gestione errori
         }
-
-        mysqli_stmt_close($stmt);
-        mysqli_close($db);
     }
     else{
+        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/head.php");
+        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/navbar/navbar.php");
 ?>
         <div style='display: flex; justify-content: center; align-items: center; height: 100vh;'>
             <div class="form-container">
                 <h1 class="text-center">Modifica Profilo</h1>
-                <form action="registration.php" method="POST" class='row g-3 needs-validation' novalidate>
+                <form action="update_profile.php" method="POST" class='row g-3 needs-validation' novalidate>
                     <div class="col-md-5">
                         <label for="validationCustom01" class="form-label">Nome</label>
-                        <input type="text" name="firstname" class="form-control" id="validationCustom01" value="" required pattern="[A-Za-z]+" >
+                        <input type="text" name="firstname" class="form-control" id="validationCustom01" value="" required pattern="[A-Za-z ]+" >
                         <div class="valid-feedback">
                             Ottimo!
                         </div>
@@ -59,7 +67,7 @@
 
                     <div class="col-md-5">
                         <label for="validationCustom02" class="form-label">Cognome</label>
-                        <input type="text" name="lastname" class="form-control" id="validationCustom02" value="" required pattern="[A-Za-z]+">
+                        <input type="text" name="lastname" class="form-control" id="validationCustom02" value="" required pattern="[A-Za-z ]+">
                         <div class="valid-feedback">
                             Ottimo!
                         </div>
@@ -79,8 +87,8 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="dob">Data di nascita</label>
-                        <input type="date" class="form-control" id="dob" name="dob" required>
+                        <label for="birthdate">Data di nascita</label>
+                        <input type="date" class="form-control" id="birthdate" name="birthdate" required>
                     </div>
 
                     <div class="form-group">
@@ -98,11 +106,12 @@
                     </div>
 
                     <div class="col-12">
-                    <button class="btn btn-primary" name="modify" type="submit">Modifica</button>
+                    <button class="btn btn-primary" name="submit" type="submit">Modifica</button>
                     </div>
                 </form>
             </div>
         </div>
 <?php
-    } 
+        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/footer.php");
+    }
 ?>
