@@ -45,7 +45,7 @@
             fetch('/SAW/Progetto_SAW/private/update_reviews.php',{
                 method : 'post',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({'data':selectedReviews})
+                body: JSON.stringify({selectedReviews})
             })
             .then(function (response){
                 if (!response.ok) {
