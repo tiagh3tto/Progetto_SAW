@@ -24,46 +24,50 @@
                         <div class="tab-pane fade show active" id="user-tab-pane" role="tabpanel" aria-labelledby="user-tab" tabindex="0">
                         <button id="modify-usr-data-button" onclick="location.href='/SAW/Progetto_SAW/private/update_profile.php';">Modifica Profilo</button>                 
                             <p><strong>Per modificare i tuoi dati personali clicca sul pulsante "Modifica Profilo"</strong></p>
-                            <div class="profile-content">
-                                <img src="/SAW/Progetto_SAW/assets/img/user_icon.png" alt="User Icon" class="user-icon">
-                                 
-                                <div class="mb-3 col-2">
-                                    <label for="firstname" class="form-label">Nome</label>
-                                    <p id="firstname">
-                                    <?php if(isset($_SESSION["firstname"]))echo $_SESSION["firstname"]; else echo ""?>
-                                    </p>
+                            <div class="profile-content row">
+                                <div class="col-4">
+                                    <img src="/SAW/Progetto_SAW/assets/img/user_icon.png" alt="User Icon" class="user-icon">
                                 </div>
-                                <div class="mb-3 col-2">
-                                    <label for="lastname" class="form-label">Cognome</label>
-                                    <p id="lastname">
-                                    <?php if(isset($_SESSION["lastname"]))echo $_SESSION["lastname"]; else echo ""?>
-                                    </p>
-                                </div>
-                                <div class="mb-3 col-2">
-                                    <label for="email" class="form-label">Email</label>
-                                    <p id="email">
-                                    <?php if(isset($_SESSION["email"]))echo $_SESSION["email"]; else echo ""?>
-                                    </p>
-                                </div>
-                                <div class="mb-3 col-2">
-                                    <label for="birthdate" class="form-label"><strong>Data di Nascita</strong></label>
-                                    <p id="birthdate">
-                                    <?php if(isset($_SESSION["birthdate"]))echo $_SESSION["birthdate"]; else echo ""?>
-                                    </p>
-                                </div>
-                                <div class="mb-3 col-2">
-                                    <label for="gender" class="form-label">Genere</label>
-                                    <p id="gender">
-                                        <?php if(isset($_SESSION["gender"]))echo $_SESSION["gender"]; else echo ""?>
-                                    </p>
-                                </div>
-                                <div class="mb-3 col-2">
-                                    <label for="nationality" class="form-label">Nazionalità</label>
-                                    <p id="nationality">
-                                    <?php if(isset($_SESSION["nationality"]))echo $_SESSION["nationality"]; else echo ""?>
-                                    </p>
+                                <div class="col-8">
+                                    <div class="mb-3 row">
+                                        <label for="firstname" class="form-label col-6"><strong>Nome</strong></label>
+                                        <p id="firstname" class="col-6">
+                                        <?php if(isset($_SESSION["firstname"]))echo $_SESSION["firstname"]; else echo "Nessun Dato"?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="lastname" class="form-label col-6"><strong>Cognome</strong></label>
+                                        <p id="lastname" class="col-6">
+                                        <?php if(isset($_SESSION["lastname"]))echo $_SESSION["lastname"]; else echo "Nessun Dato"?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="email" class="form-label col-6"><strong>Email</strong></label>
+                                        <p id="email" class="col-6">
+                                        <?php if(isset($_SESSION["email"]))echo $_SESSION["email"]; else echo "Nessun Dato"?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="birthdate" class="form-label col-6"><strong>Data di Nascita</strong></label>
+                                        <p id="birthdate" class="col-6">
+                                        <?php if(isset($_SESSION["birthdate"]))echo $_SESSION["birthdate"]; else echo "Nessun Dato"?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3 row">
+                                            <label for="gender" class="form-label col-6"><strong>Genere</strong></label>
+                                            <p id="gender" class="col-6">
+                                            <?php if(isset($_SESSION["gender"]))echo $_SESSION["gender"]; else echo "Nessun Dato"?>
+                                            </p>
+                                    </div>
+                                    <div class="mb-3 row">
+                                            <label for="nationality" class="form-label col-6"><strong>Nazionalità</strong></label>
+                                        <p id="nationality" class="col-6">
+                                        <?php if(isset($_SESSION["nationality"]))echo $_SESSION["nationality"]; else echo "Nessun Dato"?>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
+                                
                         </div>
                         <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
                             <p><strong>Per modificare le tue recensioni seleziona le recensioni da modificare scrivi direttamente sulla tabella in nuovi voti e poi clicca sul pulsante "Modifica Recensione"</strong></p>
