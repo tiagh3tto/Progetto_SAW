@@ -39,6 +39,9 @@
                     $_SESSION['firstname'] = $row["Nome"];
                     $_SESSION['lastname'] = $row["Cognome"];
                     $_SESSION['email'] = $row["Email"];
+                    $_SESSION['birthdate'] = $row["Data_Nascita"];
+                    $_SESSION['gender'] = $row["Genere"];
+                    $_SESSION['nationality'] = $row["Nazionalità"];
                     $_SESSION['admin'] = $row["Admin"];
                     header('Location: /SAW/Progetto_SAW/public/index.php');                                        //da creare
                 }
