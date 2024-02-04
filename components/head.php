@@ -10,7 +10,7 @@
         <link rel="stylesheet" type="text/css" href="/SAW/Progetto_SAW/assets/styles/styles.css?v=1.1">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
         <link href="https://unpkg.com/tabulator-tables@5.5.3/dist/css/tabulator_bootstrap5.min.css" rel="stylesheet">
-        <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.3/dist/js/tabulator.min.js"></script>
+        <script src="https://unpkg.com/tabulator-tables@5.5.3/dist/js/tabulator.min.js"></script>
         <!-- Popper JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <!-- Latest compiled JavaScript -->
@@ -18,5 +18,5 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <!--<link href="/dist/css/tabulator_bootstrap5.min.css" rel="stylesheet">-->
         <title>Re-View</title>
-    </head>
+    </head> 
     <body>
