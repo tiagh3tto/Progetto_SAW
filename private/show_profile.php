@@ -30,19 +30,19 @@
                                 </div>
                                 <div class="col-8">
                                     <div class="mb-3 row">
-                                        <label for="firstname" class="form-label col-6">Nome</label>
+                                        <label for="firstname" class="form-label col-6"><strong>Nome</strong></label>
                                         <p id="firstname" class="col-6">
                                         <?php if(isset($_SESSION["firstname"]))echo $_SESSION["firstname"]; else echo "Nessun Dato"?>
                                         </p>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="lastname" class="form-label col-6">Cognome</label>
+                                        <label for="lastname" class="form-label col-6"><strong>Cognome</strong></label>
                                         <p id="lastname" class="col-6">
                                         <?php if(isset($_SESSION["lastname"]))echo $_SESSION["lastname"]; else echo "Nessun Dato"?>
                                         </p>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="email" class="form-label col-6">Email</label>
+                                        <label for="email" class="form-label col-6"><strong>Email</strong></label>
                                         <p id="email" class="col-6">
                                         <?php if(isset($_SESSION["email"]))echo $_SESSION["email"]; else echo "Nessun Dato"?>
                                         </p>
@@ -54,13 +54,13 @@
                                         </p>
                                     </div>
                                     <div class="mb-3 row">
-                                            <label for="gender" class="form-label col-6">Genere</label>
+                                            <label for="gender" class="form-label col-6"><strong>Genere</strong></label>
                                             <p id="gender" class="col-6">
                                             <?php if(isset($_SESSION["gender"]))echo $_SESSION["gender"]; else echo "Nessun Dato"?>
                                             </p>
                                     </div>
                                     <div class="mb-3 row">
-                                            <label for="nationality" class="form-label col-6">Nazionalità</label>
+                                            <label for="nationality" class="form-label col-6"><strong>Nazionalità</strong></label>
                                         <p id="nationality" class="col-6">
                                         <?php if(isset($_SESSION["nationality"]))echo $_SESSION["nationality"]; else echo "Nessun Dato"?>
                                         </p>
