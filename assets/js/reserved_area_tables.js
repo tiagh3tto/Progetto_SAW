@@ -108,7 +108,7 @@
             })
             .then(function (data){          
                 console.log(data);
-                reviews_table.setData(data);
+                window.location.reload();
             })
             .catch(function (error){
                 console.log("Error:", error);
