@@ -22,6 +22,7 @@
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="user-tab-pane" role="tabpanel" aria-labelledby="user-tab" tabindex="0">
+                        <p><strong>Per modificare i tuoi dati personali scrivi direttamente sulla tabella e poi clicca sul pulsante "Modifica Profilo"</strong></p>
                         <button id="modify-usr-data-button">Modifica Profilo</button>                 
                              <div class="profile-content">
                                 <img src="/SAW/Progetto_SAW/assets/img/user_icon.png" alt="User Icon" class="user-icon">
@@ -29,6 +30,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
+                        <p><strong>Per modificare le tue recensioni seleziona le recensioni da modificare scrivi direttamente sulla tabella in nuovi voti e poi clicca sul pulsante "Modifica Recensione"</strong></p>
                         <button id="modify-usr-reviews-button">Modifica Recensione</button>                 
                         <div class="profile-content">
                                 <div id="reviews-table"></div>
