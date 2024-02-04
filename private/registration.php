@@ -9,7 +9,7 @@
 		include ($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/footer.php");
 	}
 	else{
-		$arr_fields = array('firstname', 'lastname', 'email', 'pass', 'confirm');
+		$arr_fields = array('firstname', 'lastname', 'email', 'pass', 'confirm', 'submit');
 		foreach ($arr_fields as $field) {
 			if (!isset( $_POST[$field]) || empty($_POST[$field])) {
 				exit("<p>Attenzione! Non hai compilato alcuni campi</p>");       //OJO: gestione errori
