@@ -12,12 +12,12 @@
 				exit("<p>Attenzione! Non hai compilato alcuni campi</p>");       //OJO: gestione errori
 			}
 		}
-        $firstname = $_POST['firstname'];
-        $lastname = $_POST['lastname'];
-        $newEmail = $_POST['email'];
-        $birthdate = $_POST['birthdate'];
-        $gender = $_POST['gender'];
-        $nationality = $_POST['nationality'];
+        $firstname = htmlspecialchars(trim($_POST['firstname']));
+        $lastname = htmlspecialchars(trim($_POST['lastname']));
+        $newEmail = htmlspecialchars(trim($_POST['email']));
+        $birthdate = htmlspecialchars(trim($_POST['birthdate']));
+        $gender = htmlspecialchars(trim($_POST['gender']));
+        $nationality = htmlspecialchars(trim($_POST['nationality']));
 
         $oldEmail = $_SESSION['email'];
 
