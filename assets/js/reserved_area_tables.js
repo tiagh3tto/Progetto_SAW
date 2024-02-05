@@ -13,23 +13,23 @@
                     cell.getRow().toggleSelect();
                 }},
                 {title:"Titolo", field:"Titolo"},
-                {title:"Regia", field:"Regia", editor:"number", validator:["min:0", "max:5"], editorParams:{
+                {title:"Regia", field:"Regia", editor:"number", validator:["min:0", "max:5", "required"], editorParams:{
                     min:0,
                     max:5,
                 }},
-                {title:"Sceneggiatura", field:"Sceneggiatura", editor:"number", validator:["min:0", "max:5"], editorParams:{
+                {title:"Sceneggiatura", field:"Sceneggiatura", editor:"number", validator:["min:0", "max:5", "required"], editorParams:{
                     min:0,
                     max:5,
                 }},
-                {title:"Colonna_Sonora", field:"Colonna_Sonora", editor:"number", validator:["min:0", "max:5"],editorParams:{
+                {title:"Colonna_Sonora", field:"Colonna_Sonora", editor:"number", validator:["min:0", "max:5","required"],editorParams:{
                     min:0,
                     max:5,
                 }},
-                {title:"Recitazione", field:"Recitazione", editor:"number", validator:["min:0", "max:5"], editorParams:{
+                {title:"Recitazione", field:"Recitazione", editor:"number", validator:["min:0", "max:5","required"], editorParams:{
                     min:0,
                     max:5,
                 }},
-                {title:"Fotografia", field:"Fotografia", editor:"number", validator:["min:0", "max:5"], editorParams:{
+                {title:"Fotografia", field:"Fotografia", editor:"number", validator:["min:0", "max:5","required"], editorParams:{
                     min:0,
                     max:5,
                 }}

@@ -1,5 +1,7 @@
 
 <?php
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
 if(!isset($_SESSION)) 
     session_start(); 
 if(!isset($_SESSION["admin"]) && !$_SESSION["admin"] )
