@@ -20,7 +20,7 @@ else{
         // Loop through the selected users and execute the SQL statement for each one
         foreach ($selectedUsers as $user) {
             mysqli_stmt_bind_param($stmt, "s", $user['Email']);
-            mysqli_execute($stmt);
+            mysqli_execute($stmt);                                              //controllo restituzione queries
         }
     }
     catch(mysqli_sql_exception $e){
