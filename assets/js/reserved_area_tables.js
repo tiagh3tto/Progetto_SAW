@@ -55,7 +55,7 @@
             })
             .then(function (data){          
                 console.log(data);
-                window.location.reload();
+                //window.location.reload();
             })
             .catch(function (error){
                 console.log("Error:", error);
