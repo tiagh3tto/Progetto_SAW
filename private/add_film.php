@@ -35,7 +35,6 @@
         }   
 
         try{
-            // SQL statement
             $sql = "INSERT INTO film (Nome, Genere, Regista, Paese, Anno, Trama, Img, Casa_Produzione, Durata) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
             $stmt = mysqli_prepare($con, $sql);
             mysqli_stmt_bind_param($stmt, "ssssisssi", $nome, $genere, $regista, $paese, $anno, $trama, $img_name, $casa_produzione, $durata);
@@ -46,7 +45,7 @@
             $file_size =$_FILES['img']['size'];
             $file_tmp =$_FILES['img']['tmp_name'];
             $file_type=$_FILES['img']['type'];
-            $file_ext = strtolower(pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION));     //get extension in lowercase
+            $file_ext = strtolower(pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION));     //get dell'estensione in lowercase
             
             $extensions= array("jpeg","jpg","png");
             
@@ -54,9 +53,9 @@
                 $errors[]="extension not allowed, please choose a JPEG or PNG file.";
             }
             
-            /*if($file_size > 2097152){
+            if($file_size > 2097152){
                 $errors[]='File size must be excately 2 MB';
-            }*/
+            }
             
             if(empty($errors)==true){
                 move_uploaded_file($file_tmp, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/assets/img/film/".$file_name);
