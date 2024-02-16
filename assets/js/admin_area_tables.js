@@ -1,10 +1,10 @@
 var all_movies_table = new Tabulator("#all-movies-table", {
     columnDefaults:{
         minWidth: 130,  
-    },
-    layout:"fitColumns",
-    responsiveLayout:"collapse",
-    maxHeight:"100%",
+    }, //imposta la larghezza minima delle colonne
+    layout:"fitColumns", //adatta la tabella alla grandezza del contenitore
+    responsiveLayout:"collapse", //nasconde le colonne che non ci stanno
+    maxHeight:"100%", //imposta l'altezza massima della tabella
     ajaxURL:"/SAW/Progetto_SAW/private/get_catalog.php",
     columns:[
         {formatter:"rowSelection", titleFormatter:"rowSelection", hozAlign:"right", minWidth:false,headerSort:false, cellClick:function(e, cell){
@@ -28,15 +28,29 @@ var all_movies_table = new Tabulator("#all-movies-table", {
 
 document.getElementById("del-films-btn").addEventListener("click", function(){
     var selectedRows = all_movies_table.getSelectedRows();
-    for (var i = 0; i < selectedRows.length; i++) {
-        all_movies_table.deleteRow(selectedRows[i]);
-    }
+    var selectedFilms = selectedRows.map(function(row) {
+        return row.getData();
+    });
+    fetch('/SAW/Progetto_SAW/private/delete_films.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 'data': selectedFilms }),
+    })
+    .then(response => response.json())
+    .then(function(data){
+        console.log(data);
+    })
+    .catch((error) => {
+        console.error('Errorban:', error); // Implement error handling!!!!!!!!
+    });
 });
 
 var all_users_table = new Tabulator("#all-users-table", {
     defaultOption:{
         minWidth: 100,
-    },    
+    },
     layout:"fitColumns",
     maxHeight:"100%",
     ajaxURL:"/SAW/Progetto_SAW/private/retrieve_all_usr_data.php",
@@ -56,9 +70,23 @@ var all_users_table = new Tabulator("#all-users-table", {
 
 document.getElementById("del-users-btn").addEventListener("click", function(){
     var selectedRows = all_users_table.getSelectedRows();
-    for (var i = 0; i < selectedRows.length; i++) {
-        all_users_table.deleteRow(selectedRows[i]);
-    }
+    var selectedUsers = selectedRows.map(function(row) {
+        return row.getData();
+    });
+    fetch('/SAW/Progetto_SAW/private/delete_users.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 'data': selectedUsers }),
+    })
+    .then(response => response.json())
+    .then(function(data){
+        console.log(data);
+    })
+    .catch((error) => {
+        console.error('Errorban:', error); // Implement error handling!!!!!!!!
+    });
 });
 
 document.getElementById("ban-users-btn").addEventListener("click", function() {
@@ -73,7 +101,7 @@ document.getElementById("ban-users-btn").addEventListener("click", function() {
         },
         body: JSON.stringify({ 'data': selectedUsers }),
     })
-    .then(response => response.json())
+    //.then(response => response.json())
     .then(function(data){
         console.log(data);
     })

@@ -9,14 +9,14 @@ else{
 
     // Get the data from the request
     $data = json_decode(file_get_contents('php://input'), true);
-    $selectedUsers = $data['data'];
+    $selectedFilms = $data['data'];
 
     try {
         // Prepare an SQL statement for updating the ban field
         $stmt = mysqli_prepare($con, "DELETE FROM film WHERE ID = ?");
 
-        foreach ($selectedUsers as $user) {
-            mysqli_stmt_bind_param($stmt, "s", $user['id']);
+        foreach ($selectedFilms as $film) {
+            mysqli_stmt_bind_param($stmt, "s", $film['id']);
             mysqli_stmt_execute($stmt);
         }
 
