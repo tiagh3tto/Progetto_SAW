@@ -1,6 +1,5 @@
 <h2>Recensisci il Film</h2>
 <form action="/SAW/Progetto_SAW/private/send_review.php" method="post">
-    <!--<input type="hidden" name="ID_Film" value="">-->
     <div class="form-group">
         <label for="Regia">Regia</label><input type="number" class="form-control" id="Regia" name="Regia" min="0" max="5" required>
     </div>

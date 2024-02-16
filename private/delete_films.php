@@ -17,7 +17,7 @@ else{
 
         foreach ($selectedUsers as $user) {
             mysqli_stmt_bind_param($stmt, "s", $user['id']);
-            mysqli_execute($stmt);
+            mysqli_stmt_execute($stmt);
         }
 
         // Convert the array to JSON
