@@ -32,37 +32,37 @@
                                     <div class="mb-3 row">
                                         <label for="firstname" class="form-label col-6"><strong>Nome</strong></label>
                                         <p id="firstname" class="col-6">
-                                        <?php if(isset($_SESSION["firstname"]))echo $_SESSION["firstname"]; else echo "Nessun Dato"?>
+                                        <?php if(isset($_SESSION["firstname"]))echo htmlspecialchars($_SESSION["firstname"]); else echo "Nessun Dato"?>
                                         </p>
                                     </div>
                                     <div class="mb-3 row">
                                         <label for="lastname" class="form-label col-6"><strong>Cognome</strong></label>
                                         <p id="lastname" class="col-6">
-                                        <?php if(isset($_SESSION["lastname"]))echo $_SESSION["lastname"]; else echo "Nessun Dato"?>
+                                        <?php if(isset($_SESSION["lastname"]))echo htmlspecialchars($_SESSION["lastname"]); else echo "Nessun Dato"?>
                                         </p>
                                     </div>
                                     <div class="mb-3 row">
                                         <label for="email" class="form-label col-6"><strong>Email</strong></label>
                                         <p id="email" class="col-6">
-                                        <?php if(isset($_SESSION["email"]))echo $_SESSION["email"]; else echo "Nessun Dato"?>
+                                        <?php if(isset($_SESSION["email"]))echo htmlspecialchars($_SESSION["email"]); else echo "Nessun Dato"?>
                                         </p>
                                     </div>
                                     <div class="mb-3 row">
                                         <label for="birthdate" class="form-label col-6"><strong>Data di Nascita</strong></label>
                                         <p id="birthdate" class="col-6">
-                                        <?php if(isset($_SESSION["birthdate"]))echo $_SESSION["birthdate"]; else echo "Nessun Dato"?>
+                                        <?php if(isset($_SESSION["birthdate"]))echo htmlspecialchars($_SESSION["birthdate"]); else echo "Nessun Dato"?>
                                         </p>
                                     </div>
                                     <div class="mb-3 row">
                                             <label for="gender" class="form-label col-6"><strong>Genere</strong></label>
                                             <p id="gender" class="col-6">
-                                            <?php if(isset($_SESSION["gender"]))echo $_SESSION["gender"]; else echo "Nessun Dato"?>
+                                            <?php if(isset($_SESSION["gender"]))echo htmlspecialchars($_SESSION["gender"]); else echo "Nessun Dato"?>
                                             </p>
                                     </div>
                                     <div class="mb-3 row">
                                             <label for="nationality" class="form-label col-6"><strong>Nazionalità</strong></label>
                                         <p id="nationality" class="col-6">
-                                        <?php if(isset($_SESSION["nationality"]))echo $_SESSION["nationality"]; else echo "Nessun Dato"?>
+                                        <?php if(isset($_SESSION["nationality"]))echo htmlspecialchars($_SESSION["nationality"]); else echo "Nessun Dato"?>
                                         </p>
                                     </div>
                                 </div>

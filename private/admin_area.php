@@ -8,7 +8,6 @@
         include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/head.php");
         include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/navbar/navbar.php");
 ?>     
-        <!--<div class="admin-area-container">-->
             <div class="table-container">
                 <h1>Area Amministrativa</h1>
                 <div class="admin-content">
@@ -38,7 +37,6 @@
                     </div>
                 </div>
             </div>
-        <!--</div>-->    
 <?php
         include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/footer.php");
     }   
