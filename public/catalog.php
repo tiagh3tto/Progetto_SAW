@@ -6,7 +6,11 @@ if(isset($_POST["searchBar"]) && isset($_POST["filter"])){
 else{
     include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/head.php");
     include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/navbar/navbar.php");
-    include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/tables/catalog_table.php");
+?>
+    <div class="table-container">
+    <div id="catalog-table"></div>
+    </div>
+<?php
     include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/footer.php");
 }
 ?>
