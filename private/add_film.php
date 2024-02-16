@@ -16,15 +16,20 @@
             exit("<p>Attenzione! Non hai caricato l'immagine</p>");       //OJO: gestione errori
         }
 
-        $nome = $_POST['nome'];
-        $genere = $_POST['genere'];
-        $regista = $_POST['regista'];
-        $paese = $_POST['paese'];
-        $anno = intval($_POST['anno']);
-        $trama = $_POST['trama'];
+        $nome = filter_var($_POST['nome'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")));
+        $genere = filter_var($_POST['genere'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")));
+        $regista = filter_var($_POST['regista'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")));
+        $paese =  filter_var($_POST['paese'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")));   
+        $anno = filter_var($_POST['anno'], FILTER_VALIDATE_INT, array("options"=>array("min_range"=>1900, "max_range"=>2024)));
+        $trama = filter_var($_POST['trama'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")));
         $img_name = current(explode('.',$_FILES['img']['name']));
-        $casa_produzione = $_POST['casa_produzione'];
-        $durata = intval($_POST['durata']);
+        $casa_produzione = filter_var($_POST['casa_produzione'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")));
+        $durata = filter_var($_POST['durata'], FILTER_VALIDATE_INT, array("options"=>array("min_range"=>1900, "max_range"=>2024)));
+
+        if(!$nome || !$genere || !$regista || !$paese || !$anno || !$trama || !$img_name || !$casa_produzione || !$durata){
+            exit("<p>Attenzione! Hai inserito dei dati non validi</p>");       //OJO: gestione errori
+        }   
+
         try{
             // SQL statement
             $sql = "INSERT INTO film (Nome, Genere, Regista, Paese, Anno, Trama, Img, Casa_Produzione, Durata) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
