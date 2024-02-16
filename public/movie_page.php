@@ -7,7 +7,7 @@ try{
     $movie_name = $_GET['NomeFilm'];
     $stmt = mysqli_prepare($con, $query);
     mysqli_stmt_bind_param($stmt, "s", $movie_name);
-    mysqli_execute($stmt);
+    mysqli_stmt_execute($stmt);
     $res = mysqli_stmt_get_result($stmt);
     $row = mysqli_fetch_assoc($res);
     define("FILM", $row);
@@ -16,7 +16,7 @@ try{
     $query2 = "SELECT AVG(Regia) as Regia,  AVG(Sceneggiatura) as Sceneggiatura, AVG(Fotografia) as Fotografia, AVG(Recitazione) as Recitazione, AVG(Colonna_Sonora) as Colonna_Sonora FROM recensioni WHERE ID_Film = ?";
     $stmt2 = mysqli_prepare($con, $query2);
     mysqli_stmt_bind_param($stmt2, "i", $row["ID"]);
-    mysqli_execute($stmt2);
+    mysqli_stmt_execute($stmt2);
     $res2 = mysqli_stmt_get_result($stmt2);
     $count = mysqli_num_rows($res2);
     $row2 = mysqli_fetch_assoc($res2);
@@ -43,7 +43,9 @@ try{
 
 }
 catch(mysqli_sql_exception $e){
-    echo "Errore Interno";                              //OJO: gestione errori
+    //echo "Errore Interno";                              //OJO: gestione errori
+    header("Location: /SAW/Progetto_SAW/public/database_error.html");
+
     error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
 }    
 ?>
