@@ -38,7 +38,7 @@
             $sql = "INSERT INTO film (Nome, Genere, Regista, Paese, Anno, Trama, Img, Casa_Produzione, Durata) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
             $stmt = mysqli_prepare($con, $sql);
             mysqli_stmt_bind_param($stmt, "ssssisssi", $nome, $genere, $regista, $paese, $anno, $trama, $img_name, $casa_produzione, $durata);
-            mysqli_stmt_execute($stmt); //TRY CATCH????????????????
+            mysqli_stmt_execute($stmt);
 
             $errors= array();
             $file_name = $_FILES['img']['name'];
@@ -49,7 +49,7 @@
             
             $extensions= array("jpeg","jpg","png");
             
-            if(in_array($file_ext,$extensions)=== false){
+            if(in_array($file_ext,$extensions) === false){
                 $errors[]="extension not allowed, please choose a JPEG or PNG file.";
             }
             

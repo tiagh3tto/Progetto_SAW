@@ -13,7 +13,7 @@ else{
 
     try {
         // Prepare an SQL statement for updating the ban field
-        $stmt = mysqli_prepare($con, "DELETE FROM film WHERE Nome = ?");
+        $stmt = mysqli_prepare($con, "DELETE FROM utenti WHERE Nome = ?");
 
         foreach ($selectedUsers as $user) {
             mysqli_stmt_bind_param($stmt, "s", $user['Nome']);

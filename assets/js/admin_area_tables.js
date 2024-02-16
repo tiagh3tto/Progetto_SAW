@@ -28,9 +28,28 @@ var all_movies_table = new Tabulator("#all-movies-table", {
 
 document.getElementById("del-films-btn").addEventListener("click", function(){
     var selectedRows = all_movies_table.getSelectedRows();
-    for (var i = 0; i < selectedRows.length; i++) {
-        all_movies_table.deleteRow(selectedRows[i]);
-    }
+    var selectedFilms = selectedRows.map(function(row) {
+        return row.getData(); // replace 'id' with the actual id field in your data
+    });
+
+    // Send data to server
+    fetch('/SAW/Progetto_SAW/private/delete_films.php', { // replace with the path to your PHP script
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 'data': selectedFilms }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Delete each selected row from the table
+        for (var i = 0; i < selectedRows.length; i++) {
+            all_movies_table.deleteRow(selectedRows[i]);
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
 });
 
 var all_users_table = new Tabulator("#all-users-table", {
@@ -55,10 +74,30 @@ var all_users_table = new Tabulator("#all-users-table", {
 });
 
 document.getElementById("del-users-btn").addEventListener("click", function(){
+    // Get all selected rows
     var selectedRows = all_users_table.getSelectedRows();
-    for (var i = 0; i < selectedRows.length; i++) {
-        all_users_table.deleteRow(selectedRows[i]);
-    }
+    var selectedUsers = selectedRows.map(function(row) {
+        return row.getData(); // replace 'id' with the actual id field in your data
+    });
+
+    // Send data to server
+    fetch('/SAW/Progetto_SAW/private/delete_users.php', { // replace with the path to your PHP script
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 'data': selectedUsers }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Delete each selected row from the table
+        for (var i = 0; i < selectedRows.length; i++) {
+            all_users_table.deleteRow(selectedRows[i]);
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
 });
 
 document.getElementById("ban-users-btn").addEventListener("click", function() {

@@ -1,18 +1,16 @@
 <?php
 if(!isset($_SESSION)) 
-session_start(); 
+    session_start(); 
 if(!isset($_SESSION["admin"]) && !$_SESSION["admin"] )
-header('Location: /SAW/Progetto_SAW/private/login.php');
+    header('Location: /SAW/Progetto_SAW/private/login.php');
 else{
-    // Include your database connection file here
     include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
 
-    // Get the data from the request
+    // ottiene il contenuto della richiesta (php://input è uno stream), e fa la decode in un array associativo (true)
     $data = json_decode(file_get_contents('php://input'), true);
     $selectedUsers = $data['data'];
 
     try {
-        // Prepare an SQL statement for updating the ban field
         $stmt = mysqli_prepare($con, "DELETE FROM film WHERE ID = ?");
 
         foreach ($selectedUsers as $user) {
@@ -20,7 +18,6 @@ else{
             mysqli_stmt_execute($stmt);
         }
 
-        // Convert the array to JSON
         $result = json_encode(true);
 
 

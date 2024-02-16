@@ -12,4 +12,4 @@
         form.classList.add('was-validated')
         }, false)
     })
-})();   //IIFE
+})();   //IIFE (Immediately Invoked Function Expression)
