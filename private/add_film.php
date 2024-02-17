@@ -50,7 +50,7 @@
             $stmt = mysqli_prepare($con, $sql);
             mysqli_stmt_bind_param($stmt, "ssssisssi", $nome, $genere, $regista, $paese, $anno, $trama, $img_name, $casa_produzione, $durata);
             mysqli_stmt_execute($stmt);
- 
+
             move_uploaded_file($file_tmp, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/assets/img/film/".$file_name);
             header("Location: /SAW/Progetto_SAW/private/add_film.php");
             exit;
