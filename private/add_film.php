@@ -9,16 +9,13 @@
         $fields = array('nome', 'genere', 'regista', 'paese', 'anno', 'trama', 'casa_produzione', 'durata');
         foreach ($fields as $field) {
             if (!isset( $_POST[$field]) || empty($_POST[$field])) {
-                //exit("<p>Attenzione! Non hai compilato alcuni campi</p>");       //OJO: gestione errori
                 header("Location: /SAW/Progetto_SAW/public/invalid_input.php");
-                exit;
-
+                exit();
             }
         }
         if(!isset($_FILES['img']) || $_FILES['img']['error'] > 0){
-            //exit("<p>Attenzione! Non hai caricato l'immagine</p>");       //OJO: gestione errori
             header("Location: /SAW/Progetto_SAW/public/invalid_input.php");   
-            exit;
+            exit();
         }
 
         $nome = filter_var($_POST['nome'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z0-9\s]+$/")));
