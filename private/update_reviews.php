@@ -10,8 +10,9 @@
         $data = json_decode($body,true);
         $selectedReviews = $data['selectedReviews'];
 
+        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
+
         try{
-            include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
             $query = "UPDATE recensioni SET Regia = ?, Sceneggiatura = ?, Colonna_Sonora = ?, Recitazione = ?, Fotografia = ? WHERE ID_Utente = ? AND ID_Film = ?;";
             $stmt = mysqli_prepare($con, $query);
             $ID_Utente = $_SESSION['ID'];
@@ -32,7 +33,6 @@
                 echo json_encode(array("Errore" => "Impossibile modificare la recensione"));
         }
         catch(mysqli_sql_exception $e){
-            //echo "Errore Interno";                              //OJO: gestione errori
             error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
             header('Location: /SAW/Progetto_SAW/public/unexpected_error.php');
             exit;

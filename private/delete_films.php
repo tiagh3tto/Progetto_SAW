@@ -17,6 +17,7 @@ else{
             mysqli_stmt_bind_param($stmt, "s", $film['id']);
             mysqli_stmt_execute($stmt);
         }
+        mysqli_stmt_close($stmt);
     } catch (mysqli_sql_exception $e) {
         error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
         header("Location: /SAW/Progetto_SAW/public/unexpected_error.php");

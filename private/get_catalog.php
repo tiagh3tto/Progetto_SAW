@@ -1,8 +1,8 @@
 <?php
 //se viene chiamato get_catalog dalla searchbar
 if((isset($_GET["searchBar"]) && isset($_GET["filter"])) && (!empty($_GET["searchBar"]) && !empty($_GET["filter"]))){
+    include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
     try{
-        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
         $allowed_cols = ['Nome', 'Genere', 'Regista', 'Paese', 'Anno', 'Casa_Produzione']; // replace with your actual column names
         $filter = $_GET["filter"];
         if (!in_array($filter, $allowed_cols)) {
@@ -49,8 +49,8 @@ if((isset($_GET["searchBar"]) && isset($_GET["filter"])) && (!empty($_GET["searc
             echo(json_encode($data));
         }
         else{
-            echo(json_encode(array()));
             mysqli_stmt_close($stmt);
+            echo(json_encode(array()));
         }
     }
     catch(mysqli_sql_exception $e){
