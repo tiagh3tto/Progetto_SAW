@@ -12,13 +12,17 @@
                 exit;
             }
 		}
-        $nome = filter_var($_POST['firstname'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z0-9\s]+$/")));
+
         $firstname = filter_var(trim($_POST['firstname']) , FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")));
         $lastname = filter_var(trim($_POST['lastname']) , FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")));
         $newEmail = filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL);
         $birthdate = filter_var(trim($_POST['birthdate']), FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^\d{4}-\d{2}-\d{2}$/")));
         $gender = filter_var(trim($_POST['gender']));
         $nationality = filter_var(trim($_POST['nationality']), FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")));
+
+        if(!$firstname || !$lastname || !$newEmail || !$birthdate || !$gender  || !$nationality){
+            header("Location: /SAW/Progetto_SAW/public/invalid_input.php");   
+        }
 
         $oldEmail = $_SESSION['email'];
 
@@ -34,23 +38,21 @@
                 $_SESSION['birthdate'] = htmlspecialchars(trim($_POST['birthdate']));
                 $_SESSION['gender'] = htmlspecialchars(trim($_POST['gender']));
                 $_SESSION['nationality'] = htmlspecialchars(trim($_POST['nationality']));
+
+                mysqli_stmt_close($stmt);
+
                 header('Location: /SAW/Progetto_SAW/private/show_profile.php');
                 exit;
-            } 
-            /*else if (mysqli_stmt_affected_rows($stmt) > 1) {
-                echo "No changes were made.";
-            }*/
+            }
             else {
                 header("Location: /SAW/Progetto_SAW/public/invalid_input.php");
                 exit;
             }
         }
         catch(mysqli_sql_exception $e){
-            echo "Errore Interno: " . $e->getMessage();                              //OJO: gestione errori
             error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
             header('Location: /SAW/Progetto_SAW/public/unexpected_error.php');
             exit();
-
         }
     }
     else{

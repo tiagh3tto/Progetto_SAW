@@ -21,9 +21,9 @@
         $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
         $pwd = filter_var($_POST['pass'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^.{8,}$/")));
 
+        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
+
         try{
-            include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
-        
             $query = "SELECT * FROM utenti WHERE Email = ?;";
             $stmt = mysqli_prepare($con, $query);
             mysqli_stmt_bind_param($stmt, 's', $email);

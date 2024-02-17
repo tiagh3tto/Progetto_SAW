@@ -4,9 +4,8 @@
     if(!isset($_SESSION["admin"]) && !$_SESSION["admin"] )
         header('Location: /SAW/Progetto_SAW/private/login.php');
     else{
+        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
         try{
-            include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
-
             // ottiene il contenuto della richiesta (php://input è uno stream), e fa la decode in un array associativo (true)
             $data = json_decode(file_get_contents('php://input'), true);
             $selectedUsers = $data['data'];
@@ -18,6 +17,7 @@
                 mysqli_stmt_bind_param($stmt, "s", $user['Email']);
                 mysqli_stmt_execute($stmt);
             }
+            mysqli_stmt_close($stmt);
         }
         catch(mysqli_sql_exception $e){
             error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
