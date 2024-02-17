@@ -18,16 +18,16 @@
         }
         catch(mysqli_sql_exception $e){
 
-            echo "Impossibile caricare le tue informazioni";                              //OJO: gestione errori
+            //echo "Impossibile caricare le tue informazioni";                              //OJO: gestione errori
             error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
-            //header('Location: /SAW/Progetto_SAW/public/unexpected_error.php');
-            //exit; 
+            header('Location: /SAW/Progetto_SAW/public/unexpected_error.php');
+            exit; 
         }
         //build data array
         if($count != 0){
             while($row = mysqli_fetch_array($res, MYSQLI_ASSOC)){
                 $data[] = [
-                "Titolo"=> intval($row["Nome"]),
+                "Titolo"=> htmlspecialchars($row["Nome"]),
                 "ID"=> intval($row["ID_Film"]),
                 "Regia"=> intval($row["Regia"]),
                 "Sceneggiatura"=> intval($row["Sceneggiatura"]),
