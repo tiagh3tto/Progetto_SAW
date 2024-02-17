@@ -21,6 +21,10 @@
         $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
         $pwd = filter_var($_POST['pass'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^.{8,}$/")));
 
+        if(!$email || !$pwd){
+            header("Location: /SAW/Progetto_SAW/public/invalid_input.php");   
+        }
+
         include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
 
         try{

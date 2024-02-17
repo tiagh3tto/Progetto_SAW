@@ -46,7 +46,6 @@ try{
     mysqli_stmt_close($stmt2);
 }
 catch(mysqli_sql_exception $e){
-    //echo "Errore Interno";                              //OJO: gestione errori
     error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
     header("Location: /SAW/Progetto_SAW/public/unexpected_error.php");
     exit;
