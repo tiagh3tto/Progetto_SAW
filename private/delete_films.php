@@ -17,17 +17,9 @@ else{
             mysqli_stmt_bind_param($stmt, "s", $film['id']);
             mysqli_stmt_execute($stmt);
         }
-
-        $result = json_encode(true);
-
-
-        // Send the updated data back as a JSON response
-        header('Content-Type: application/json');
-        echo json_encode($result);
-    } catch (Exception $e) {
-        // If an error occurred, set the response to an error message                                               //OJO: gestire meglio l'errore
-        $result = json_encode(['error' => $e->getMessage()]);
-        echo $result;
+    } catch (mysqli_sql_exception $e) {
+        header("Location: /SAW/Progetto_SAW/public/unexpected_error.php");
+        exit();
     }
 }    
 ?>

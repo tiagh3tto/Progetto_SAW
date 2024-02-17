@@ -16,13 +16,12 @@
             // Itera tra gli utenti selezionati ed esegue la query per ognuno
             foreach ($selectedUsers as $user) {
                 mysqli_stmt_bind_param($stmt, "s", $user['Email']);
-                mysqli_stmt_execute($stmt);                                              //controllo restituzione queries
+                mysqli_stmt_execute($stmt);
             }
         }
         catch(mysqli_sql_exception $e){
-            echo "Errore Interno";                             //OJO: gestione errori
-            error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
-            //header("Location: /SAW/Progetto_SAW/public/database_error.html");
+            header("Location: /SAW/Progetto_SAW/public/unexpected_error.php");
+            exit();
         }
     }
 ?>
