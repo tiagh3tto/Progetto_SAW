@@ -9,7 +9,7 @@
         $fields = array('firstname', 'lastname', 'email');
         foreach ($fields as $field) {
 			if (!isset( $_POST[$field]) || empty($_POST[$field])) {
-                header("Location: /SAW/Progetto_SAW/public/invalid_input.html");
+                header("Location: /SAW/Progetto_SAW/public/invalid_input.php");
                 exit;
             }
 		}

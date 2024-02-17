@@ -7,6 +7,10 @@
    {
      header("Location: /SAW/Progetto_SAW/private/login.php");
    }
+   if(!isset($_SESSION["ID_Film"]) || empty($_SESSION["ID_Film"]))
+   {
+     header("Location: /SAW/Progetto_SAW/public/movie_page.php?NomeFilm=".$_SESSION["NomeFilm"]);
+   }
    else{
     if($_SERVER["REQUEST_METHOD"] == "POST" )
       {
@@ -19,7 +23,7 @@
         $Fotografia = intval($_POST["Fotografia"]);
         $ID_Utente = intval($_SESSION["ID"]);
         $ID_Film = intval($_SESSION["ID_Film"]);
-        $query = "INSERT INTO Recensioni (ID_Utente, ID_Film, Regia, Sceneggiatura, Colonna_Sonora, Recitazione, Fotografia) VALUES (?,?,?,?,?,?,?)";
+        $query = "INSERT INTO recensioni (ID_Utente, ID_Film, Regia, Sceneggiatura, Colonna_Sonora, Recitazione, Fotografia) VALUES (?,?,?,?,?,?,?)";
         $stmt = mysqli_prepare($con, $query);
         mysqli_stmt_bind_param($stmt, "iiiiiii", $ID_Utente, $ID_Film, $Regia, $Sceneggiatura, $Colonna_Sonora, $Recitazione, $Fotografia);
         mysqli_stmt_execute($stmt);
@@ -32,7 +36,7 @@
                 echo "Hai già recensito questo film";
             }
             error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
-            header("Location: /SAW/Progetto_SAW/public/database_error.html");
+            header("Location: /SAW/Progetto_SAW/public/unexpected_error.php");
             exit;
         }
     }

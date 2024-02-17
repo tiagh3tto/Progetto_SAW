@@ -20,20 +20,20 @@
 
             echo "Impossibile caricare le tue informazioni";                              //OJO: gestione errori
             error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
-            //header('Location: /SAW/Progetto_SAW/public/database_error.html');
+            //header('Location: /SAW/Progetto_SAW/public/unexpected_error.php');
             //exit; 
         }
         //build data array
         if($count != 0){
             while($row = mysqli_fetch_array($res, MYSQLI_ASSOC)){
                 $data[] = [
-                "Titolo"=>$row["Nome"],
-                "ID"=>$row["ID_Film"],
-                "Regia"=>$row["Regia"],
-                "Sceneggiatura"=>$row["Sceneggiatura"],
-                "Colonna_Sonora"=>$row["Colonna_Sonora"],
-                "Recitazione"=>$row["Recitazione"],
-                "Fotografia"=>$row["Fotografia"]
+                "Titolo"=> intval($row["Nome"]),
+                "ID"=> intval($row["ID_Film"]),
+                "Regia"=> intval($row["Regia"]),
+                "Sceneggiatura"=> intval($row["Sceneggiatura"]),
+                "Colonna_Sonora"=> intval($row["Colonna_Sonora"]),
+                "Recitazione"=> intval($row["Recitazione"]),
+                "Fotografia"=> intval($row["Fotografia"])
                 ];
             }    
             //return JSON formatted data

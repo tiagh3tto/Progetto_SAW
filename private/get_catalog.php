@@ -6,7 +6,9 @@ if((isset($_GET["searchBar"]) && isset($_GET["filter"])) && (!empty($_GET["searc
         $allowed_cols = ['Nome', 'Genere', 'Regista', 'Paese', 'Anno', 'Casa_Produzione']; // replace with your actual column names
         $filter = $_GET["filter"];
         if (!in_array($filter, $allowed_cols)) {
-            exit('Invalid filter');                         //OJO da gestire errore
+            //exit('Invalid filter');                         //OJO da gestire errore
+            header("Location: /SAW/Progetto_SAW/public/invalid_input.php");
+            exit;
         }
 
         if($filter == "Anno") {
@@ -19,11 +21,11 @@ if((isset($_GET["searchBar"]) && isset($_GET["filter"])) && (!empty($_GET["searc
             mysqli_stmt_bind_param($stmt, "s", $mySearch); // bind as string
         }
 
-        if(!$stmt){
+        /*if(!$stmt){
 			error_log("Failed to prepare statement: " . mysqli_error($con)."\n",3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");		//OJO: gestione errori
 			echo "Impossibile preparare la query";
 			exit;
-		}
+		}*/
 
         mysqli_stmt_execute($stmt);
         $res = mysqli_stmt_get_result($stmt);
@@ -32,16 +34,15 @@ if((isset($_GET["searchBar"]) && isset($_GET["filter"])) && (!empty($_GET["searc
         if($count > 0){
             while(($row = mysqli_fetch_assoc($res)) != NULL){
                 $data[] = [
-                    "id" => $row["ID"],
-                    "nome"=>$row["Nome"],
-                    "genere"=>$row["Genere"],
-                    "regista"=>$row["Regista"],
-                    "paese"=>$row["Paese"],
-                    "anno"=>$row["Anno"],
-                    //"trama"=>$row["Trama"],
-                    "img"=>$row["Img"],
-                    "durata"=>$row["Durata"],
-                    "casa_produzione"=>$row["Casa_Produzione"]
+                    "id" => intval($row["ID"]),
+                    "nome"=> htmlspecialchars($row["Nome"]),
+                    "genere"=>htmlspecialchars($row["Genere"]),
+                    "regista"=>htmlspecialchars($row["Regista"]),
+                    "paese"=>htmlspecialchars($row["Paese"]),
+                    "anno"=> intval($row["Anno"]),
+                    "img"=> $row["Img"],
+                    "durata"=>htmlspecialchars($row["Durata"]),
+                    "casa_produzione"=>htmlspecialchars($row["Casa_Produzione"])
                 ];
             }
             mysqli_stmt_close($stmt);
@@ -54,8 +55,10 @@ if((isset($_GET["searchBar"]) && isset($_GET["filter"])) && (!empty($_GET["searc
         }
     }
     catch(mysqli_sql_exception $e){
-        echo "Errore Interno";                              //OJO: gestione errori
+        //echo "Errore Interno";                              //OJO: gestione errori
         error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
+        header("Location: /SAW/Progetto_SAW/public/unexpected_error.php");
+        exit;
     }
 }
 else{
@@ -68,31 +71,31 @@ else{
         if($count > 0){
             while(($row = mysqli_fetch_assoc($res)) != NULL){
                 $data[] = [
-                    "id" => $row["ID"],
-                    "nome"=>$row["Nome"],
-                    "genere"=>$row["Genere"],
-                    "regista"=>$row["Regista"],
-                    "paese"=>$row["Paese"],
-                    "anno"=>$row["Anno"],
+                    "id" => intval($row["ID"]),
+                    "nome"=>htmlspecialchars($row["Nome"]),
+                    "genere"=>htmlspecialchars($row["Genere"]),
+                    "regista"=>htmlspecialchars($row["Regista"]),
+                    "paese"=>htmlspecialchars($row["Paese"]),
+                    "anno"=> intval($row["Anno"]),
                     "img"=>$row["Img"],
-                    "durata"=>$row["Durata"],
-                    "casa_produzione"=>$row["Casa_Produzione"],
+                    "durata"=> intval($row["Durata"]),
+                    "casa_produzione"=> htmlspecialchars($row["Casa_Produzione"]),
                 ];
             }
             mysqli_free_result($res);
             mysqli_close($con);
             //return JSON formatted data
-            echo(json_encode($data));
+            echo json_encode($data);
         }
         else
-            echo "Impossibile caricare il catalogo";
+            echo json_encode(array("Errore" => "Impossibile caricare il catalogo"));
 
     }
     catch(mysqli_sql_exception $e){
         //echo "Errore Interno";                              //OJO: gestione errori
-        header("Location: /SAW/Progetto_SAW/public/database_error.html");
-        
         error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
+        header("Location: /SAW/Progetto_SAW/public/unexpected_error.php");
+        exit;
     }
 }
 ?>
