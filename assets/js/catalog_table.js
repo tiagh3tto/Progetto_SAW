@@ -6,9 +6,9 @@ if(filter == null) filter = "";
 
 var table = new Tabulator("#catalog-table", {
     placeholder:"No Results Found",
-    layout:"fitColumns",
-    responsiveLayout:"collapse",
-    maxHeight:"100%",
+    layout:"fitColumns", //imposta la larghezza delle colonne in base al contenuto
+    responsiveLayout:"collapse", //schiaccia le colonne che non ci stanno
+    maxHeight:"100%", //imposta l'altezza massima della tabella
     ajaxURL:"/SAW/Progetto_SAW/private/get_catalog.php?searchBar=" + searchBar + "&filter=" + filter,
     columns:[
         {title:"Locandina", field:"img", formatter:"image", headerSort:false, formatterParams:{

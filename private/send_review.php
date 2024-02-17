@@ -23,7 +23,7 @@
         $stmt = mysqli_prepare($con, $query);
         mysqli_stmt_bind_param($stmt, "iiiiiii", $ID_Utente, $ID_Film, $Regia, $Sceneggiatura, $Colonna_Sonora, $Recitazione, $Fotografia);
         mysqli_stmt_execute($stmt);
-        header("Location: /SAW/Progetto_SAW/public/moovie_page.php?NomeFilm=".$_SESSION["NomeFilm"]);
+        header("Location: /SAW/Progetto_SAW/public/movie_page.php?NomeFilm=".$_SESSION["NomeFilm"]);
       }
         catch(mysqli_sql_exception $e)
         {
@@ -31,8 +31,9 @@
             {
                 echo "Hai già recensito questo film";
             }
-            else  echo "Errore Interno";                              //OJO: gestione errori
             error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
+            header("Location: /SAW/Progetto_SAW/public/database_error.html");
+            exit;
         }
     }
     else include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/review_form.php");
