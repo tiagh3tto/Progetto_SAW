@@ -28,44 +28,38 @@
         $casa_produzione = filter_var($_POST['casa_produzione'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z0-9\s]+$/")));
         $durata = filter_var($_POST['durata'], FILTER_VALIDATE_INT, array("options"=>array("min_range"=>0)));
 
-        if(!$nome || !$genere || !$regista || !$paese || !$anno || !$trama || !$img_name || !$casa_produzione || !$durata){
+        if(!$nome || !$genere || !$regista || !$paese || !$anno || !$trama  || !$casa_produzione || !$durata){
             header("Location: /SAW/Progetto_SAW/public/invalid_input.php");   
         }   
 
         try{
-            $sql = "INSERT INTO film (Nome, Genere, Regista, Paese, Anno, Trama, Img, Casa_Produzione, Durata) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
-            $stmt = mysqli_prepare($con, $sql);
-            mysqli_stmt_bind_param($stmt, "ssssisssi", $nome, $genere, $regista, $paese, $anno, $trama, $img_name, $casa_produzione, $durata);
-            mysqli_stmt_execute($stmt);
-
-            $errors= array();
             $file_name = $_FILES['img']['name'];
             $file_size =$_FILES['img']['size'];
             $file_tmp =$_FILES['img']['tmp_name'];
             $file_type=$_FILES['img']['type'];
-            $file_ext = strtolower(pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION));     //get dell'estensione in lowercase
-            
+            //ottieni l'estensione in lowercase
+            $file_ext = strtolower(pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION));  
             $extensions= array("jpeg","jpg","png");
-            
-            if(in_array($file_ext,$extensions) === false){
-                $errors[]="extension not allowed, please choose a JPEG or PNG file.";
+
+            if(in_array($file_ext,$extensions) === false || $file_size > 2097152){
+                header("Location: /SAW/Progetto_SAW/public/invalid_input.php");
+                exit;
             }
-            
-            if($file_size > 2097152){
-                $errors[]='File size must be excately 2 MB';
-            }
-            
-            if(empty($errors)==true){
-                move_uploaded_file($file_tmp, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/assets/img/film/".$file_name);
-                header("Location: /SAW/Progetto_SAW/private/add_film.php");
-            }else{
-                header("Location: /SAW/Progetto_SAW/public/unexpected_error.php");
-                exit();
-            }
+
+            $sql = "INSERT INTO film (Nome, Genere, Regista, Paese, Anno, Trama, Img, Casa_Produzione, Durata) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            $stmt = mysqli_prepare($con, $sql);
+            mysqli_stmt_bind_param($stmt, "ssssisssi", $nome, $genere, $regista, $paese, $anno, $trama, $img_name, $casa_produzione, $durata);
+            mysqli_stmt_execute($stmt);
+ 
+            move_uploaded_file($file_tmp, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/assets/img/film/".$file_name);
+            header("Location: /SAW/Progetto_SAW/private/add_film.php");
+            exit;
         }
         catch (mysqli_sql_exception $e) {
+            //exit("Errore di connessione al database: ".$e->getMessage());
+            error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
             header("Location: /SAW/Progetto_SAW/public/unexpected_error.php");
-            exit();
+            exit;
         }
     }
     else{
