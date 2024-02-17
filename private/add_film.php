@@ -9,15 +9,13 @@
         $fields = array('nome', 'genere', 'regista', 'paese', 'anno', 'trama', 'casa_produzione', 'durata');
         foreach ($fields as $field) {
             if (!isset( $_POST[$field]) || empty($_POST[$field])) {
-                exit("<p>Attenzione! Non hai compilato alcuni campi</p>");       //OJO: gestione errori
-                //header("Location: /SAW/Progetto_SAW/public/invalid_input.html");
-
+                header("Location: /SAW/Progetto_SAW/public/invalid_input.php");
+                exit();
             }
         }
         if(!isset($_FILES['img']) || $_FILES['img']['error'] > 0){
-            exit("<p>Attenzione! Non hai caricato l'immagine</p>");       //OJO: gestione errori
-            //header("Location: /SAW/Progetto_SAW/public/invalid_input.html");   
-
+            header("Location: /SAW/Progetto_SAW/public/invalid_input.php");   
+            exit();
         }
 
         $nome = filter_var($_POST['nome'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z0-9\s]+$/")));
@@ -31,7 +29,7 @@
         $durata = filter_var($_POST['durata'], FILTER_VALIDATE_INT, array("options"=>array("min_range"=>0)));
 
         if(!$nome || !$genere || !$regista || !$paese || !$anno || !$trama || !$img_name || !$casa_produzione || !$durata){
-            header("Location: /SAW/Progetto_SAW/public/invalid_input.html");   
+            header("Location: /SAW/Progetto_SAW/public/invalid_input.php");   
         }   
 
         try{
@@ -61,12 +59,13 @@
                 move_uploaded_file($file_tmp, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/assets/img/film/".$file_name);
                 header("Location: /SAW/Progetto_SAW/private/add_film.php");
             }else{
-                print_r($errors);
+                header("Location: /SAW/Progetto_SAW/public/unexpected_error.php");
+                exit();
             }
         }
         catch (mysqli_sql_exception $e) {
-            exit("Errore di connessione al database: ".$e->getMessage());
-            //header("Location: /SAW/Progetto_SAW/public/database_error.html");
+            header("Location: /SAW/Progetto_SAW/public/unexpected_error.php");
+            exit();
         }
     }
     else{
