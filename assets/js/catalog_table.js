@@ -5,7 +5,7 @@ if(searchBar == null) searchBar = "";
 if(filter == null) filter = "";
 
 var table = new Tabulator("#catalog-table", {
-    placeholder:"No Results Found",
+    placeholder:"Nessun Film Trovato", //imposta il messaggio da mostrare quando non ci sono risultati
     layout:"fitColumns", //imposta la larghezza delle colonne in base al contenuto
     responsiveLayout:"collapse", //schiaccia le colonne che non ci stanno
     maxHeight:"100%", //imposta l'altezza massima della tabella

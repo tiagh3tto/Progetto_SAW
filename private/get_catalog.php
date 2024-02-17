@@ -17,7 +17,7 @@ if((isset($_GET["searchBar"]) && isset($_GET["filter"])) && (!empty($_GET["searc
             mysqli_stmt_bind_param($stmt, "i", $_GET["searchBar"]); // bind as integer
         } else {
             $stmt = mysqli_prepare($con, "SELECT * FROM film WHERE $filter LIKE ?;");
-            $mySearch = htmlspecialchars("%".trim($_GET["searchBar"])."%");
+            $mySearch = "%".trim($_GET["searchBar"])."%";
             mysqli_stmt_bind_param($stmt, "s", $mySearch); // bind as string
         }
 
@@ -46,7 +46,6 @@ if((isset($_GET["searchBar"]) && isset($_GET["filter"])) && (!empty($_GET["searc
                 ];
             }
             mysqli_stmt_close($stmt);
-            //return JSON formatted data
             echo(json_encode($data));
         }
         else{
@@ -67,7 +66,6 @@ else{
         $query = "SELECT * FROM film;";
         $res = mysqli_query($con, $query);
         $count = mysqli_num_rows($res);
-        //build data array
         if($count > 0){
             while(($row = mysqli_fetch_assoc($res)) != NULL){
                 $data[] = [
