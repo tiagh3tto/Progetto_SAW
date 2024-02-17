@@ -3,11 +3,11 @@
             <div class="container text-center">
                 <span>&copy; 2024 Re-View</span>
                 <span> | </span>
-                <span><a href="/SAW/Progetto_SAW/public/under_construction.html">Privacy Policy</a></span>
+                <span><a href="/SAW/Progetto_SAW/public/under_construction.php">Privacy Policy</a></span>
                 <span> | </span>
-                <span><a href="/SAW/Progetto_SAW/public/under_construction.html">Cookie Policy</a></span>
+                <span><a href="/SAW/Progetto_SAW/public/under_construction.php">Cookie Policy</a></span>
                 <span> | </span>
-                <span><a href="/SAW/Progetto_SAW/public/under_construction.html">Contatti</a></span>
+                <span><a href="/SAW/Progetto_SAW/public/under_construction.php">Contatti</a></span>
             </div>
         </footer>
         <script src="/SAW/Progetto_SAW/assets/js/admin_area_tables.js"></script>
