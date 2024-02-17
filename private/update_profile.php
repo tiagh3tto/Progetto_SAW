@@ -9,8 +9,9 @@
         $fields = array('firstname', 'lastname', 'email');
         foreach ($fields as $field) {
 			if (!isset( $_POST[$field]) || empty($_POST[$field])) {
-				exit("<p>Attenzione! Non hai compilato alcuni campi</p>");       //OJO: gestione errori
-			}
+                header("Location: /SAW/Progetto_SAW/public/invalid_input.html");
+                exit;
+            }
 		}
         $firstname = htmlspecialchars(trim($_POST['firstname']));
         $lastname = htmlspecialchars(trim($_POST['lastname']));

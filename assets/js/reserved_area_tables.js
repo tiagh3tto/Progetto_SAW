@@ -1,10 +1,11 @@
 var reviews_table = new Tabulator("#reviews-table", {
+    placeholder:"Non hai ancora effettuato nessuna recensione", //imposta il messaggio da mostrare quando non ci sono risultati
     defaultOption:{
         minWidth: 100,
-    },
+    }, //imposta la larghezza minima delle colonne
     ajaxURL:"/SAW/Progetto_SAW/private/retrieve_usr_reviews.php",
-    maxHeight:"100%",
-    validationMode:"blocking",
+    maxHeight:"100%", //imposta l'altezza massima della tabella
+    validationMode:"blocking", //blocca l'invio dei dati se non validi
     columns:[
         {formatter:"rowSelection", titleFormatter:"rowSelection", hozAlign:"right", headerSort:false, cellClick:function(e, cell){
             cell.getRow().toggleSelect();
@@ -18,7 +19,7 @@ var reviews_table = new Tabulator("#reviews-table", {
             min:0,
             max:5,
         }},
-        {title:"Colonna_Sonora", field:"Colonna_Sonora", editor:"number", validator:["min:0", "max:5","required"],editorParams:{
+        {title:"ColonnaSonora", field:"Colonna_Sonora", editor:"number", validator:["min:0", "max:5","required"],editorParams:{
             min:0,
             max:5,
         }},
@@ -34,7 +35,9 @@ var reviews_table = new Tabulator("#reviews-table", {
 });
 
 document.getElementById('modify-usr-reviews-button').addEventListener('click', function() {
+    // ottieni le righe selezionate
     var selectedRows = reviews_table.getSelectedRows();
+    // ottieni i dati delle righe selezionate come array
     var selectedReviews = selectedRows.map(function(row) {
         return row.getData();
     });
@@ -52,9 +55,9 @@ document.getElementById('modify-usr-reviews-button').addEventListener('click', f
     })
     .then(function (data){          
         console.log(data);
-        //window.location.reload();
+        window.location.reload();
     })
-    .catch(function (error){
+    /*.catch(function (error){
         console.log("Error:", error);
-    });
+    });*/
 });

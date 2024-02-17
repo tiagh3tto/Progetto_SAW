@@ -3,7 +3,7 @@ var all_movies_table = new Tabulator("#all-movies-table", {
         minWidth: 130,  
     }, //imposta la larghezza minima delle colonne
     layout:"fitColumns", //adatta la tabella alla grandezza del contenitore
-    responsiveLayout:"collapse", //nasconde le colonne che non ci stanno
+    responsiveLayout:"collapse", //schiaccia le colonne che non ci stanno
     maxHeight:"100%", //imposta l'altezza massima della tabella
     ajaxURL:"/SAW/Progetto_SAW/private/get_catalog.php",
     columns:[
@@ -38,13 +38,19 @@ document.getElementById("del-films-btn").addEventListener("click", function(){
         },
         body: JSON.stringify({ 'data': selectedFilms }),
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('HTTP error ' + response.status);
+        }
+        response.json()
+    })
     .then(function(data){
         console.log(data);
     })
     .catch((error) => {
-        console.error('Errorban:', error); // Implement error handling!!!!!!!!
+        console.error('Error:', error); // Implement error handling!!!!!!!!
     });
+    window.location.reload();
 });
 
 var all_users_table = new Tabulator("#all-users-table", {
@@ -86,7 +92,7 @@ document.getElementById("del-users-btn").addEventListener("click", function(){
         console.log(data);
     })
     .catch((error) => {
-        console.error('Errorban:', error); // Implement error handling!!!!!!!!
+        console.error('Error:', error); // Implement error handling!!!!!!!!
     });
 });
 
@@ -107,7 +113,7 @@ document.getElementById("ban-users-btn").addEventListener("click", function() {
         console.log(data);
     })
     .catch((error) => {
-        console.error('Errorban:', error); // Implement error handling!!!!!!!!
+        console.error('Error:', error); // Implement error handling!!!!!!!!
     });
     window.location.reload();
 });

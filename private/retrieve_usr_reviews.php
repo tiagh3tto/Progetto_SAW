@@ -17,8 +17,11 @@
             $count = mysqli_num_rows($res);
         }
         catch(mysqli_sql_exception $e){
+
             echo "Impossibile caricare le tue informazioni";                              //OJO: gestione errori
             error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
+            //header('Location: /SAW/Progetto_SAW/public/database_error.html');
+            //exit; 
         }
         //build data array
         if($count != 0){
@@ -34,11 +37,10 @@
                 ];
             }    
             //return JSON formatted data
-            echo(json_encode($data));
+            echo json_encode($data);
         }
         else
-            echo "Impossibile caricare le tue informazioni";
-                             //OJO: gestione errori
+            echo json_encode(array("Errore"=>"Impossibile caricare le tue recensioni"));
     }  
     else
         header('Location: /SAW/Progetto_SAW/private/login.php'); //modificare con un alert di errore??
