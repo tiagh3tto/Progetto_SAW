@@ -25,14 +25,18 @@
         mysqli_stmt_execute($stmt);
         header("Location: /SAW/Progetto_SAW/public/movie_page.php?NomeFilm=".$_SESSION["NomeFilm"]);
       }
-      catch(mysqli_sql_exception $e){
-        if($e->getCode() == 1062){
-          echo "Hai già recensito questo film";
+        catch(mysqli_sql_exception $e)
+        {
+            if($e->getCode() == 1062)
+            {
+                $_SESSION["review_error"] = true;
+                header("Location: /SAW/Progetto_SAW/public/movie_page.php?NomeFilm=".$_SESSION["NomeFilm"]);
+                exit;
+            }
+            error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
+            header("Location: /SAW/Progetto_SAW/public/unexpected_error.php");
+            exit;
         }
-        error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
-        header("Location: /SAW/Progetto_SAW/public/unexpected_error.php");
-        exit;
-      }
     }
   else
     include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/review_form.php");

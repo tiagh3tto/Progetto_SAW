@@ -55,9 +55,10 @@ document.getElementById('modify-usr-reviews-button').addEventListener('click', f
     })
     .then(function (data){          
         console.log(data);
-        window.location.reload();
     })
     /*.catch(function (error){
         console.log("Error:", error);
     });*/
+    window.location.reload();
+
 });

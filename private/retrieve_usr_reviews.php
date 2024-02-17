@@ -22,7 +22,7 @@
         if($count != 0){
             while($row = mysqli_fetch_array($res, MYSQLI_ASSOC)){
                 $data[] = [
-                "Titolo"=> intval($row["Nome"]),
+                "Titolo"=> htmlspecialchars($row["Nome"]),
                 "ID"=> intval($row["ID_Film"]),
                 "Regia"=> intval($row["Regia"]),
                 "Sceneggiatura"=> intval($row["Sceneggiatura"]),
