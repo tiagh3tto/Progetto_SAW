@@ -4,6 +4,6 @@ $(document).ready(function(){
         $("#dropdownMenuButton").html('<i class="fas fa-filter"></i> ' + selected);
     });
 
-    // Trigger a click event on the checked radio button when the page loads
+    // Triggera un click event sul radio button selezionato quando la pagina viene caricata
     $(".dropdown-menu input[type='radio']:checked").click();
 });

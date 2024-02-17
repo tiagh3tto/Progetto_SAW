@@ -51,14 +51,10 @@ document.getElementById('modify-usr-reviews-button').addEventListener('click', f
         if (!response.ok) {
             throw new Error('HTTP error ' + response.status);
         }
-        return response.json();
     })
-    .then(function (data){          
-        console.log(data);
-    })
-    /*.catch(function (error){
-        console.log("Error:", error);
-    });*/
+    .catch(function (error){
+        window.location.href = "/SAW/Progetto_SAW/public/unexpected_error.php";
+    });
     window.location.reload();
 
 });

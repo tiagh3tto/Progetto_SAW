@@ -72,7 +72,6 @@ var all_users_table = new Tabulator("#all-users-table", {
 });
 
 document.getElementById("del-users-btn").addEventListener("click", function(){
-    // Get all selected rows
     var selectedRows = all_users_table.getSelectedRows();
     var selectedUsers = selectedRows.map(function(row) {
         return row.getData();
