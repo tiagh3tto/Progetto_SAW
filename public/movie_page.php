@@ -41,6 +41,9 @@ try{
     ];
     define("REVIEW", ($data));
 
+    mysqli_free_result($res2);
+    mysqli_stmt_close($stmt);
+    mysqli_stmt_close($stmt2);
 }
 catch(mysqli_sql_exception $e){
     //echo "Errore Interno";                              //OJO: gestione errori
