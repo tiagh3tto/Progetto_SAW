@@ -40,16 +40,11 @@ document.getElementById("del-films-btn").addEventListener("click", function(){
         body: JSON.stringify({ 'data': selectedFilms }),
     })
     .then(response => {
-        if (!response.ok) {
-            throw new Error('HTTP error ' + response.status);
-        }
-        response.json()
-    })
-    .then(function(data){
-        console.log(data);
+        if (!response.ok)
+            throw new Error();
     })
     .catch((error) => {
-        console.error('Error:', error); // Implement error handling!!!!!!!!
+        window.location.href = "/SAW/Progetto_SAW/public/unexpected_error.php";
     });
     window.location.reload();
 });
@@ -89,13 +84,14 @@ document.getElementById("del-users-btn").addEventListener("click", function(){
         },
         body: JSON.stringify({ 'data': selectedUsers }),
     })
-    .then(response => response.json())
-    .then(function(data){
-        console.log(data);
+    .then(response => {
+        if (!response.ok)
+            throw new Error();
     })
     .catch((error) => {
-        console.error('Error:', error); // Implement error handling!!!!!!!!
+        window.location.href = "/SAW/Progetto_SAW/public/unexpected_error.php";
     });
+    window.location.reload();
 });
 
 document.getElementById("ban-users-btn").addEventListener("click", function() {
@@ -110,12 +106,12 @@ document.getElementById("ban-users-btn").addEventListener("click", function() {
         },
         body: JSON.stringify({ 'data': selectedUsers }),
     })
-    //.then(response => response.json())
-    .then(function(data){
-        console.log(data);
+    .then(response => {
+        if (!response.ok)
+            throw new Error();
     })
     .catch((error) => {
-        console.error('Error:', error); // Implement error handling!!!!!!!!
+        window.location.href = "/SAW/Progetto_SAW/public/unexpected_error.php";
     });
     window.location.reload();
 });
