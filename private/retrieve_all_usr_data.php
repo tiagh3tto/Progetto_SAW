@@ -13,21 +13,23 @@
             $data = array();
             while($row = mysqli_fetch_assoc($res)){
                 if($row["Admin"] == 0)
-                    $data[] = array("Nome"=>$row["Nome"], 
-                                    "Cognome"=>$row["Cognome"],
-                                    "Email"=>$row["Email"],
-                                    "Data_Nascita"=>$row["Data_Nascita"], 
-                                    "Genere"=>$row["Genere"], 
-                                    "Nazionalità"=>$row["Nazionalità"], 
-                                    "Ban"=>$row["Ban"]);
+                    $data[] = array("Nome"=>htmlspecialchars($row["Nome"]), 
+                                    "Cognome"=> htmlspecialchars($row["Cognome"]),
+                                    "Email"=> htmlspecialchars($row["Email"]),
+                                    "Data_Nascita"=>htmlspecialchars($row["Data_Nascita"]), 
+                                    "Genere"=> htmlspecialchars($row["Genere"]),
+                                    "Nazionalità"=>htmlspecialchars($row["Nazionalità"]), 
+                                    "Ban"=>intval($row["Ban"]));
             }
             //return JSON formatted data
             echo(json_encode($data));
             exit;
         }
         catch(mysqli_sql_exception $e){
-            echo "Impossibile caricare le tue informazioni";                              //OJO: gestione errori
+            //echo "Impossibile caricare le tue informazioni";                              //OJO: gestione errori
             error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
+            header('Location: /SAW/Progetto_SAW/public/unexpected_error.php'); 
+            exit(); 
         }    
     }
     else

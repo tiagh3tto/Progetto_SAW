@@ -25,15 +25,17 @@
                 mysqli_stmt_bind_param($stmt, 'iiiiiii', $regia, $sceneggiatura, $colonna_sonora, $recitazione, $fotografia, $ID_Utente, $ID_Film);
                 mysqli_stmt_execute($stmt);
                 $res = mysqli_stmt_get_result($stmt);
-                if(mysqli_affected_rows($con) == 0)
-                    $data[] = array("Errore" => "Impossibile modificare la recensione");
+                
+                    
             }
-
-            echo json_encode($data);
+            if(mysqli_affected_rows($con) == 0)
+                echo json_encode(array("Errore" => "Impossibile modificare la recensione"));
         }
         catch(mysqli_sql_exception $e){
-            echo "Errore Interno";                              //OJO: gestione errori
+            //echo "Errore Interno";                              //OJO: gestione errori
             error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
+            header('Location: /SAW/Progetto_SAW/public/unexpected_error.php');
+            exit;
         }    
     }    
 ?>

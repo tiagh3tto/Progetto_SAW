@@ -1,4 +1,5 @@
 var all_movies_table = new Tabulator("#all-movies-table", {
+    placeholder:"Nessun Film Trovato", //imposta il messaggio da mostrare quando non ci sono risultati
     columnDefaults:{
         minWidth: 130,  
     }, //imposta la larghezza minima delle colonne
@@ -54,6 +55,7 @@ document.getElementById("del-films-btn").addEventListener("click", function(){
 });
 
 var all_users_table = new Tabulator("#all-users-table", {
+    placeholder:"Nessun Utente Trovato", //imposta il messaggio da mostrare quando non ci sono risultati
     defaultOption:{
         minWidth: 100,
     },
