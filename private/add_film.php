@@ -48,13 +48,17 @@
                 exit;
             }
 
+            if(!move_uploaded_file($file_tmp, DOCUMENT_ROOT."/assets/img/film/".$file_name)){
+                header("Location: ../public/unexpected_error.php");
+                exit;
+            }
+
             $sql = "INSERT INTO film (Nome, Genere, Regista, Paese, Anno, Trama, Img, Casa_Produzione, Durata) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
             $stmt = mysqli_prepare($con, $sql);
             mysqli_stmt_bind_param($stmt, "ssssisssi", $nome, $genere, $regista, $paese, $anno, $trama, $img_name, $casa_produzione, $durata);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
 
-            move_uploaded_file($file_tmp, DOCUMENT_ROOT."/assets/img/film/".$file_name);
             header("Location: add_film.php");
             exit;
         }
