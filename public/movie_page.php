@@ -1,6 +1,5 @@
 <?php
 include_once(dirname(__FILE__)."/../phpinfo.php");
-$_SESSION["review_error"] = false;
 include(DOCUMENT_ROOT."/components/head.php");
 include(DOCUMENT_ROOT."/components/navbar/navbar.php");
 include(DOCUMENT_ROOT."/private/connection.php");
@@ -84,7 +83,7 @@ catch(mysqli_sql_exception $e){
                     </ul>   
                     <?php
                     if(isset($_SESSION["login"]) && $_SESSION["login"]){
-                        if(isset($_SESSION["banned"]) && !$_SESSION["banned"] ){
+                        if(isset($_SESSION["banned"]) && !$_SESSION["banned"] && !isset($_GET["reviewError"])){
                             $_SESSION["ID_Film"] = FILM["ID"];
                             $_SESSION["NomeFilm"] = FILM["Nome"];
                             include(DOCUMENT_ROOT."/private/send_review.php"); 
@@ -92,7 +91,7 @@ catch(mysqli_sql_exception $e){
                         else if(isset($_SESSION["banned"]) && $_SESSION["banned"] ){
                             echo '<div class="alert alert-danger text-center" role="alert">Non puoi recensire il film perchè sei stato bannato!</div>';
                         }
-                        else if(isset($_SESSION["review_error"]) && $_SESSION["review_error"] )
+                        else if(isset($_GET["reviewError"]))
                             echo '<div class="alert alert-danger text-center" role="alert">Hai già recensito questo film! Per modificare la tua recensione vai nella tua area personale!</div>';
                     }
                     ?> 
