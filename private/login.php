@@ -22,7 +22,8 @@
         $pwd = filter_var($_POST['pass'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^.{8,}$/")));
 
         if(!$email || !$pwd){
-            header("Location: /SAW/Progetto_SAW/public/invalid_input.php");   
+            header("Location: /SAW/Progetto_SAW/public/invalid_input.php");
+            exit;
         }
 
         include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
@@ -54,7 +55,7 @@
                 header('Location: /SAW/Progetto_SAW/public/invalid_input.php');
                 exit;
             }  
-            else{  
+            else{
                 header('Location: /SAW/Progetto_SAW/public/unexpected_error.php');
                 exit;
             }
