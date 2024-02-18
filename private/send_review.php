@@ -1,14 +1,14 @@
 <?php
-    include(dirname(__FILE__)."/../phpinfo.php");
+    include_once(dirname(__FILE__)."/../phpinfo.php");
 
   if(!isset($_SESSION)){
     session_start();
   }
   if(!isset($_SESSION['login']) || $_SESSION["login"] == false){
-    header("Location: /private/login.php");
+    header("Location: login.php");
   }
   if(!isset($_SESSION["ID_Film"]) || empty($_SESSION["ID_Film"])){
-    header("Location: /public/movie_page.php?NomeFilm=".$_SESSION["NomeFilm"]);
+    header("Location: ../public/movie_page.php?NomeFilm=".$_SESSION["NomeFilm"]);
   }
   else{
     if($_SERVER["REQUEST_METHOD"] == "POST" ){
@@ -25,18 +25,18 @@
         $stmt = mysqli_prepare($con, $query);
         mysqli_stmt_bind_param($stmt, "iiiiiii", $ID_Utente, $ID_Film, $Regia, $Sceneggiatura, $Colonna_Sonora, $Recitazione, $Fotografia);
         mysqli_stmt_execute($stmt);
-        header("Location: /public/movie_page.php?NomeFilm=".$_SESSION["NomeFilm"]);
+        header("Location: ../public/movie_page.php?NomeFilm=".$_SESSION["NomeFilm"]);
       }
         catch(mysqli_sql_exception $e)
         {
             if($e->getCode() == 1062)
             {
                 $_SESSION["review_error"] = true;
-                header("Location: /public/movie_page.php?NomeFilm=".$_SESSION["NomeFilm"]);
+                header("Location: ../public/movie_page.php?NomeFilm=".$_SESSION["NomeFilm"]);
                 exit;
             }
             error_log($e->getMessage(), 3, DOCUMENT_ROOT."/private/logs/errors.log");
-            header("Location: /public/unexpected_error.php");
+            header("Location: ../public/unexpected_error.php");
             exit;
         }
     }

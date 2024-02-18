@@ -2,7 +2,7 @@
   <div>
     <h1 class="display-4">Benvenuto su Re-View!</h1>
     <p class="lead">Il miglior sito di critica cinematografica</p>
-    <form class="d-flex flex-row justify-content-center" action="catalog.php" method="POST">
+    <form class="d-flex flex-row justify-content-center" action="public/catalog.php" method="POST">
       <input class="form-control mr-sm-2" type="search" name="searchBar" placeholder="Cerca" aria-label="Cerca">
       <div class="dropdown mx-sm-3">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

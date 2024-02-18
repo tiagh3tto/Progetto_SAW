@@ -2,7 +2,7 @@
     <div class="form-container">
         <h1 class="text-center">Registrati</h1>
         <p class="text-center">Inserisci i tuoi dati per registrarti</p>
-        <form action="registration.php" method="POST" class='row g-3 needs-validation' novalidate>
+        <form action="private/registration.php" method="POST" class='row g-3 needs-validation' novalidate>
         <div class="col-md-5">
           <label for="validationCustom01" class="form-label">Nome</label>
           <input type="text" name="firstname" class="form-control" id="validationCustom01" value="" required pattern="[A-Za-z ]+" >

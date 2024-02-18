@@ -1,5 +1,5 @@
 <h2>Recensisci il Film</h2>
-<form action="/private/send_review.php" method="post">
+<form action="private/send_review.php" method="post">
     <div class="form-group">
         <label for="Regia">Regia</label><input type="number" class="form-control" id="Regia" name="Regia" min="0" max="5" required>
     </div>

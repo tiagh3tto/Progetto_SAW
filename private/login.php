@@ -1,5 +1,5 @@
 <?php
-    include(dirname(__FILE__)."/../phpinfo.php");
+    include_once(dirname(__FILE__)."/../phpinfo.php");
 
     if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 		include (DOCUMENT_ROOT."/components/head.php");
@@ -15,7 +15,7 @@
         $arr_fields = array('email', 'pass');
 		foreach ($arr_fields as $field) {
 			if (!isset( $_POST[$field]) || empty($_POST[$field])) {
-				header('Location: /public/invalid_input.php');
+				header('Location: ../public/invalid_input.php');
                 exit;
 			}
 		}
@@ -24,7 +24,7 @@
         $pwd = filter_var($_POST['pass'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^.{8,}$/")));
 
         if(!$email || !$pwd){
-            header("Location: /SAW/Progetto_SAW/public/invalid_input.php");
+            header("Location: ../public/invalid_input.php");
             exit;
         }
 
@@ -51,20 +51,20 @@
                     $_SESSION['gender'] = htmlspecialchars($row["Sesso"]);
                     $_SESSION['nationality'] = htmlspecialchars($row["Nazionalita"]);
                     $_SESSION['admin'] = htmlspecialchars($row["Admin"]);
-                    header('Location: /public/index.php');
+                    header('Location: ../public/index.php');
                     exit;
                 }
-                header('Location: /public/invalid_input.php');
+                header('Location: ../public/invalid_input.php');
                 exit;
             }  
             else{
-                header('Location: /SAW/Progetto_SAW/public/unexpected_error.php');
+                header('Location: ../public/unexpected_error.php');
                 exit;
             }
         }
         catch(mysqli_sql_exception $e){
             error_log($e->getMessage(), 3, DOCUMENT_ROOT."/private/logs/errors.log");
-            header("Location: /public/unexpected_error.php");
+            header("Location: ../public/unexpected_error.php");
             exit;
         }
     }

@@ -1,11 +1,11 @@
 <?php
-    include(dirname(__FILE__)."/../phpinfo.php");
+    include_once(dirname(__FILE__)."/../phpinfo.php");
 
     if(!isset($_SESSION)) { 
         session_start(); 
     }
     if(!isset($_SESSION['login']) || empty($_SESSION['login']))
-        header('Location: /private/login.php');
+        header('Location: login.php');
     else{
         include(DOCUMENT_ROOT."/components/head.php");
         include(DOCUMENT_ROOT."/components/navbar/navbar.php");

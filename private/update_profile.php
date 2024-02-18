@@ -1,16 +1,16 @@
 <?php
-    include(dirname(__FILE__)."/../phpinfo.php");
+    include_once(dirname(__FILE__)."/../phpinfo.php");
 
     if(!isset($_SESSION))
         session_start();
     if(!isset($_SESSION['login']) || empty($_SESSION['login']))
-        header('Location: /private/login.php');
+        header('Location: login.php');
     if ($_SERVER["REQUEST_METHOD"] === "POST"){
         include(DOCUMENT_ROOT."/private/connection.php");
         $fields = array('firstname', 'lastname', 'email');
         foreach ($fields as $field) {
 			if (!isset( $_POST[$field]) || empty($_POST[$field])) {
-                header("Location: /public/invalid_input.php");
+                header("Location: ../public/invalid_input.php");
                 exit;
             }
 		}
@@ -23,7 +23,7 @@
         $nationality = filter_var(trim($_POST['nationality']), FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")));
 
         if(!$firstname || !$lastname || !$newEmail || !$birthdate || !$gender  || !$nationality){
-            header("Location: /public/invalid_input.php");   
+            header("Location: ../public/invalid_input.php");   
         }
 
         $oldEmail = $_SESSION['email'];
@@ -43,17 +43,17 @@
 
                 mysqli_stmt_close($stmt);
 
-                header('Location: /private/show_profile.php');
+                header('Location: show_profile.php');
                 exit;
             }
             else {
-                header("Location: /public/invalid_input.php");
+                header("Location: public/invalid_input.php");
                 exit;
             }
         }
         catch(mysqli_sql_exception $e){
             error_log($e->getMessage(), 3, DOCUMENT_ROOT."/private/logs/errors.log");
-            header('Location: /public/unexpected_error.php');
+            header('Location: ../public/unexpected_error.php');
             exit();
         }
     }
@@ -64,10 +64,10 @@
         <div style='display: flex; justify-content: center; align-items: center; height: 100vh;'>
             <div class="form-container">
                 <h1 class="text-center">Modifica Profilo</h1>
-                <form action="update_profile.php" method="POST" class='row g-3 needs-validation' novalidate>
+                <form action="private/update_profile.php" method="POST" class='row g-3 needs-validation' novalidate>
                     <div class="col-md-5">
                         <label for="validationCustom01" class="form-label">Nome</label>
-                        <input type="text" name="firstname" class="form-control" id="validationCustom01" value=<?php echo $_SESSION["firstname"]?> required pattern="[A-Za-z ]+"  >
+                        <input type="text" name="firstname" class="form-control" id="validationCustom01" value="<?php echo $_SESSION["firstname"]?>" required pattern="[A-Za-z ]+"  >
                         <div class="valid-feedback">
                             Ottimo!
                         </div>
@@ -78,7 +78,7 @@
 
                     <div class="col-md-5">
                         <label for="validationCustom02" class="form-label">Cognome</label>
-                        <input type="text" name="lastname" class="form-control" id="validationCustom02" value=<?php echo $_SESSION["lastname"]?> required pattern="[A-Za-z ]+">
+                        <input type="text" name="lastname" class="form-control" id="validationCustom02" value="<?php echo $_SESSION["lastname"]?>" required pattern="[A-Za-z ]+">
                         <div class="valid-feedback">
                             Ottimo!
                         </div>
@@ -90,7 +90,7 @@
                     <div class="col-md-7">
                         <label for="validationCustomEmail" class="form-label">Email</label>
                         <div class="input-group has-validation">
-                            <input type="email" name="email" class="form-control" id="validationCustomEmail" aria-describedby="inputGroupPrepend" value=<?php echo $_SESSION["email"]?> required>
+                            <input type="email" name="email" class="form-control" id="validationCustomEmail" aria-describedby="inputGroupPrepend" value="<?php echo $_SESSION["email"]?>" required>
                             <div class="invalid-feedback">
                                 Per favore inserisci una mail valida.
                             </div>
@@ -99,21 +99,22 @@
                     
                     <div class="form-group">
                         <label for="birthdate">Data di nascita</label>
-                        <input type="date" class="form-control" id="birthdate" name="birthdate" value=<?php if(isset($_SESSION["birthdate"])) echo $_SESSION["birthdate"]?> required>
+                        <input type="date" class="form-control" id="birthdate" name="birthdate" value="<?php if(isset($_SESSION["birthdate"])) echo $_SESSION["birthdate"]; else echo ""?>" required>
                     </div>
 
                     <div class="form-group">
                         <label for="gender">Genere</label>
-                        <select class="form-control" id="gender" name="gender" value=<?php if(isset($_SESSION["gender"])) echo $_SESSION["gender"]?> required>
+                        <select class="form-control" id="gender" name="gender" value="<?php if(isset($_SESSION["gender"])) echo $_SESSION["gender"];?>" required>
                             <option value="maschio">Maschio</option>
                             <option value="femmina">Femmina</option>
                             <option value="altro">Altro</option>
+                            <option value="" selected hidden></option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="nationality">Nazionalità</label>
-                        <input type="text" class="form-control" id="nationality" name="nationality" value=<?php if(isset($_SESSION["nationality"])) echo $_SESSION["nationality"]?> required>
+                        <input type="text" class="form-control" id="nationality" name="nationality" value="<?php if(isset($_SESSION["nationality"])) echo $_SESSION["nationality"]; else echo "";?>" required>
                     </div>
 
                     <div class="col-12">

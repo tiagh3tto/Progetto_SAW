@@ -1,8 +1,8 @@
 <?php
-    include(dirname(__FILE__)."/../phpinfo.php");
+    include_once(dirname(__FILE__)."/../phpinfo.php");
 
 if(isset($_POST["searchBar"]) && isset($_POST["filter"])){
-    header("Location: /public/catalog.php?searchBar=".$_POST["searchBar"]."&filter=".$_POST["filter"]);
+    header("Location: https://saw21.dibris.unige.it/~S4669238/public/catalog.php?searchBar=".$_POST["searchBar"]."&filter=".$_POST["filter"]);
     exit();
 }
 else{

@@ -9,6 +9,6 @@
         setcookie(session_name(), '', time()-86400, '/');
     }
     session_destroy();
-    header('Location: /private/login.php');
+    header('Location: ../private/login.php');
     exit;
 ?>

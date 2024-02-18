@@ -6,7 +6,7 @@ var all_movies_table = new Tabulator("#all-movies-table", {
     layout:"fitColumns", //adatta la tabella alla grandezza del contenitore
     responsiveLayout:"collapse", //schiaccia le colonne che non ci stanno
     maxHeight:"100%", //imposta l'altezza massima della tabella
-    ajaxURL:"/private/get_catalog.php",
+    ajaxURL:"https://saw21.dibris.unige.it/~S4669238/private/get_catalog.php",
     columns:[
         {formatter:"rowSelection", titleFormatter:"rowSelection", hozAlign:"right", minWidth:false,headerSort:false, cellClick:function(e, cell){
             cell.getRow().toggleSelect();
@@ -14,7 +14,7 @@ var all_movies_table = new Tabulator("#all-movies-table", {
         {title:"Locandina", field:"img", formatter:"image", headerSort:false, formatterParams:{
             height:"120px",
             width:"80px",
-            urlPrefix:"/assets/img/film/",
+            urlPrefix:"assets/img/film/",
             urlSuffix:".jpg"
         }},
         {title:"Nome", field:"nome", width:150},
@@ -32,7 +32,7 @@ document.getElementById("del-films-btn").addEventListener("click", function(){
     var selectedFilms = selectedRows.map(function(row) {
         return row.getData();
     });
-    fetch('/private/delete_films.php', {
+    fetch('https://saw21.dibris.unige.it/~S4669238/private/delete_films.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ document.getElementById("del-films-btn").addEventListener("click", function(){
             throw new Error();
     })
     .catch((error) => {
-        window.location.href = "public/unexpected_error.php";
+        window.location.href = "https://saw21.dibris.unige.it/~S4669238/public/unexpected_error.php";
     });
     window.location.reload();
 });
@@ -56,7 +56,7 @@ var all_users_table = new Tabulator("#all-users-table", {
     },
     layout:"fitColumns",
     maxHeight:"100%",
-    ajaxURL:"/private/retrieve_all_usr_data.php",
+    ajaxURL:"https://saw21.dibris.unige.it/~S4669238/private/retrieve_all_usr_data.php",
     columns:[
         {formatter:"rowSelection", titleFormatter:"rowSelection" ,hozAlign:"left", minWidth:false, headerSort:false, cellClick:function(e, cell){
             cell.getRow().toggleSelect();
@@ -76,7 +76,7 @@ document.getElementById("del-users-btn").addEventListener("click", function(){
     var selectedUsers = selectedRows.map(function(row) {
         return row.getData();
     });
-    fetch('/private/delete_users.php', {
+    fetch('https://saw21.dibris.unige.it/~S4669238/private/delete_users.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ document.getElementById("del-users-btn").addEventListener("click", function(){
             throw new Error();
     })
     .catch((error) => {
-        window.location.href = "public/unexpected_error.php";
+        window.location.href = "https://saw21.dibris.unige.it/~S4669238/public/unexpected_error.php";
     });
     window.location.reload();
 });
@@ -98,7 +98,7 @@ document.getElementById("ban-users-btn").addEventListener("click", function() {
     var selectedUsers = selectedRows.map(function(row) {
         return row.getData();
     });
-    fetch('/private/ban_users.php', {
+    fetch('https://saw21.dibris.unige.it/~S4669238/private/ban_users.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ document.getElementById("ban-users-btn").addEventListener("click", function() {
             throw new Error();
     })
     .catch((error) => {
-        window.location.href = "public/unexpected_error.php";
+        window.location.href = "https://saw21.dibris.unige.it/~S4669238/public/unexpected_error.php";
     });
     window.location.reload();
 });

@@ -3,7 +3,7 @@ var reviews_table = new Tabulator("#reviews-table", {
     defaultOption:{
         minWidth: 100,
     }, //imposta la larghezza minima delle colonne
-    ajaxURL:"/private/retrieve_usr_reviews.php",
+    ajaxURL:"https://saw21.dibris.unige.it/~S4669238/private/retrieve_usr_reviews.php",
     maxHeight:"100%", //imposta l'altezza massima della tabella
     validationMode:"blocking", //blocca l'invio dei dati se non validi
     columns:[
@@ -42,7 +42,7 @@ document.getElementById('modify-usr-reviews-button').addEventListener('click', f
         return row.getData();
     });
     
-    fetch('/private/update_reviews.php',{
+    fetch('https://saw21.dibris.unige.it/~S4669238/private/update_reviews.php',{
         method : 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({selectedReviews})
@@ -53,7 +53,7 @@ document.getElementById('modify-usr-reviews-button').addEventListener('click', f
         }
     })
     .catch(function (error){
-        window.location.href = "public/unexpected_error.php";
+        window.location.href = "https://saw21.dibris.unige.it/~S4669238/public/unexpected_error.php";
     });
     window.location.reload();
 

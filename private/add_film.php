@@ -1,22 +1,22 @@
 <?php
-    include(dirname(__FILE__)."/../phpinfo.php");
+    include_once(dirname(__FILE__)."/../phpinfo.php");
 
     if(!isset($_SESSION))
         session_start();
     if(!isset($_SESSION['admin']) || !$_SESSION['admin'])
-        header('Location: /private/login.php');
+        header('Location: private/login.php');
 
     if ($_SERVER["REQUEST_METHOD"] === "POST"){
         include(DOCUMENT_ROOT."/private/connection.php");
         $fields = array('nome', 'genere', 'regista', 'paese', 'anno', 'trama', 'casa_produzione', 'durata');
         foreach ($fields as $field) {
             if (!isset( $_POST[$field]) || empty($_POST[$field])) {
-                header("Location: /public/invalid_input.php");
+                header("Location: ../public/invalid_input.php");
                 exit();
             }
         }
         if(!isset($_FILES['img']) || $_FILES['img']['error'] > 0){
-            header("Location: /public/invalid_input.php");   
+            header("Location: ../public/invalid_input.php");   
             exit();
         }
 
@@ -31,7 +31,7 @@
         $durata = filter_var($_POST['durata'], FILTER_VALIDATE_INT, array("options"=>array("min_range"=>0)));
 
         if(!$nome || !$genere || !$regista || !$paese || !$anno || !$trama  || !$casa_produzione || !$durata){
-            header("Location: /public/invalid_input.php");   
+            header("Location: ../public/invalid_input.php");   
         }   
 
         try{
@@ -44,7 +44,7 @@
             $extensions= array("jpeg","jpg","png");
 
             if(in_array($file_ext,$extensions) === false || $file_size > 2097152){
-                header("Location: /public/invalid_input.php");
+                header("Location: ../public/invalid_input.php");
                 exit;
             }
 
@@ -55,12 +55,12 @@
             mysqli_stmt_close($stmt);
 
             move_uploaded_file($file_tmp, DOCUMENT_ROOT."/assets/img/film/".$file_name);
-            header("Location: /private/add_film.php");
+            header("Location: add_film.php");
             exit;
         }
         catch (mysqli_sql_exception $e) {
             error_log($e->getMessage(), 3, DOCUMENT_ROOT."/private/logs/errors.log");
-            header("Location: /public/unexpected_error.php");
+            header("Location: ../public/unexpected_error.php");
             exit;
         }
     }
@@ -69,7 +69,7 @@
         include(DOCUMENT_ROOT."/components/navbar/navbar.php");
 ?>
         <div class="table-container d-flex justify-content-center">
-            <form action="/private/add_film.php" method="post" enctype="multipart/form-data" class="w-50">
+            <form action="private/add_film.php" method="post" enctype="multipart/form-data" class="w-50">
                 <div class="form-group">
                     <label for="nome"><i class="fas fa-film"></i> Nome:</label>
                     <input type="text" class="form-control" id="nome" name="nome">

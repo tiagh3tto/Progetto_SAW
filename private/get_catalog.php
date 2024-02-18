@@ -1,5 +1,5 @@
 <?php
-    include(dirname(__FILE__)."/../phpinfo.php");
+include_once(dirname(__FILE__)."/../phpinfo.php");
 
 //se viene chiamato get_catalog dalla searchbar
 if((isset($_GET["searchBar"]) && isset($_GET["filter"])) && (!empty($_GET["searchBar"]) && !empty($_GET["filter"]))){
@@ -8,7 +8,7 @@ if((isset($_GET["searchBar"]) && isset($_GET["filter"])) && (!empty($_GET["searc
         $allowed_cols = ['Nome', 'Genere', 'Regista', 'Paese', 'Anno', 'Casa_Produzione'];
         $filter = $_GET["filter"];
         if (!in_array($filter, $allowed_cols)) {
-            header("Location: /public/invalid_input.php");
+            header("Location: ../public/invalid_input.php");
             exit;
         }
 
@@ -50,7 +50,7 @@ if((isset($_GET["searchBar"]) && isset($_GET["filter"])) && (!empty($_GET["searc
     }
     catch(mysqli_sql_exception $e){
         error_log($e->getMessage(), 3, DOCUMENT_ROOT."/private/logs/errors.log");
-        header("Location: /public/unexpected_error.php");
+        header("Location: ../public/unexpected_error.php");
         exit;
     }
 }
@@ -84,7 +84,7 @@ else{
     }
     catch(mysqli_sql_exception $e){
         error_log($e->getMessage(), 3, DOCUMENT_ROOT."/private/logs/errors.log");
-        header("Location: /public/unexpected_error.php");
+        header("Location: public/unexpected_error.php");
         exit;
     }
 }

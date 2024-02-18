@@ -1,10 +1,10 @@
 <?php
-    include(dirname(__FILE__)."/../phpinfo.php");
+    include_once(dirname(__FILE__)."/../phpinfo.php");
 
 if(!isset($_SESSION)) 
     session_start(); 
 if(!isset($_SESSION["admin"]) && !$_SESSION["admin"] )
-    header('Location: /private/login.php');
+    header('Location: login.php');
 else{
     include(DOCUMENT_ROOT."/private/connection.php");
 
@@ -22,7 +22,7 @@ else{
         mysqli_stmt_close($stmt);
     } catch (mysqli_sql_exception $e) {
         error_log($e->getMessage(), 3, DOCUMENT_ROOT."/private/logs/errors.log");
-        header("Location: /public/unexpected_error.php");
+        header("Location: ../public/unexpected_error.php");
         exit;
     }
 }    

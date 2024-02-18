@@ -22,7 +22,7 @@
                 // Se il file corrente è catalog.php, mostra la barra di ricerca
                 if ($currentFile == 'catalog.php') {
             ?>
-            <form class="d-flex flex-row" action="catalog.php" method="POST">
+            <form class="d-flex flex-row" action="https://saw21.dibris.unige.it/~S4669238/public/catalog.php" method="POST">
                 <input class="form-control mr-sm-2" type="search" name="searchBar" placeholder="Cerca" aria-label="Cerca">
                 <div class="dropdown mx-sm-3">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

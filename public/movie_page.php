@@ -1,5 +1,5 @@
 <?php
-    include(dirname(__FILE__)."/../phpinfo.php");
+include_once(dirname(__FILE__)."/../phpinfo.php");
 
 include(DOCUMENT_ROOT."/components/head.php");
 include(DOCUMENT_ROOT."/components/navbar/navbar.php");
@@ -50,7 +50,7 @@ try{
 }
 catch(mysqli_sql_exception $e){
     error_log($e->getMessage(), 3, DOCUMENT_ROOT."/private/logs/errors.log");
-    header("Location: /public/unexpected_error.php");
+    header("Location: unexpected_error.php");
     exit;
 }    
 ?>

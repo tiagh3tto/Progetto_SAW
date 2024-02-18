@@ -1,5 +1,5 @@
 <?php
-    include(dirname(__FILE__)."/../phpinfo.php");
+    include_once(dirname(__FILE__)."/../phpinfo.php");
 
     if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 		include (DOCUMENT_ROOT."/components/head.php");
@@ -11,12 +11,12 @@
 		$arr_fields = array('firstname', 'lastname', 'email', 'pass', 'confirm');
 		foreach ($arr_fields as $field) {
 			if (!isset( $_POST[$field]) || empty($_POST[$field])) {
-				header("Location: /public/invalid_input.php");
+				header("Location: ../public/invalid_input.php");
 				exit;
 			}
 		}
 		if($_POST["pass"] != $_POST["confirm"]){
-			header("Location: /public/invalid_input.php");
+			header("Location: ../public/invalid_input.php");
 			exit;
 		}
 
@@ -26,7 +26,7 @@
 		$pass = filter_var($_POST['pass'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^.{8,}$/")));
 
 		if(!$fname || !$lname || !$mail || !$pass){
-            header("Location: /public/invalid_input.php");
+            header("Location: ../public/invalid_input.php");
 			exit; 
         }
 
@@ -42,21 +42,21 @@
 			mysqli_stmt_execute($stmt);
 
 			if(mysqli_affected_rows($con) < 1){
-				header("Location: /public/unexpected_error.php");
+				header("Location: ../public/unexpected_error.php");
 				exit; 
 			}			
 			mysqli_stmt_close($stmt);
-			header("Location: /private/login.php"); 
+			header("Location: login.php"); 
 			exit;
 		}
 		catch(mysqli_sql_exception $e){
 			error_log($e->getMessage(), 3, DOCUMENT_ROOT."/private/logs/errors.log");
 			if($e->getCode() == 1062){
-				header("Location: /public/not_available_account.php");
+				header("Location: ../public/not_available_account.php");
 				exit; 
 			}
 			else{
-				header("Location: /public/unexpected_error.php");
+				header("Location: ../public/unexpected_error.php");
 				exit; 
 			}
 		}	

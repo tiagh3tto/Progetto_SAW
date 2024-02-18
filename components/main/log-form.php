@@ -2,7 +2,7 @@
     <div class="form-container">
         <h1 class="text-center">Accedi</h1>
         <p class="text-center">Inserisci i tuoi dati per accedere</p>
-        <form action="login.php" method="POST" class='row g-3 needs-validation' novalidate>
+        <form action="private/login.php" method="POST" class='row g-3 needs-validation' novalidate>
         <div class="col-md-7">
           <label for="validationCustomEmail" class="form-label">Email</label>
           <div class="input-group has-validation">
