@@ -26,6 +26,7 @@
         mysqli_stmt_bind_param($stmt, "iiiiiii", $ID_Utente, $ID_Film, $Regia, $Sceneggiatura, $Colonna_Sonora, $Recitazione, $Fotografia);
         mysqli_stmt_execute($stmt);
         header("Location: ../public/movie_page.php?NomeFilm=".$_SESSION["NomeFilm"]);
+        exit;
       }
         catch(mysqli_sql_exception $e)
         {

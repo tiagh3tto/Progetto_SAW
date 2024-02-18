@@ -1,6 +1,6 @@
 <?php
 include_once(dirname(__FILE__)."/../phpinfo.php");
-
+$_SESSION["review_error"] = false;
 include(DOCUMENT_ROOT."/components/head.php");
 include(DOCUMENT_ROOT."/components/navbar/navbar.php");
 include(DOCUMENT_ROOT."/private/connection.php");
@@ -84,7 +84,7 @@ catch(mysqli_sql_exception $e){
                     </ul>   
                     <?php
                     if(isset($_SESSION["login"]) && $_SESSION["login"]){
-                        if(isset($_SESSION["banned"]) && !$_SESSION["banned"] && !isset($_SESSION["review_error"]) ){
+                        if(isset($_SESSION["banned"]) && !$_SESSION["banned"] ){
                             $_SESSION["ID_Film"] = FILM["ID"];
                             $_SESSION["NomeFilm"] = FILM["Nome"];
                             include(DOCUMENT_ROOT."/private/send_review.php"); 

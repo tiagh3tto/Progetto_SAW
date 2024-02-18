@@ -43,13 +43,13 @@
                 if(password_verify($pwd, $row["Password"])){
                     $_SESSION['login'] = true;
                     $_SESSION['ID'] = htmlspecialchars($row["ID"]);
-                    $_SESSION['banned'] = htmlspecialchars($row["Banned"]);
+                    $_SESSION['banned'] = htmlspecialchars($row["Ban"]);
                     $_SESSION['firstname'] = htmlspecialchars($row["Nome"]);
                     $_SESSION['lastname'] = htmlspecialchars($row["Cognome"]);
                     $_SESSION['email'] = htmlspecialchars($row["Email"]);
                     $_SESSION['birthdate'] = htmlspecialchars($row["Data_Nascita"]);
-                    $_SESSION['gender'] = htmlspecialchars($row["Sesso"]);
-                    $_SESSION['nationality'] = htmlspecialchars($row["Nazionalita"]);
+                    $_SESSION['gender'] = htmlspecialchars($row["Genere"]);
+                    $_SESSION['nationality'] = htmlspecialchars($row["Nazionalità"]);
                     $_SESSION['admin'] = htmlspecialchars($row["Admin"]);
                     header('Location: ../public/index.php');
                     exit;
