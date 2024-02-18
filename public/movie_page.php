@@ -18,9 +18,19 @@ try{
     mysqli_stmt_bind_param($stmt2, "i", $row["ID"]);
     mysqli_stmt_execute($stmt2);
     $res2 = mysqli_stmt_get_result($stmt2);
-    $count = mysqli_num_rows($res2);
     $row2 = mysqli_fetch_assoc($res2);
-    if($count == 1){
+    
+    if($row2["Regia"] == NULL && $row2["Sceneggiatura"] == NULL && $row2["Fotografia"] == NULL && $row2["Recitazione"] == NULL && $row2["Colonna_Sonora"] == NULL){
+        $data = [
+            "Gradimento" => "Ancora Nessuna Recensione",
+            "Regia" => "Ancora Nessuna Recensione",
+            "Sceneggiatura" => "Ancora Nessuna Recensione",
+            "Colonna_Sonora" => "Ancora Nessuna Recensione",
+            "Recitazione" => "Ancora Nessuna Recensione",
+            "Fotografia" => "Ancora Nessuna Recensione",
+        ];
+    }    
+    else{
         $gradimento = ($row2["Regia"] + $row2["Sceneggiatura"] + $row2["Fotografia"] + $row2["Recitazione"] + $row2["Colonna_Sonora"] ) / 5;
         $data = [
             "Gradimento" => intval($gradimento),
@@ -30,17 +40,11 @@ try{
             "Recitazione" => intval($row2["Recitazione"]),
             "Fotografia" => intval($row2["Fotografia"]),
         ];
-    }
-    else if ($count == 0)
-        $data = [
-        "Regia" => "Ancora Nessuna Recensione",
-        "Sceneggiatura" => "Ancora Nessuna Recensione",
-        "Colonna_Sonora" => "Ancora Nessuna Recensione",
-        "Recitazione" => "Ancora Nessuna Recensione",
-        "Fotografia" => "Ancora Nessuna Recensione",
-    ];
+    }      
     define("REVIEW", ($data));
-
+    mysqli_free_result($res2);
+    mysqli_stmt_close($stmt);
+    mysqli_stmt_close($stmt2);
 }
 catch(mysqli_sql_exception $e){
     error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
