@@ -1,10 +1,12 @@
 <?php
+    include(dirname(__FILE__)."/../phpinfo.php");
+
 if(!isset($_SESSION)) 
 session_start(); 
 if(!isset($_SESSION["admin"]) && !$_SESSION["admin"] )
-header('Location: /SAW/Progetto_SAW/private/login.php');
+header('Location: /private/login.php');
 else{
-    include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
+    include(DOCUMENT_ROOT."/private/connection.php");
 
     // ottieni il contenuto della richiesta (php://input è uno stream), e fa la decode in un array associativo (true)
     $data = json_decode(file_get_contents('php://input'), true);
@@ -19,8 +21,8 @@ else{
         }
         mysqli_stmt_close($stmt);
     } catch (mysqli_sql_exception $e) {
-        error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
-        header("Location: /SAW/Progetto_SAW/public/unexpected_error.php");
+        error_log($e->getMessage(), 3, DOCUMENT_ROOT."/private/logs/errors.log");
+        header("Location: /public/unexpected_error.php");
         exit;
     }
 }    

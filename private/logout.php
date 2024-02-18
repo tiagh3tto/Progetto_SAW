@@ -1,4 +1,5 @@
 <?php
+
     if(!isset($_SESSION)) { 
         session_start(); 
     }
@@ -8,6 +9,6 @@
         setcookie(session_name(), '', time()-86400, '/');
     }
     session_destroy();
-    header('Location: /SAW/Progetto_SAW/private/login.php');
+    header('Location: /private/login.php');
     exit;
 ?>

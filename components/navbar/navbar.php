@@ -4,14 +4,14 @@
     } 
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/SAW/Progetto_SAW/public/index.php"><img src="../assets/img/logo2.png" alt="Logo"></a>
+    <a class="navbar-brand" href="public/index.php"><img src="assets/img/logo2.png" alt="Logo"></a>
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto centered-nav">
             <li class="nav-item">
-                <a class="nav-link" href="/SAW/Progetto_SAW/public/index.php">Home</a>
+                <a class="nav-link" href="public/index.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/SAW/Progetto_SAW/public/catalog.php">Catalogo</a>
+                <a class="nav-link" href="public/catalog.php">Catalogo</a>
             </li>
         </ul>
         <ul class="navbar-nav mr-auto centered-nav">
@@ -70,18 +70,18 @@
                     <?php
                         if(isset($_SESSION['login']) && !empty($_SESSION['login'])){
                             if(isset($_SESSION['admin']) && $_SESSION['admin']){
-                                echo "<a class='dropdown-item' href='/SAW/Progetto_SAW/private/show_profile.php'>Area riservata</a>";
-                                echo "<a class='dropdown-item' href='/SAW/Progetto_SAW/private/admin_area.php'>Area amministrativa</a>";
-                                echo "<a class='dropdown-item' href='/SAW/Progetto_SAW/private/logout.php'>Esci</a>";
+                                echo "<a class='dropdown-item' href='private/show_profile.php'>Area riservata</a>";
+                                echo "<a class='dropdown-item' href='private/admin_area.php'>Area amministrativa</a>";
+                                echo "<a class='dropdown-item' href='private/logout.php'>Esci</a>";
                             }
                             else{
-                                echo "<a class='dropdown-item' href='/SAW/Progetto_SAW/private/show_profile.php'>Area riservata</a>";
-                                echo "<a class='dropdown-item' href='/SAW/Progetto_SAW/private/logout.php'>Esci</a>";
+                                echo "<a class='dropdown-item' href='private/show_profile.php'>Area riservata</a>";
+                                echo "<a class='dropdown-item' href='private/logout.php'>Esci</a>";
                             }
                         }
                         else{
-                            echo "<a class='dropdown-item' href='/SAW/Progetto_SAW/private/registration.php'>Registrati</a>";
-                            echo "<a class='dropdown-item' href='/SAW/Progetto_SAW/private/login.php'>Accedi</a>";
+                            echo "<a class='dropdown-item' href='private/registration.php'>Registrati</a>";
+                            echo "<a class='dropdown-item' href='private/login.php'>Accedi</a>";
                         }
                     ?>    
                 </div>

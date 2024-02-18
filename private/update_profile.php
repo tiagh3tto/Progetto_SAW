@@ -1,14 +1,16 @@
 <?php
+    include(dirname(__FILE__)."/../phpinfo.php");
+
     if(!isset($_SESSION))
         session_start();
     if(!isset($_SESSION['login']) || empty($_SESSION['login']))
-        header('Location: /SAW/Progetto_SAW/private/login.php');
+        header('Location: /private/login.php');
     if ($_SERVER["REQUEST_METHOD"] === "POST"){
-        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
+        include(DOCUMENT_ROOT."/private/connection.php");
         $fields = array('firstname', 'lastname', 'email');
         foreach ($fields as $field) {
 			if (!isset( $_POST[$field]) || empty($_POST[$field])) {
-                header("Location: /SAW/Progetto_SAW/public/invalid_input.php");
+                header("Location: /public/invalid_input.php");
                 exit;
             }
 		}
@@ -21,7 +23,7 @@
         $nationality = filter_var(trim($_POST['nationality']), FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")));
 
         if(!$firstname || !$lastname || !$newEmail || !$birthdate || !$gender  || !$nationality){
-            header("Location: /SAW/Progetto_SAW/public/invalid_input.php");   
+            header("Location: /public/invalid_input.php");   
         }
 
         $oldEmail = $_SESSION['email'];
@@ -41,23 +43,23 @@
 
                 mysqli_stmt_close($stmt);
 
-                header('Location: /SAW/Progetto_SAW/private/show_profile.php');
+                header('Location: /private/show_profile.php');
                 exit;
             }
             else {
-                header("Location: /SAW/Progetto_SAW/public/invalid_input.php");
+                header("Location: /public/invalid_input.php");
                 exit;
             }
         }
         catch(mysqli_sql_exception $e){
-            error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
-            header('Location: /SAW/Progetto_SAW/public/unexpected_error.php');
+            error_log($e->getMessage(), 3, DOCUMENT_ROOT."/private/logs/errors.log");
+            header('Location: /public/unexpected_error.php');
             exit();
         }
     }
     else{
-        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/head.php");
-        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/navbar/navbar.php");
+        include(DOCUMENT_ROOT."/components/head.php");
+        include(DOCUMENT_ROOT."/components/navbar/navbar.php");
 ?>
         <div style='display: flex; justify-content: center; align-items: center; height: 100vh;'>
             <div class="form-container">
@@ -121,6 +123,6 @@
             </div>
         </div>
 <?php
-        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/footer.php");
+        include(DOCUMENT_ROOT."/components/footer.php");
     }
 ?>

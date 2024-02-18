@@ -1,6 +1,8 @@
 <?php
-include("../components/head.php");
-include("../components/navbar/navbar.php");
-include("../components/main/home.php");
-include("../components/footer.php");
+include(dirname(__FILE__)."/../phpinfo.php");
+
+include(DOCUMENT_ROOT."/components/head.php");
+include(DOCUMENT_ROOT."/components/navbar/navbar.php");
+include(DOCUMENT_ROOT."/components/main/home.php");
+include(DOCUMENT_ROOT."/components/footer.php");
 ?>

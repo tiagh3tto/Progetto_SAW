@@ -1,10 +1,12 @@
 <?php
+    include(dirname(__FILE__)."/../phpinfo.php");
+
     if(!isset($_SESSION))
         session_start();
     header('Content-Type: application/json');    
     if( isset($_SESSION['ID']) && !empty($_SESSION['ID']) ){
         $ID = $_SESSION['ID'];
-        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
+        include(DOCUMENT_ROOT."/private/connection.php");
         try{
             $query = "SELECT * FROM recensioni INNER JOIN film ON recensioni.ID_Film = film.ID WHERE ID_Utente = ? ;";
             $stmt = mysqli_prepare($con, $query);
@@ -15,8 +17,8 @@
             $count = mysqli_num_rows($res);
         }
         catch(mysqli_sql_exception $e){
-            error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
-            header('Location: /SAW/Progetto_SAW/public/unexpected_error.php');
+            error_log($e->getMessage(), 3, DOCUMENT_ROOT."/private/logs/errors.log");
+            header('Location: /public/unexpected_error.php');
             exit; 
         }
         if($count != 0){
@@ -37,5 +39,5 @@
             echo json_encode(array("Errore"=>"Impossibile caricare le tue recensioni"));
     }  
     else
-        header('Location: /SAW/Progetto_SAW/private/login.php');
+        header('Location: /private/login.php');
 ?>

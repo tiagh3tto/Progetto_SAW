@@ -1,6 +1,8 @@
 <?php
-include("../components/head.php");
-include("../components/navbar/navbar.php");
+    include(dirname(__FILE__)."/../phpinfo.php");
+
+include(DOCUMENT_ROOT."/components/head.php");
+include(DOCUMENT_ROOT."/components/navbar/navbar.php");
 ?>
 
 <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
@@ -12,5 +14,5 @@ include("../components/navbar/navbar.php");
 </div>
 
 <?php
-include("../components/footer.php");
+include(DOCUMENT_ROOT."/components/footer.php");
 ?>

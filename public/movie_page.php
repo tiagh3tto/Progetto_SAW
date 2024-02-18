@@ -1,7 +1,9 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/head.php");
-include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/navbar/navbar.php");
-include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
+    include(dirname(__FILE__)."/../phpinfo.php");
+
+include(DOCUMENT_ROOT."/components/head.php");
+include(DOCUMENT_ROOT."/components/navbar/navbar.php");
+include(DOCUMENT_ROOT."/private/connection.php");
 try{    
     $query = "SELECT * FROM film WHERE Nome = ?";
     $movie_name = $_GET['NomeFilm'];
@@ -47,8 +49,8 @@ try{
     mysqli_stmt_close($stmt2);
 }
 catch(mysqli_sql_exception $e){
-    error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
-    header("Location: /SAW/Progetto_SAW/public/unexpected_error.php");
+    error_log($e->getMessage(), 3, DOCUMENT_ROOT."/private/logs/errors.log");
+    header("Location: /public/unexpected_error.php");
     exit;
 }    
 ?>
@@ -56,7 +58,7 @@ catch(mysqli_sql_exception $e){
     <div class="card">
         <div class="row no-gutters">
             <div class="col-md-4">
-                <img id="moviePoster" src="/SAW/Progetto_SAW/assets/img/film/<?php echo FILM['Img']?>.jpg" class="card-img" alt="Locandina">
+                <img id="moviePoster" src="assets/img/film/<?php echo FILM['Img']?>.jpg" class="card-img" alt="Locandina">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -85,7 +87,7 @@ catch(mysqli_sql_exception $e){
                         if(isset($_SESSION["banned"]) && !$_SESSION["banned"] && !isset($_SESSION["review_error"]) ){
                             $_SESSION["ID_Film"] = FILM["ID"];
                             $_SESSION["NomeFilm"] = FILM["Nome"];
-                            include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/send_review.php"); 
+                            include(DOCUMENT_ROOT."/private/send_review.php"); 
                         }
                         else if(isset($_SESSION["banned"]) && $_SESSION["banned"] ){
                             echo '<div class="alert alert-danger text-center" role="alert">Non puoi recensire il film perchè sei stato bannato!</div>';
@@ -100,5 +102,5 @@ catch(mysqli_sql_exception $e){
     </div>
 </div>
 <?php
-include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/footer.php");
+include(DOCUMENT_ROOT."/components/footer.php");
 ?>

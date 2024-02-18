@@ -9,12 +9,12 @@ var table = new Tabulator("#catalog-table", {
     layout:"fitColumns", //imposta la larghezza delle colonne in base al contenuto
     responsiveLayout:"collapse", //schiaccia le colonne che non ci stanno
     maxHeight:"100%", //imposta l'altezza massima della tabella
-    ajaxURL:"/SAW/Progetto_SAW/private/get_catalog.php?searchBar=" + searchBar + "&filter=" + filter,
+    ajaxURL:"/private/get_catalog.php?searchBar=" + searchBar + "&filter=" + filter,
     columns:[
         {title:"Locandina", field:"img", formatter:"image", headerSort:false, formatterParams:{
             height:"120px",
             width:"80px",
-            urlPrefix:"/SAW/Progetto_SAW/assets/img/film/",
+            urlPrefix:"/assets/img/film/",
             urlSuffix:".jpg"
         }},
         {title:"Nome", field:"nome"},
@@ -30,6 +30,6 @@ var table = new Tabulator("#catalog-table", {
 
 table.on("rowClick", function(e, row){
     var data = row.getData();
-    var url = "/SAW/Progetto_SAW/public/movie_page.php?NomeFilm=" + data.nome;
+    var url = "public/movie_page.php?NomeFilm=" + data.nome;
     window.location.href = url;
 });

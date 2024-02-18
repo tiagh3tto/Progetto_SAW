@@ -1,16 +1,18 @@
 <?php
+    include(dirname(__FILE__)."/../phpinfo.php");
+
   if(!isset($_SESSION)){
     session_start();
   }
   if(!isset($_SESSION['login']) || $_SESSION["login"] == false){
-    header("Location: /SAW/Progetto_SAW/private/login.php");
+    header("Location: /private/login.php");
   }
   if(!isset($_SESSION["ID_Film"]) || empty($_SESSION["ID_Film"])){
-    header("Location: /SAW/Progetto_SAW/public/movie_page.php?NomeFilm=".$_SESSION["NomeFilm"]);
+    header("Location: /public/movie_page.php?NomeFilm=".$_SESSION["NomeFilm"]);
   }
   else{
     if($_SERVER["REQUEST_METHOD"] == "POST" ){
-      include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
+      include(DOCUMENT_ROOT."/private/connection.php");
       try{
         $Regia = intval($_POST["Regia"]);
         $Sceneggiatura = intval($_POST["Sceneggiatura"]);
@@ -23,22 +25,22 @@
         $stmt = mysqli_prepare($con, $query);
         mysqli_stmt_bind_param($stmt, "iiiiiii", $ID_Utente, $ID_Film, $Regia, $Sceneggiatura, $Colonna_Sonora, $Recitazione, $Fotografia);
         mysqli_stmt_execute($stmt);
-        header("Location: /SAW/Progetto_SAW/public/movie_page.php?NomeFilm=".$_SESSION["NomeFilm"]);
+        header("Location: /public/movie_page.php?NomeFilm=".$_SESSION["NomeFilm"]);
       }
         catch(mysqli_sql_exception $e)
         {
             if($e->getCode() == 1062)
             {
                 $_SESSION["review_error"] = true;
-                header("Location: /SAW/Progetto_SAW/public/movie_page.php?NomeFilm=".$_SESSION["NomeFilm"]);
+                header("Location: /public/movie_page.php?NomeFilm=".$_SESSION["NomeFilm"]);
                 exit;
             }
-            error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
-            header("Location: /SAW/Progetto_SAW/public/unexpected_error.php");
+            error_log($e->getMessage(), 3, DOCUMENT_ROOT."/private/logs/errors.log");
+            header("Location: /public/unexpected_error.php");
             exit;
         }
     }
   else
-    include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/review_form.php");
+    include(DOCUMENT_ROOT."/private/review_form.php");
   }
 ?>

@@ -1,12 +1,14 @@
 <?php
+    include(dirname(__FILE__)."/../phpinfo.php");
+
     if(!isset($_SESSION)) { 
         session_start(); 
     }
     if(!isset($_SESSION['login']) || empty($_SESSION['login']))
-        header('Location: /SAW/Progetto_SAW/private/login.php');
+        header('Location: /private/login.php');
     else{
-        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/head.php");
-        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/navbar/navbar.php");
+        include(DOCUMENT_ROOT."/components/head.php");
+        include(DOCUMENT_ROOT."/components/navbar/navbar.php");
 ?>     
         <div class="show-profile-container">
             <div class="table-container">
@@ -22,11 +24,11 @@
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="user-tab-pane" role="tabpanel" aria-labelledby="user-tab" tabindex="0">
-                        <button id="modify-usr-data-button" onclick="location.href='/SAW/Progetto_SAW/private/update_profile.php';">Modifica Profilo</button>                 
+                        <button id="modify-usr-data-button" onclick="location.href='private/update_profile.php';">Modifica Profilo</button>                 
                             <p><strong>Per modificare i tuoi dati personali clicca sul pulsante "Modifica Profilo"</strong></p>
                             <div class="profile-content row">
                                 <div class="col-4">
-                                    <img src="/SAW/Progetto_SAW/assets/img/user_icon.png" alt="User Icon" class="user-icon">
+                                    <img src="assets/img/user_icon.png" alt="User Icon" class="user-icon">
                                 </div>
                                 <div class="col-8">
                                     <div class="mb-3 row">
@@ -81,6 +83,6 @@
             </div>
         </div>    
 <?php
-        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/footer.php");
+        include(DOCUMENT_ROOT."/components/footer.php");
     }   
 ?>

@@ -1,20 +1,22 @@
 <?php
+    include(dirname(__FILE__)."/../phpinfo.php");
+
     if(!isset($_SESSION))
         session_start();
     if(!isset($_SESSION['admin']) || !$_SESSION['admin'])
-        header('Location: /SAW/Progetto_SAW/private/login.php');
+        header('Location: /private/login.php');
 
     if ($_SERVER["REQUEST_METHOD"] === "POST"){
-        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
+        include(DOCUMENT_ROOT."/private/connection.php");
         $fields = array('nome', 'genere', 'regista', 'paese', 'anno', 'trama', 'casa_produzione', 'durata');
         foreach ($fields as $field) {
             if (!isset( $_POST[$field]) || empty($_POST[$field])) {
-                header("Location: /SAW/Progetto_SAW/public/invalid_input.php");
+                header("Location: /public/invalid_input.php");
                 exit();
             }
         }
         if(!isset($_FILES['img']) || $_FILES['img']['error'] > 0){
-            header("Location: /SAW/Progetto_SAW/public/invalid_input.php");   
+            header("Location: /public/invalid_input.php");   
             exit();
         }
 
@@ -29,7 +31,7 @@
         $durata = filter_var($_POST['durata'], FILTER_VALIDATE_INT, array("options"=>array("min_range"=>0)));
 
         if(!$nome || !$genere || !$regista || !$paese || !$anno || !$trama  || !$casa_produzione || !$durata){
-            header("Location: /SAW/Progetto_SAW/public/invalid_input.php");   
+            header("Location: /public/invalid_input.php");   
         }   
 
         try{
@@ -42,7 +44,7 @@
             $extensions= array("jpeg","jpg","png");
 
             if(in_array($file_ext,$extensions) === false || $file_size > 2097152){
-                header("Location: /SAW/Progetto_SAW/public/invalid_input.php");
+                header("Location: /public/invalid_input.php");
                 exit;
             }
 
@@ -52,22 +54,22 @@
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
 
-            move_uploaded_file($file_tmp, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/assets/img/film/".$file_name);
-            header("Location: /SAW/Progetto_SAW/private/add_film.php");
+            move_uploaded_file($file_tmp, DOCUMENT_ROOT."/assets/img/film/".$file_name);
+            header("Location: /private/add_film.php");
             exit;
         }
         catch (mysqli_sql_exception $e) {
-            error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
-            header("Location: /SAW/Progetto_SAW/public/unexpected_error.php");
+            error_log($e->getMessage(), 3, DOCUMENT_ROOT."/private/logs/errors.log");
+            header("Location: /public/unexpected_error.php");
             exit;
         }
     }
     else{
-        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/head.php");
-        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/navbar/navbar.php");
+        include(DOCUMENT_ROOT."/components/head.php");
+        include(DOCUMENT_ROOT."/components/navbar/navbar.php");
 ?>
         <div class="table-container d-flex justify-content-center">
-            <form action="/SAW/Progetto_SAW/private/add_film.php" method="post" enctype="multipart/form-data" class="w-50">
+            <form action="/private/add_film.php" method="post" enctype="multipart/form-data" class="w-50">
                 <div class="form-group">
                     <label for="nome"><i class="fas fa-film"></i> Nome:</label>
                     <input type="text" class="form-control" id="nome" name="nome">
@@ -119,6 +121,6 @@
             </form>
         </div>
 <?php
-        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/footer.php");
+        include(DOCUMENT_ROOT."/components/footer.php");
     }
 ?>

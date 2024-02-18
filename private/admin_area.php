@@ -1,12 +1,14 @@
 <?php
+    include(dirname(__FILE__)."/../phpinfo.php");
+
     if(!isset($_SESSION)) { 
         session_start(); 
     }
     if( !isset($_SESSION['admin']) || !$_SESSION['admin'] ) //ancora più stringente che controllare 'login'
-        header('Location: /SAW/Progetto_SAW/private/login.php');
+        header('Location: /private/login.php');
     else{
-        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/head.php");
-        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/navbar/navbar.php");
+        include(DOCUMENT_ROOT."/components/head.php");
+        include(DOCUMENT_ROOT."/components/navbar/navbar.php");
 ?>     
             <div class="table-container">
                 <h1>Area Amministrativa</h1>
@@ -29,7 +31,7 @@
                         </div>
                         <div class="tab-pane fade" id="moovies-tab-pane" role="tabpanel" aria-labelledby="moovies-tab" tabindex="0">
                             <div class="all-users-tab-buttons ">
-                                <button onclick="location.href='/SAW/Progetto_SAW/private/add_film.php';">Aggiungi Film</button>
+                                <button onclick="location.href='private/add_film.php';">Aggiungi Film</button>
                                 <button id="del-films-btn">Elimina Film Selezionati</button>
                             </div>
                             <div id="all-movies-table"></div>
@@ -38,6 +40,6 @@
                 </div>
             </div>
 <?php
-        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/components/footer.php");
+        include(DOCUMENT_ROOT."/components/footer.php");
     }   
 ?>

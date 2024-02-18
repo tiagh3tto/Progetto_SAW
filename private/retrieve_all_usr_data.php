@@ -1,10 +1,12 @@
 <?php
+    include(dirname(__FILE__)."/../phpinfo.php");
+
     if(!isset($_SESSION))
         session_start();
     header('Content-Type: application/json');    
     //se l'utente è admin, carica tutti gli utenti    
     if( isset($_SESSION['admin']) && $_SESSION['admin'] ){
-        include($_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/connection.php");
+        include(DOCUMENT_ROOT."/private/connection.php");
         try{
             $query = "SELECT * FROM utenti";
             $res = mysqli_query($con, $query);
@@ -23,11 +25,11 @@
             exit;
         }
         catch(mysqli_sql_exception $e){
-            error_log($e->getMessage(), 3, $_SERVER['DOCUMENT_ROOT']."/SAW/Progetto_SAW/private/logs/errors.log");
-            header('Location: /SAW/Progetto_SAW/public/unexpected_error.php'); 
+            error_log($e->getMessage(), 3, DOCUMENT_ROOT."/private/logs/errors.log");
+            header('Location: /public/unexpected_error.php'); 
             exit(); 
         }    
     }
     else
-        header('Location: /SAW/Progetto_SAW/private/login.php');
+        header('Location: /private/login.php');
 ?>
