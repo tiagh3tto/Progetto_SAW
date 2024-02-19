@@ -98,7 +98,7 @@
                     <div class="col-md-7">
                         <label for="validationCustomEmail" class="form-label">Email</label>
                         <div class="input-group has-validation">
-                            <input type="email" name="email" class="form-control" id="validationCustomEmail" aria-describedby="inputGroupPrepend" value="<?php echo $_SESSION["email"]?>" required>
+                            <input type="email" name="email" class="form-control" id="validationCustomEmail" value="<?php echo $_SESSION["email"]?>" required>
                             <div class="invalid-feedback">
                                 Per favore inserisci una mail valida.
                             </div>
@@ -112,11 +112,11 @@
 
                     <div class="form-group">
                         <label for="gender">Genere</label>
-                        <select class="form-control" id="gender" name="gender" value="<?php if(isset($_SESSION["gender"])) echo $_SESSION["gender"];?>" required>
+                        <select class="form-control" id="gender" name="gender" required>
+                            <option value="" label="Seleziona un genere"></option>
                             <option value="maschio">Maschio</option>
                             <option value="femmina">Femmina</option>
                             <option value="altro">Altro</option>
-                            <option value="" selected hidden></option>
                         </select>
                     </div>
 

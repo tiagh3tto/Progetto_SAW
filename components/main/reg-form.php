@@ -33,32 +33,32 @@
           </div>
         </div>
         <div class="col-md-6">
-          <label for="validationCustonPwd" class="col-form-label">Password</label>
-          <div class="col-auto">
-            <input type="password" name="pass" id="validationCustonPwd" class="form-control" aria-describedby="passwordHelpInline" minlength="8" required>
-            <div class="invalid-feedback">
-                Per favore inserisci una password valida.
+            <label for="validationCustonPwd" class="col-form-label">Password</label>
+            <div class="col-auto">
+                <input type="password" name="pass" id="validationCustonPwd" class="form-control" aria-describedby="passwordHelpInline" minlength="8" required>
+                <div class="invalid-feedback">
+                    Per favore inserisci una password valida.
+                </div>
             </div>
-          </div>
-          <div class="col-auto">
-            <span id="passwordHelpInline" class="form-text">
-              Dev'essere lunga almeno 8 caratteri.
-            </span>
-          </div>
+            <div class="col-auto">
+                <span id="passwordHelpInline" class="form-text">
+                    Dev'essere lunga almeno 8 caratteri.
+                </span>
+            </div>
         </div>
         <div class="col-md-6">
             <label for="inputPasswordConfirm" class="col-form-label">Conferma Password</label>
-          <div class="col-auto">
-            <input type="password" name="confirm" id="inputPasswordConfirm" class="form-control" aria-describedby="passwordHelpInlineConfirm" minlength="8" required>
-            <div class="invalid-feedback">
-                Per favore inserisci una password valida.
-          </div>
-          </div>
-          <div class="col-auto">
-            <span id="passwordHelpInlineConfirm" class="form-text">
-              Dev'essere lunga almeno 8 caratteri e corrispondere alla password.
-            </span>
-          </div>  
+            <div class="col-auto">
+                <input type="password" name="confirm" id="inputPasswordConfirm" class="form-control" aria-describedby="passwordHelpInlineConfirm" minlength="8" required>
+                <div class="invalid-feedback">
+                    Per favore inserisci una password valida.
+                </div>
+            </div>
+            <div class="col-auto">
+                <span id="passwordHelpInlineConfirm" class="form-text">
+                    Dev'essere lunga almeno 8 caratteri e corrispondere alla password.
+                </span>
+            </div>  
         </div>
         <div class="col-12">
           <button class="btn btn-primary" name="submit" type="submit">Invia</button>
