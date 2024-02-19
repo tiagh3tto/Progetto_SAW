@@ -55,7 +55,7 @@
                 exit;
             }
             else {
-                header("Location: public/invalid_input.php");
+                header("Location: ../public/invalid_input.php");
                 exit;
             }
         }
