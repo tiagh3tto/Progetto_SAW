@@ -21,6 +21,7 @@
 
         if(!$firstname || !$lastname || !$newEmail ){
             header("Location: ../public/invalid_input.php");   
+            exit;
         }
 
         if(isset($_POST['birthdate']) && isset($_POST['gender']) && isset($_POST['nationality']) ){
@@ -28,7 +29,8 @@
             $gender = filter_var(trim($_POST['gender']));
             $nationality = filter_var(trim($_POST['nationality']), FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")));
             if(!$birthdate || !$gender  || !$nationality){
-                header("Location: ../public/invalid_input.php");   
+                header("Location: ../public/invalid_input.php");  
+                exit; 
             }
         }
 
