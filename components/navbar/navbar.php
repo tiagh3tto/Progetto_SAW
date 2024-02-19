@@ -14,8 +14,7 @@
                 <a class="nav-link" href="public/catalog.php">Catalogo</a>
             </li>
         </ul>
-        <ul class="navbar-nav mr-auto centered-nav">
-            <?php
+        <?php
                 // Ottieni il nome del file corrente
                 $currentFile = basename($_SERVER['PHP_SELF']);
 
@@ -23,7 +22,7 @@
                 if ($currentFile == 'catalog.php') {
             ?>
             <form class="d-flex flex-row" action="https://saw21.dibris.unige.it/~S4669238/public/catalog.php" method="POST">
-                <input class="form-control mr-sm-2" type="search" name="searchBar" placeholder="Cerca" aria-label="Cerca">
+                <input class="form-control mr-sm-2" type="search" name="searchBar" placeholder="Cerca" aria-label="Cerca" style="width:250px">
                 <div class="dropdown mx-sm-3">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-filter"></i>
@@ -60,7 +59,6 @@
             <?php
                 }
             ?>
-        </ul>
         <ul class="navbar-nav mr-auto centered-nav">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

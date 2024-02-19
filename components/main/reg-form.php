@@ -26,7 +26,7 @@
         <div class="col-md-7">
           <label for="validationCustomEmail" class="form-label">Email</label>
           <div class="input-group has-validation">
-            <input type="email" name="email" class="form-control" id="validationCustomEmail" aria-describedby="inputGroupPrepend" required>
+            <input type="email" name="email" class="form-control" id="validationCustomEmail" required>
             <div class="invalid-feedback">
               Per favore inserisci una mail valida.
             </div>
