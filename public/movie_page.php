@@ -61,7 +61,7 @@ catch(mysqli_sql_exception $e){
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h2 class="card-title" id="Titolo Film"><?php echo FILM["Nome"]?></h5>
+                    <h1 class="card-title" id="Titolo_Film"><?php echo FILM["Nome"]?></h1>
                     <p class="card-text" id="Descrizione_Film"><?php echo FILM["Trama"]?></p>
                     <h2>Dettagli</h2>
                     <ul>
@@ -74,7 +74,7 @@ catch(mysqli_sql_exception $e){
                     </ul>
                     <h2>Valutazione</h2>
                     <ul>
-                        <li id="Gradimento Generale" style="font-size: 20px; font-weight:bold;">Gradimento Generale: <?php echo REVIEW["Gradimento"]?></li> 
+                        <li id="Gradimento_Generale" style="font-size: 20px; font-weight:bold;">Gradimento Generale: <?php echo REVIEW["Gradimento"]?></li> 
                         <li id="Regia">Regia: <?php echo REVIEW["Regia"]?> </li>
                         <li id="Sceneggiatura">Sceneggiatura: <?php echo REVIEW["Sceneggiatura"]?> </li>
                         <li id="Colonna_Sonora">Colonna Sonora: <?php echo REVIEW["Colonna_Sonora"]?></li>
