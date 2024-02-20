@@ -51,9 +51,6 @@ document.getElementById("del-films-btn").addEventListener("click", function(){
 
 var all_users_table = new Tabulator("#all-users-table", {
     placeholder:"Nessun Utente Trovato", //imposta il messaggio da mostrare quando non ci sono risultati
-    defaultOption:{
-        minWidth: 100,
-    },
     layout:"fitColumns",
     maxHeight:"100%",
     ajaxURL:"https://saw21.dibris.unige.it/~S4669238/private/retrieve_all_usr_data.php",
